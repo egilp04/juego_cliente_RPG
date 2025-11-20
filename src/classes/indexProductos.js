@@ -1,0 +1,14 @@
+export { Arco_Caza } from "./productos/Arco_Caza.js";
+export { Armadura_Cuero } from "./productos/Armadura_Cuero.js";
+export { Botas } from "./productos/Botas.js";
+export { Casco } from "./productos/Casco.js";
+export { Elixir_Legendario } from "./productos/Elixir_Legendario.js";
+export { Escudo_Roble } from "./productos/Escudo_Roble.js";
+export { Espada_Corta } from "./productos/Espada_Corta.js";
+export { Espada_Runica } from "./productos/Espada_Runica.js";
+export { Hacha } from "./productos/Hacha.js";
+export { Mandoble_Epico } from "./productos/Mandoble_Epico.js";
+export { Manzana } from "./productos/Manzana.js";
+export { Placas_Draconicas } from "./productos/Placas_draconicas.js";
+export { Pocion_Grande } from "./productos/Pocion_Grande.js";
+export { Pocion_Peque } from "./productos/Pocion_Peque.js";
