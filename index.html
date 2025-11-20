@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego cliente</title>
+    <link rel="icon" type="image/x-icon" href="./src/assests/icons/game.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="./src/main.js" type="module" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="title" id="title"></h1>
+    </header>
+    <main>
+      <section id="seccion-1" class="seccion seccion-1">
+        <div id="datos-jugador-container">
+          <div id="imagen-jugador-container">
+            <img id="imagen-jugador-seccion-1" alt="imagen del jugador" />
+          </div>
+          <div id="nombre-jugador-container-seccion-1"><h2></h2></div>
+        </div>
+        <div id="estadisticas-container">
+          <div id="ataque-container">
+            <span>ATAQUE</span><span id="ataque-valor" class="valor-seccion-1"></span>
+          </div>
+          <div id="defensa-container">
+            <span>DEFENSA</span><span id="defensa-valor" class="valor-seccion-1"></span>
+          </div>
+          <div id="vida-container">
+            <span>VIDA</span><span id="vida-valor" class="valor-seccion-1"></span>
+          </div>
+          <div id="puntos-container">
+            <span>PUNTOS</span><span id="puntos-valor" class="valor-seccion-1"></span>
+          </div>
+        </div>
+        <div>
+          <button type="button" class="continuar" id="boton-continuar-1">
+            Continuar
+          </button>
+        </div>
+      </section>
+      <section id="seccion-2" class="seccion seccion-2">
+        <div id="mercado-container"></div>
+        <div>
+          <button type="button" class="continuar" id="boton-continuar-2">
+            Continuar
+          </button>
+        </div>
+      </section>
+      <section id="seccion-3" class="seccion seccion-3">
+         <div id="datos-jugador-container">
+          <div id="imagen-jugador-container">
+            <img id="imagen-jugador-seccion-3" alt="imagen del jugador" />
+          </div>
+          <div id="nombre-jugador-container-seccion-3"><h2></h2></div>
+        </div>
+        <div id="estadisticas-container">
+          <div id="ataque-container">
+            <span>ATAQUE</span><span id="ataque-valor" class="valor-seccion-3"></span>
+          </div>
+          <div id="defensa-container">
+            <span>DEFENSA</span><span id="defensa-valor" class="valor-seccion-3"></span>
+          </div>
+          <div id="vida-container">
+            <span>VIDA</span><span id="vida-valor" class="valor-seccion-3"></span>
+          </div>
+          <div id="puntos-container">
+            <span>PUNTOS</span><span id="puntos-valor" class="valor-seccion-3"></span>
+          </div>
+        </div>
+        <div>
+          <button type="button" class="continuar" id="boton-continuar-3">
+            Continuar
+          </button>
+        </div>
+        </div>
+      </section>
+      <section id="seccion-4" class="seccion seccion-4">
+        <div id="enemigos-container"></div>
+        <div>
+          <button type="button" class="continuar" id="boton-continuar-4">
+            Continuar
+          </button>
+        </div>
+      </section>
+      <section id="seccion-5" class="seccion seccion-5">
+        <div id="batalla-container">
+          <div id="jugador-imagen-container"><img id="jugador-imagen"></div>
+          <span class="batalla-vs">VS</span>
+          <div id="enemigo-imagen-container"><img id="enemigo-imagen"></div>
+        </div>
+        <div id="resultados-container">
+          <h2></h2>
+         <p></p>
+        </div>
+        <div>
+          <button type="button" class="continuar" id="boton-continuar-4">
+            Continuar
+          </button>
+        </div>
+      </section>    
+      <section id="seccion-6" class="seccion seccion-6">
+        <div id="ranking-container">
+          <span id="ranking-data"></span>
+          <span id="puntuacion-data"></span>
+        </div>
+        <div>
+          <button type="button" class="reiniciar" id="boton-reiniciar">
+            Reiniciar
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div id="casilla-1" class="casilla"></div>
+      <div id="casilla-2" class="casilla"></div>
+      <div id="casilla-3" class="casilla"></div>
+      <div id="casilla-4" class="casilla"></div>
+      <div id="casilla-5" class="casilla"></div>
+      <div id="casilla-6" class="casilla"></div>
+    </footer>
+  </body>
+</html>
