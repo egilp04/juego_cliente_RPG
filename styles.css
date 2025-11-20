@@ -1,0 +1,216 @@
+:root {
+  --color-primary: #734b06ff;
+  --color-secondary: rgba(198, 151, 20, 1);
+  --color-accent: #8b7113ff;
+  --color-background: #f4f4f4;
+  --color-surface: #cbbfbfff;
+
+  --color-text: #171717ff;
+  --color-white: #ffefefff;
+  --color-error: #d9534f;
+  --color-success: #5cb85c;
+  --color-warning: #f0ad4e;
+
+  --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --font-size-sm: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 36px;
+
+  --padding-5: 0.3125rem;
+  --padding-8: 0.5rem;
+  --padding-10: 0.625rem;
+  --padding-15: 0.9375rem;
+  --padding-20: 1.25rem;
+  --padding-30: 1.875rem;
+  --padding-40: 2.5rem;
+  --padding-50: 3.125rem;
+
+  --margin-5: 0.3125rem;
+  --margin-8: 0.5rem;
+  --margin-10: 0.625rem;
+  --margin-15: 0.9375rem;
+  --margin-20: 1.25rem;
+  --margin-30: 1.875rem;
+  --margin-40: 2.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-background);
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  margin-bottom: 20px;
+  padding: var(--padding-10);
+}
+
+header {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+}
+footer {
+  width: 50%;
+  height: 150px;
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--margin-10);
+  gap: var(--padding-8);
+}
+
+.casilla {
+  height: 60%;
+  width: 100px;
+  background-color: var(--color-secondary);
+}
+
+main {
+  background-color: var(--color-surface);
+  display: flex;
+  flex: 1 1 auto;
+  overflow: hidden;
+  width: 90%;
+}
+#seccion-1,
+#seccion-2,
+#seccion-3,
+#seccion-4,
+#seccion-5,
+#seccion-6 {
+  color: var(--color-text);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: var(--padding-30);
+  padding: var(--padding-20) var(--padding-50);
+}
+
+/*Seccion 1*/
+#datos-jugador-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40%;
+  width: 100%;
+}
+#imagen-jugador-container {
+  height: 100%;
+}
+#imagen-jugador-container img {
+  filter: drop-shadow(2px 4px 6px black);
+}
+#estadisticas-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: var(--padding-10);
+}
+#estadisticas-container > div {
+  border: 4px solid var(--color-accent);
+  padding: var(--padding-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--padding-5);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* seccion2  */
+
+#mercado-container,
+#enemigos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+  gap: var(--padding-20);
+}
+
+#producto,
+#enemigo-container {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+#img-producto-container {
+  width: 100%;
+  height: 40%;
+}
+
+#data-producto-container,
+.enemigo-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--padding-5);
+  padding: var(--padding-8);
+}
+
+#batalla-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+}
+#jugador-imagen-container,
+#enemigo-imagen-container {
+  height: 100%;
+}
+
+/* Elementos comunes */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.continuar,
+.reiniciar {
+  padding: var(--padding-8) var(--padding-10);
+  font-size: var(--font-size-md);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.continuar:hover,
+.reiniciar:hover {
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  transform: scale(1.02);
+  transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
+}
+
+.continuar:hover::before {
+  content: "🤞";
+}
