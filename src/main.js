@@ -14,9 +14,9 @@ import {
   avatarLobo,
   avatarJefe,
 } from "./constants/Constants.js";
-
 import { combate } from "./modules_game/Batalla.js";
 import { distinguirJugador } from "./modules_game/Ranking.js";
+import { mostrarSeccion, efectosVisuales } from "./utils/Utils.js";
 import {
   filtrarProductos,
   aplicarDescuento,
@@ -106,7 +106,6 @@ function seccion2Function(seccion2, jugador) {
         botonComprar.textContent = "Añadir";
         efectosVisuales();
       }
-
       rellenarCasillas(jugador);
     });
 
@@ -119,7 +118,6 @@ function seccion2Function(seccion2, jugador) {
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
-
   const boton = seccion2.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion3 = document.getElementById("seccion-3");
@@ -148,7 +146,7 @@ function seccion4Function(seccion4, jugador) {
   ];
   const divEnemigosContainer = document.getElementById("enemigos-container");
 
-  enemigos.forEach((enemigo, i) => {
+  enemigos.forEach((enemigo) => {
     const divEnemigo = document.createElement("div");
     divEnemigo.setAttribute("class", "enemigo-container");
 
@@ -171,7 +169,6 @@ function seccion4Function(seccion4, jugador) {
 
     divEnemigosContainer.appendChild(divEnemigo);
   });
-
   const boton = seccion4.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion5 = document.getElementById("seccion-5");
@@ -213,7 +210,6 @@ function seccion6Function(seccion6, puntuacion) {
   )}`;
   const spanPuntuacion = document.getElementById("puntuacion-data");
   spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
-
   const boton = seccion6.querySelector(".reiniciar");
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
@@ -223,23 +219,6 @@ function seccion6Function(seccion6, puntuacion) {
 }
 
 // Datos a mostrar
-function mostrarSeccion(id) {
-  mostrarFooter(id);
-  const secciones = Array.from(document.querySelectorAll(".seccion"));
-  secciones.forEach((seccion) => {
-    seccion.style.display = "none";
-  });
-
-  const seccionMostrar = document.getElementById(id);
-  seccionMostrar.style.display = "";
-}
-
-function mostrarFooter(id) {
-  const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
-  else footer.style.display = "";
-}
-
 function datosJugador(jugador, seccionid) {
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
@@ -257,9 +236,11 @@ function datosJugador(jugador, seccionid) {
     valor.textContent = `${valoresJugador[i]}`;
   });
 }
+
 function encontrarProducto(listaProducto, indiceProducto) {
   return listaProducto[indiceProducto];
 }
+
 function estadisticaAportaArma(tipoArma) {
   switch (tipoArma) {
     case "arma":
@@ -272,23 +253,22 @@ function estadisticaAportaArma(tipoArma) {
       break;
   }
 }
+
 function rellenarCasillas(jugador) {
   const inventario = jugador.inventario;
   const casillas = Array.from(document.querySelectorAll(".casilla"));
   casillas.forEach((casilla, i) => {
     casilla.innerHTML = "";
-    const imagenProdcutoDiv = document.createElement("div");
-    imagenProdcutoDiv.setAttribute("id", `${i}`);
-    const imagenProducto = document.createElement("img");
     const producto = inventario[i];
     if (producto) {
+      const imagenProdcutoDiv = document.createElement("div");
+      imagenProdcutoDiv.setAttribute("id", `${i}`);
+      const imagenProducto = document.createElement("img");
+
       const src = producto.imagen;
       imagenProducto.setAttribute("src", `${src}`);
       imagenProdcutoDiv.appendChild(imagenProducto);
       casilla.appendChild(imagenProdcutoDiv);
     }
   });
-}
-function efectosVisuales() {
-  console.log("efecto del boton, del color de la tarjeta");
 }
