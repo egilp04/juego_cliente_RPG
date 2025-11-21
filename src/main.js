@@ -76,7 +76,7 @@ function seccion2Function(seccion2, jugador) {
     }`;
 
     const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `${producto.precio}`;
+    spanPrecioProducto.textContent = `Precio. ${producto.precio}`;
 
     const botonComprar = document.createElement("button");
     botonComprar.setAttribute("class", "comprar-button");
