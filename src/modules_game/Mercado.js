@@ -16,7 +16,11 @@ import {
   Pocion_Peque,
 } from "../classes/indexProductos.js";
 
+// ====================
+// Lista inicial de productos del juego
+// ====================
 const listaProductos = [
+  // Cada producto se instancia con: nombre, imagen, precio, rareza, tipo y bonus
   new Espada_Corta(
     "Espada corta",
     "src/assests/img/objects_img/espada_corta.png",
@@ -131,18 +135,32 @@ const listaProductos = [
   ),
 ];
 
+// ====================
+// Lista final que se manipula con descuentos o filtros
+// ====================
 let listaProductosFinales = [];
 
+/**
+ * Filtra productos por rareza
+ * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
+ * @returns {Producto[]} Lista de productos que coinciden con la rareza
+ */
 export function filtrarProductos(tipoRareza) {
   return listaProductosFinales.filter(
     (producto) => tipoRareza === producto.rareza
   );
 }
 
+/**
+ * Aplica un descuento a los productos de la rareza indicada
+ * @param {string} tipoRareza - Rareza a la que aplicar el descuento (por defecto "raro")
+ * @param {number} descuento - Porcentaje de descuento en formato decimal (por defecto 0.2 → 20%)
+ * @returns {Producto[]} Lista de productos finales con descuento aplicado
+ */
 export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
   listaProductosFinales = [];
   listaProductos.forEach((producto) => {
-    const productoClonado = producto.clonarProducto();
+    const productoClonado = producto.clonarProducto(); // evitar modificar el original
     if (producto.rareza === tipoRareza)
       productoClonado.aplicarDescuento(descuento);
     listaProductosFinales.push(productoClonado);
@@ -150,6 +168,11 @@ export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
   return listaProductosFinales;
 }
 
+/**
+ * Busca productos por nombre exacto
+ * @param {string} nombreProducto - Nombre del producto a buscar
+ * @returns {Producto[]} Lista de productos que coinciden con el nombre
+ */
 export function buscarProductoNombre(nombreProducto) {
   return listaProductosFinales.filter(
     (producto) => nombreProducto === producto.nombre
