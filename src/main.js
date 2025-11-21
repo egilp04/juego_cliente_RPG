@@ -124,6 +124,38 @@ function seccion2Function(seccion2, jugador) {
   });
 }
 
+function estadisticaAportaArma(tipoArma) {
+  switch (tipoArma) {
+    case "arma":
+      return "Ataque";
+    case "armadura":
+      return "Defensa";
+    case "consumible":
+      return "Vida";
+    default:
+      break;
+  }
+}
+
+function rellenarCasillas(jugador) {
+  const inventario = jugador.inventario;
+  const casillas = Array.from(document.querySelectorAll(".casilla"));
+  casillas.forEach((casilla, i) => {
+    casilla.innerHTML = "";
+    const producto = inventario[i];
+    if (producto) {
+      const imagenProdcutoDiv = document.createElement("div");
+      imagenProdcutoDiv.setAttribute("id", `${i}`);
+      const imagenProducto = document.createElement("img");
+
+      const src = producto.imagen;
+      imagenProducto.setAttribute("src", `${src}`);
+      imagenProdcutoDiv.appendChild(imagenProducto);
+      casilla.appendChild(imagenProdcutoDiv);
+    }
+  });
+}
+
 function seccion3Function(seccion3, jugador) {
   datosJugador(jugador, seccion3.id);
   const boton = seccion3.querySelector(".continuar");
@@ -231,41 +263,5 @@ function datosJugador(jugador, seccionid) {
   const valoresJugador = [ataqueTotal, defensaTotal, vidaTotal, jugador.puntos];
   valores.forEach((valor, i) => {
     valor.textContent = `${valoresJugador[i]}`;
-  });
-}
-
-function encontrarProducto(listaProducto, indiceProducto) {
-  return listaProducto[indiceProducto];
-}
-
-function estadisticaAportaArma(tipoArma) {
-  switch (tipoArma) {
-    case "arma":
-      return "Ataque";
-    case "armadura":
-      return "Defensa";
-    case "consumible":
-      return "Vida";
-    default:
-      break;
-  }
-}
-
-function rellenarCasillas(jugador) {
-  const inventario = jugador.inventario;
-  const casillas = Array.from(document.querySelectorAll(".casilla"));
-  casillas.forEach((casilla, i) => {
-    casilla.innerHTML = "";
-    const producto = inventario[i];
-    if (producto) {
-      const imagenProdcutoDiv = document.createElement("div");
-      imagenProdcutoDiv.setAttribute("id", `${i}`);
-      const imagenProducto = document.createElement("img");
-
-      const src = producto.imagen;
-      imagenProducto.setAttribute("src", `${src}`);
-      imagenProdcutoDiv.appendChild(imagenProducto);
-      casilla.appendChild(imagenProdcutoDiv);
-    }
   });
 }
