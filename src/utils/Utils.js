@@ -8,11 +8,12 @@ export function mostrarSeccion(id) {
   const seccionMostrar = document.getElementById(id);
   seccionMostrar.style.display = "";
 }
+
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
   if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
   else footer.style.display = "";
 }
-function efectosVisuales() {
+export function efectosVisuales() {
   console.log("efecto del boton, del color de la tarjeta");
 }

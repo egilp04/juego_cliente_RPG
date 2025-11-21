@@ -31,7 +31,6 @@ function iniciarJuego(e) {
   seccion1Function(seccion1);
 }
 
-// funciones de las secciones
 function seccion1Function(seccion1) {
   const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
   datosJugador(jugador, seccion1.id);
@@ -46,7 +45,6 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.getElementById("mercado-container");
-  // mercado productos
   const productosComprar = aplicarDescuento();
 
   productosComprar.forEach((producto) => {
@@ -218,7 +216,6 @@ function seccion6Function(seccion6, puntuacion) {
   });
 }
 
-// Datos a mostrar
 function datosJugador(jugador, seccionid) {
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
