@@ -16,7 +16,11 @@ import {
 } from "./constants/Constants.js";
 import { combate } from "./modules_game/Batalla.js";
 import { distinguirJugador } from "./modules_game/Ranking.js";
-import { mostrarSeccion, efectosVisuales } from "./utils/Utils.js";
+import {
+  mostrarSeccion,
+  efectosVisuales,
+  encontrarProducto,
+} from "./utils/Utils.js";
 import {
   filtrarProductos,
   aplicarDescuento,
