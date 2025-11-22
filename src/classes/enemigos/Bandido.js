@@ -1,3 +1,4 @@
+import { Enemigo } from "./Enemigo.js";
 /**
  * Clase Bandido
  * Representa un enemigo de tipo Bandido en el juego.

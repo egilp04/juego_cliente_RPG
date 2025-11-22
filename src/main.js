@@ -204,7 +204,7 @@ function seccion4Function(seccion4, jugador) {
     new Lobo("Lobo", avatarLobo, 9, 42),
     new Dragon("Dragon", avatarDragon, 28, 140, "aliento Igeno"),
     new Bandido("Bandido", avatarBandido, 12, 55),
-    new Jefe("Jefe", avatarJefe, 12, 55),
+    new Jefe("Jefe", avatarJefe, 20, 55),
   ];
 
   const divEnemigosContainer = document.getElementById("enemigos-container");
