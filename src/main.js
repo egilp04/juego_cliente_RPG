@@ -287,11 +287,14 @@ function rellenarCasillas(jugador) {
     casilla.innerHTML = "";
     const producto = inventario[i];
     if (producto) {
-      const div = document.createElement("div");
+      const divCasillas = document.createElement("div");
+      divCasillas.style.width = "100%";
+      divCasillas.style.height = "100%";
+
       const img = document.createElement("img");
       img.setAttribute("src", producto.imagen);
-      div.appendChild(img);
-      casilla.appendChild(div);
+      divCasillas.appendChild(img);
+      casilla.appendChild(divCasillas);
     }
   });
 }
