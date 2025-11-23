@@ -3,11 +3,11 @@
 :root {
   --color-primary: #452d18ff;
   --color-secondary: #937b64;
-  --color-accent: #b6775a;
-  --color-ligth1: #f7f5edff;
+  --color-accent: #ffde81;
+  --color-ligth1: #fffdf4;
   --color-ligth2: #f1f1f4;
   --color-ligth3: #eaeaed;
-  --color-ligth4: #e9e2d7;
+  --color-ligth4: #f5eac5;
   --color-dark1: #3b1d04;
   --color-dark2: #3a3a3c;
   --color-dark3: #341d09;
@@ -18,10 +18,14 @@
   --font-family-Trade: "Trade Winds", serif;
   --font-family-Montserrat: "Montserrat", sans-serif;
 
+  --font-size-10: 0.625rem;
+  --font-size-12: 0.75rem;
   --font-size-14: 0.875rem;
   --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
   --font-size-20: 1.25rem;
   --font-size-24: 1.5rem;
+  --font-size-30: 1.875rem;
   --font-size-32: 2rem;
   --font-size-36: 2.25rem;
   --font-size-40: 2.5rem;
@@ -30,6 +34,7 @@
   --font-weigth-medium: 500;
   --font-weight-semi-bold: 600;
   --font-weigth-bold: 700;
+  --font-weight-extra-bold: 800;
 
   --linea-height-text: 1.2;
 
@@ -45,7 +50,9 @@
 
   --gap-8: 0.5rem;
   --gap-10: 0.625rem;
+  --gap-16: 1rem;
   --gap-20: 1.25rem;
+  --gap-22: 1.375rem;
   --gap-24: 1.5rem;
   --gap-30: 1.875rem;
   --gap-40: 2.5rem;
@@ -57,6 +64,10 @@
   --margin-20: 1.25rem;
   --margin-30: 1.875rem;
   --margin-40: 2.5rem;
+  --margin-50: 3.125rem;
+  --margin-60: 3.75rem;
+  --margin-80: 5rem;
+  --margin-100: 6.25rem;
 
   --border-radius-8: 8px;
   --border-radius-12: 12px;
@@ -76,7 +87,7 @@ body {
   align-items: center;
 }
 header {
-  background-color: var(--color-secondary);
+  background-color: var(--color-ligth4);
   color: var(--color-dark1);
   text-align: center;
   font-weight: bold;
@@ -128,7 +139,7 @@ h2 {
 #seccion-4,
 #seccion-5,
 #seccion-6 {
-  color: var(--color-ligth3);
+  color: var(--color-ligth1);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -136,24 +147,25 @@ h2 {
   text-align: center;
 }
 #seccion-1,
-#seccion-3{
+#seccion-3 {
   gap: var(--gap-30);
   margin-top: var(--margin-10);
 }
- #seccion-2,  #seccion-6{
+#seccion-2,
+#seccion-6 {
   gap: var(--gap-24);
- }
-#seccion-4{
+}
+#seccion-4 {
   gap: var(--gap-30);
   padding: var(--padding-20);
 }
-#seccion-5{
+#seccion-5 {
   gap: var(--gap-20);
 }
- #seccion-6{
+#seccion-6 {
   justify-content: center;
   gap: var(--gap-30);
- }
+}
 
 /* Jugadores */
 .jugador-info-container {
@@ -195,13 +207,13 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--padding-5);
+  gap: var(--padding-6);
   background-color: var(--color-primary);
   color: var(--color-white);
   font-size: var(--font-size-16);
   font-family: var(--font-family-Montserrat);
   font-weight: var(--font-weigth-bold);
-  line-height: var(--linea-height-text) * var(--font-size-16);
+  line-height: calc(var(--linea-height-text) * var(--font-size-16));
 }
 
 /* Mercado  */
@@ -217,7 +229,8 @@ h2 {
   overflow-x: hidden;
 }
 
-.producto, .enemigo-container {
+.producto,
+.enemigo-container {
   align-items: center;
   justify-content: center;
   gap: var(--gap-10);
@@ -232,7 +245,8 @@ h2 {
   font-weight: var(--font-weigth-bold);
   font-size: var(--font-size-16);
 }
-.img-producto-container, .imagen-enemigo-container {
+.img-producto-container,
+.imagen-enemigo-container {
   width: 100%;
   height: 200px;
 }
@@ -248,22 +262,24 @@ h2 {
 }
 
 /* Seccion 5 batallas */
-#seccion-5 h2{
+#seccion-5 h2 {
   color: var(--color-ligth1);
 }
-#seccion-5 p{
+#seccion-5 p {
   color: var(--color-ligth1);
   font-family: var(--font-family-Montserrat);
   font-weight: var(--font-weigth-medium);
   font-size: var(--font-size-20);
 }
-
 #batalla-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   height: 65%;
+}
+.batalla-vs {
+  font-size: var(--font-size-32);
 }
 #jugador-imagen-container,
 #enemigo-imagen-container {
@@ -277,42 +293,54 @@ h2 {
   align-items: center;
 }
 
-#ranking-container{
+#ranking-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--gap-10);
-font-family: var(--font-family-Montserrat);
-font-weight: var(--font-weigth-bold);
-font-size: var(--font-size-40); 
-line-height: var(--linea-height-text) * var(--font-size-40);
+  font-family: var(--font-family-Montserrat);
+  font-weight: var(--font-weigth-bold);
+  font-size: var(--font-size-40);
+  line-height: calc(var(--linea-height-text) * var(--font-size-40));
 }
 
-/* Elementos comunes */
+/* Imagenes*/
 img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
+/* Botones*/
+.seccion > div:last-child,
+.producto button {
+  width: 200px;
+  height: 40px;
+}
 .continuar,
 .reiniciar {
-  padding: var(--padding-8) var(--padding-10);
-  font-size: var(--font-size-md);
-  background-color: var(--color-secondary);
-  color: var(--color-ligth3);
+  padding: var(--padding-10) var(--padding-20);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-extra-bold);
+  font-family: var(--font-family-Montserrat);
+  background-color: var(--color-ligth4);
+  color: var(--color-dark1);
   border: none;
   border-radius: var(--border-radius-12);
   cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
-
-.continuar:focus {
-  background-color: var(--color-dark3);
-  outline: 4px solid var(--color-accent);
+.continuar:focus,
+.continuar:focus-visible,
+.reiniciar:focus,
+.reiniciar:focus-visible {
+  background-color: var(--color-accent);
+  outline: 2px solid var(--color-secondary);
+  color: var(--color-dark1);
   outline-offset: 2px;
 }
-
 .continuar:hover,
 .reiniciar:hover {
   background-color: var(--color-accent);
@@ -320,20 +348,263 @@ img {
   transform: scale(1.02);
   transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
 }
+.continuar:active,
+.reiniciar:active {
+  background-color: var(--color-dark3);
+  color: var(--color-ligth1);
+  transform: scale(1.02);
+  transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
+}
+.continuar:disabled,
+.reiniciar:disabled {
+  background-color: var(--color-ligth2);
+  color: var(--color-dark2);
+  cursor: not-allowed;
+}
 
-.continuar:hover::before {
+.continuar:hover::before,
+.reiniciar:hover::before {
   content: "⚔️";
 }
-.continuar:hover::after {
+.continuar:hover::after,
+.reiniciar:hover::after {
   content: "⚔️";
 }
 .producto button {
-  padding: var(--padding-8) var(--padding-10);
-  font-size: var(--font-size-md);
+  padding: var(--padding-10) var(--padding-20);
+  font-size: var(--font-size-16);
+  font-family: var(--font-family-Montserrat);
+  font-weight: var(--font-weight-extra-bold);
   background-color: transparent;
-  border-radius
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-12);
   cursor: pointer;
+}
+
+.producto button:focus-visible,
+.producto button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.producto button:hover {
+  border: 2px solid var(--color-accent);
+  transform: scale(1.02);
+  transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
+}
+.producto button:active {
+  color: var(--color-dark3);
+  border: 2px solid var(--color-dark3);
+  transform: scale(1.02);
+  transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
+}
+.producto button:disabled {
+  background-color: var(--color-ligth2);
+  color: var(--color-dark2);
+  cursor: not-allowed;
+}
+
+@media (max-width: 1080px) {
+  #seccion-1,
+  #seccion-3 {
+    gap: var(--gap-20);
+  }
+  #seccion-2 {
+    gap: var(--gap-16);
+  }
+  #seccion-6 {
+    gap: var(--gap-40);
+  }
+  #seccion-5 {
+    gap: var(--gap-22);
+  }
+  h2 {
+    font-size: var(--font-size-30);
+  }
+  .casilla {
+    height: 50px;
+    width: 50px;
+  }
+  #estadisticas-container > div {
+    font-size: var(--font-size-12);
+    line-height: calc(var(--linea-height-text) * var(--font-size-12));
+  }
+  #datos-jugador-container {
+    height: 150px;
+  }
+  #mercado-container,
+  #enemigos-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .producto,
+  .enemigo-container {
+    font-size: var(--font-size-12);
+  }
+  .img-producto-container,
+  .imagen-enemigo-container {
+    width: 100%;
+    height: 120px;
+  }
+  #batalla-container {
+    height: 60%;
+  }
+  #seccion-5 p {
+    font-size: var(--font-size-18);
+  }
+  #ranking-container {
+    font-size: var(--font-size-30);
+    gap: var(--gap-10);
+    font-family: var(--font-family-Montserrat);
+    font-weight: var(--font-weigth-bold);
+    line-height: calc(var(--linea-height-text) * var(--font-size-30));
+  }
+  .continuar,
+  .reiniciar,
+  .producto button {
+    padding: var(--padding-8) var(--padding-14);
+    font-size: var(--font-size-14);
+  }
+  .seccion > div:last-child,
+  .producto button {
+    width: 150px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 690px) {
+  #seccion-1,
+  #seccion-3 {
+    gap: var(--gap-30);
+  }
+  h1 {
+    font-size: var(--font-size-32);
+  }
+  h2 {
+    font-size: var(--font-size-24);
+  }
+  .casilla {
+    height: 48px;
+    width: 48px;
+  }
+  .jugador-info-container {
+    width: 400px;
+  }
+  #datos-jugador-container {
+    height: 160px;
+  }
+  #mercado-container,
+  #enemigos-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  #batalla-container {
+    height: 48%;
+    margin-top: var(--margin-50);
+  }
+  #seccion-5 {
+    gap: var(--gap-30);
+  }
+  #seccion-5 p {
+    font-size: var(--font-size-16);
+  }
+  #ranking-container {
+    font-size: var(--font-size-24);
+    line-height: calc(var(--linea-height-text) * var(--font-size-24));
+  }
+  .batalla-vs {
+    font-size: var(--font-size-24);
+  }
+  .continuar,
+  .reiniciar,
+  .producto button {
+    padding: var(--padding-6) var(--padding-10);
+    font-size: var(--font-size-12);
+  }
+  .seccion > div:last-child,
+  .producto button {
+    width: 120px;
+    height: 36px;
+  }
+}
+@media (max-width: 574px) {
+  .batalla-vs {
+    font-size: var(--font-size-20);
+  }
+}
+
+@media (max-width: 460px) {
+  .casilla {
+    height: 40px;
+    width: 40px;
+  }
+  .jugador-info-container {
+    width: 300px;
+  }
+  #batalla-container {
+    height: 30%;
+    margin-top: var(--margin-80);
+  }
+  #ranking-container,
+  #resultados-container {
+    font-size: var(--font-size-20);
+    line-height: calc(var(--linea-height-text) * var(--font-size-20));
+  }
+  #seccion-5 {
+    gap: var(--gap-40);
+  }
+  .batalla-vs {
+    font-size: var(--font-size-16);
+  }
+}
+
+@media (max-width: 340px) {
+  #seccion-1,
+  #seccion-3 {
+    gap: var(--gap-40);
+  }
+  h1 {
+    font-size: var(--font-size-24);
+  }
+  h2 {
+    font-size: var(--font-size-20);
+  }
+  .casilla {
+    height: 36px;
+    width: 36px;
+  }
+  .jugador-info-container {
+    width: 260px;
+    margin-top: var(--margin-40);
+  }
+  #datos-jugador-container {
+    height: 120px;
+  }
+  #estadisticas-container > div {
+    font-size: var(--font-size-10);
+    line-height: calc(var(--linea-height-text) * var(--font-size-10));
+  }
+  #mercado-container,
+  #enemigos-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .producto,
+  .enemigo-container {
+    font-size: var(--font-size-10);
+    line-height: calc(var(--linea-height-text) * var(--font-size-10));
+  }
+  #batalla-container {
+    height: 26%;
+    margin-top: var(--margin-80);
+  }
+
+  .batalla-vs {
+    font-size: var(--font-size-14);
+  }
+  #ranking-container {
+    font-size: var(--font-size-14);
+    line-height: calc(var(--linea-height-text) * var(--font-size-14s));
+  }
+  .seccion > div:last-child,
+  .producto button {
+    height: 34px;
+  }
 }
