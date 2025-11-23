@@ -21,3 +21,19 @@ export function encontrarProducto(listaProducto, indiceProducto) {
 export function efectosVisuales() {
   console.log("efecto del boton, del color de la tarjeta");
 }
+
+/**
+ * Reiniciar todos los elementos de la UI
+ */
+export function reiniciarJuego() {
+  const casillas = Array.from(document.querySelectorAll(".casilla"));
+  casillas.forEach((casilla) => {
+    casilla.innerHTML = "";
+  });
+  const mercado = document.getElementById("mercado-container");
+  if (!mercado) return;
+  mercado.querySelectorAll("button").forEach((btn) => {
+    btn.classList.add("comprar");
+    btn.textContent = "Añadir";
+  });
+}

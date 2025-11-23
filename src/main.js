@@ -10,7 +10,7 @@ import {
   Lobo,
   Jefe,
 } from "./classes/indexEnemigos.js";
-
+import { Enemigo } from "./classes/enemigos/Enemigo.js";
 // Avatares de los personajes
 import {
   avatarCazador,
@@ -39,9 +39,10 @@ import {
   buscarProductoNombre,
 } from "./modules_game/Mercado.js";
 
-// ====================
+//funcion para reiniciar el juego
+import { reiniciarJuego } from "./utils/Utils.js";
+
 // EVENTO DE INICIO
-// ====================
 window.addEventListener("load", iniciarJuego);
 
 /**
@@ -54,12 +55,10 @@ function iniciarJuego(e) {
   seccion1Function(seccion1);
 }
 
-// ====================
 // SECCIÓN 1: Datos del jugador
-// ====================
 function seccion1Function(seccion1) {
   const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
-  datosJugador(jugador, seccion1.id); // Mostrar stats iniciales
+  datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion2 = document.getElementById("seccion-2");
@@ -68,9 +67,7 @@ function seccion1Function(seccion1) {
   });
 }
 
-// ====================
 // SECCIÓN 2: Mercado
-// ====================
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.getElementById("mercado-container");
@@ -104,12 +101,10 @@ function seccion2Function(seccion2, jugador) {
     divDataProducto.appendChild(spanBonusProducto);
     divDataProducto.appendChild(spanPrecioProducto);
 
-    // Botón de compra/retirar
     const botonComprar = document.createElement("button");
     botonComprar.setAttribute("class", "comprar");
     botonComprar.textContent = "Añadir";
     botonComprar.addEventListener("click", (e) => {
-      const indexProducto = productosComprar.indexOf(producto);
       const MAX_INVENTARIO = 6;
 
       if (botonComprar.classList.contains("comprar")) {
@@ -125,7 +120,7 @@ function seccion2Function(seccion2, jugador) {
         botonComprar.textContent = "Añadir";
       }
       efectosVisuales();
-      rellenarCasillas(jugador); // Actualizar UI del inventario
+      rellenarCasillas(jugador);
     });
 
     divProducto.appendChild(divImgProducto);
@@ -142,7 +137,6 @@ function seccion2Function(seccion2, jugador) {
     seccion3Function(seccion3, jugador);
   });
 }
-
 /**
  * Determina qué estadística aporta un producto según su tipo
  * @param {string} tipoArma - Tipo del producto (arma, armadura, consumible)
@@ -160,30 +154,7 @@ function estadisticaAportaArma(tipoArma) {
       return "";
   }
 }
-
-/**
- * Rellena las casillas de inventario en la UI
- * @param {Jugador} jugador
- */
-function rellenarCasillas(jugador) {
-  const inventario = jugador.inventario;
-  const casillas = Array.from(document.querySelectorAll(".casilla"));
-  casillas.forEach((casilla, i) => {
-    casilla.innerHTML = "";
-    const producto = inventario[i];
-    if (producto) {
-      const div = document.createElement("div");
-      const img = document.createElement("img");
-      img.setAttribute("src", producto.imagen);
-      div.appendChild(img);
-      casilla.appendChild(div);
-    }
-  });
-}
-
-// ====================
 // SECCIÓN 3: Stats jugador
-// ====================
 function seccion3Function(seccion3, jugador) {
   datosJugador(jugador, seccion3.id);
   const boton = seccion3.querySelector(".continuar");
@@ -194,9 +165,7 @@ function seccion3Function(seccion3, jugador) {
   });
 }
 
-// ====================
 // SECCIÓN 4: Selección de enemigos
-// ====================
 function seccion4Function(seccion4, jugador) {
   const enemigos = [
     new Goblin("Goblin", avatarGoblin, 6, 30),
@@ -242,15 +211,11 @@ function seccion4Function(seccion4, jugador) {
   });
 }
 
-// ====================
 // SECCIÓN 5: Combate
-// ====================
 function seccion5Function(seccion5, jugador, enemigos) {
   document.getElementById("title").textContent = "Combate";
-  const enemigo = enemigos[Math.floor(Math.random() * enemigos.length)]; // Elegir enemigo aleatorio
-  const { ganador, puntos } = combate(enemigo, jugador); // Ejecutar combate
-
-  // Actualizar UI de combate
+  const enemigo = enemigos[Math.floor(Math.random() * enemigos.length)];
+  const { ganador, puntos } = combate(enemigo, jugador);
   document.getElementById("jugador-imagen").setAttribute("src", jugador.avatar);
   document.getElementById("enemigo-imagen").setAttribute("src", enemigo.avatar);
   document
@@ -260,7 +225,6 @@ function seccion5Function(seccion5, jugador, enemigos) {
     .getElementById("resultados-container")
     .querySelector("p").textContent = `Puntos Obtenidos: ${puntos}`;
 
-  // Continuar a sección 6
   const boton = seccion5.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
@@ -273,8 +237,7 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.getElementById("ranking-data");
   const spanPuntuacion = document.getElementById("puntuacion-data");
-
-  if (ganador === enemigo) {
+  if (ganador instanceof Enemigo) {
     spanRanking.textContent = `El jugador ha perdido 😭`;
     spanPuntuacion.textContent = `¡Vuelve a intentarlo!`;
   } else {
@@ -287,14 +250,13 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   const boton = seccion6.querySelector(".reiniciar");
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
+    reiniciarJuego();
     mostrarSeccion(seccion1.id);
     seccion1Function(seccion1);
   });
 }
 
-// ====================
 // FUNCIÓN AUXILIAR: mostrar datos del jugador
-// ====================
 function datosJugador(jugador, seccionid) {
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
@@ -311,5 +273,25 @@ function datosJugador(jugador, seccionid) {
   const valoresJugador = [ataqueTotal, defensaTotal, vidaTotal, jugador.puntos];
   valores.forEach((valor, i) => {
     valor.textContent = `${valoresJugador[i]}`;
+  });
+}
+
+/**
+ * Rellena las casillas de inventario en la UI
+ * @param {Jugador} jugador
+ */
+function rellenarCasillas(jugador) {
+  const inventario = jugador.inventario;
+  const casillas = Array.from(document.querySelectorAll(".casilla"));
+  casillas.forEach((casilla, i) => {
+    casilla.innerHTML = "";
+    const producto = inventario[i];
+    if (producto) {
+      const div = document.createElement("div");
+      const img = document.createElement("img");
+      img.setAttribute("src", producto.imagen);
+      div.appendChild(img);
+      casilla.appendChild(div);
+    }
   });
 }

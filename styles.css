@@ -137,7 +137,8 @@ h2 {
 }
 #seccion-1,
 #seccion-3{
-  gap: var(--gap-40);
+  gap: var(--gap-30);
+  margin-top: var(--margin-10);
 }
  #seccion-2,  #seccion-6{
   gap: var(--gap-24);

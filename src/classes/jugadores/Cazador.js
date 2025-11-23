@@ -30,7 +30,6 @@ export class Cazador extends Jugador {
     vidaMaxima = vidaMaximaJugador,
     inventario = []
   ) {
-    // Llama al constructor de la clase padre (Jugador)
     super(nombre, hp, avatar, ataque, defensa, puntos, vidaMaxima, inventario);
   }
 }

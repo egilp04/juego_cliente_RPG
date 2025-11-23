@@ -39,9 +39,6 @@ export class Jugador {
     this._inventario = inventario;
   }
 
-  // ====================
-  // GETTERS
-  // ====================
   /**
    * Devuelve el nombre del jugador.
    * @returns {string} Nombre del jugador
@@ -105,11 +102,6 @@ export class Jugador {
   get defensa() {
     return this._defensa;
   }
-
-  // ====================
-  // SETTERS
-  // ====================
-
   /**
    * Establece el nombre del jugador.
    * @param {string} nombre - Nuevo nombre
@@ -173,11 +165,6 @@ export class Jugador {
   set defensa(defensa) {
     this._defensa = defensa;
   }
-
-  // ====================
-  // MÉTODOS
-  // ====================
-
   /**
    * Suma puntos al total del jugador
    * @param {number} puntos - Cantidad de puntos a sumar
