@@ -435,6 +435,7 @@ img {
   #mercado-container,
   #enemigos-container {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: var(--padding-10);
   }
   .producto,
   .enemigo-container {
@@ -495,6 +496,7 @@ img {
   #mercado-container,
   #enemigos-container {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: var(--padding-20);
   }
   #batalla-container {
     height: 48%;
@@ -553,58 +555,5 @@ img {
   }
   .batalla-vs {
     font-size: var(--font-size-16);
-  }
-}
-
-@media (max-width: 340px) {
-  #seccion-1,
-  #seccion-3 {
-    gap: var(--gap-40);
-  }
-  h1 {
-    font-size: var(--font-size-24);
-  }
-  h2 {
-    font-size: var(--font-size-20);
-  }
-  .casilla {
-    height: 36px;
-    width: 36px;
-  }
-  .jugador-info-container {
-    width: 260px;
-    margin-top: var(--margin-40);
-  }
-  #datos-jugador-container {
-    height: 120px;
-  }
-  #estadisticas-container > div {
-    font-size: var(--font-size-10);
-    line-height: calc(var(--linea-height-text) * var(--font-size-10));
-  }
-  #mercado-container,
-  #enemigos-container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  .producto,
-  .enemigo-container {
-    font-size: var(--font-size-10);
-    line-height: calc(var(--linea-height-text) * var(--font-size-10));
-  }
-  #batalla-container {
-    height: 26%;
-    margin-top: var(--margin-80);
-  }
-
-  .batalla-vs {
-    font-size: var(--font-size-14);
-  }
-  #ranking-container {
-    font-size: var(--font-size-14);
-    line-height: calc(var(--linea-height-text) * var(--font-size-14));
-  }
-  .seccion > div:last-child,
-  .producto button {
-    height: 34px;
   }
 }
