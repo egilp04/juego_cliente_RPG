@@ -265,23 +265,25 @@ function seccion5Function(seccion5, jugador, enemigos) {
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
     mostrarSeccion(seccion6.id);
-    seccion6Function(seccion6, puntos);
+    seccion6Function(seccion6, puntos, ganador);
   });
 }
 
-// ====================
-// SECCIÓN 6: Resultado final
-// ====================
-function seccion6Function(seccion6, puntuacion) {
+function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.getElementById("ranking-data");
-  spanRanking.textContent = `El jugador ha logrado ser un: ${distinguirJugador(
-    puntuacion
-  )}`;
   const spanPuntuacion = document.getElementById("puntuacion-data");
-  spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
 
-  // Botón reiniciar juego
+  if (ganador === enemigo) {
+    spanRanking.textContent = `El jugador ha perdido 😭`;
+    spanPuntuacion.textContent = `¡Vuelve a intentarlo!`;
+  } else {
+    spanRanking.textContent = `El jugador ha logrado ser un: ${distinguirJugador(
+      puntuacion
+    )}`;
+    spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
+  }
+
   const boton = seccion6.querySelector(".reiniciar");
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
