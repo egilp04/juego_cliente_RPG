@@ -47,7 +47,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--color-ligth1);
+  background-color: var(--color-primary);
   justify-content: center;
   align-items: center;
 }
@@ -60,8 +60,8 @@ h1 {
 }
 
 header {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: #ded2bdff;
+  color: var(--color-dark1);
   text-align: center;
   font-weight: bold;
   width: 100%;
@@ -103,7 +103,7 @@ main {
   text-align: center;
   gap: var(--padding-30);
   padding: var(--padding-20) var(--padding-50);
-  background-color: var(--color-ligth2);
+  background-color: #fffdf4;
 }
 
 /*Seccion 1*/
