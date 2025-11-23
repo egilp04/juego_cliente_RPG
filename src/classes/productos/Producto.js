@@ -14,7 +14,7 @@ export class Producto {
     return this._imagen;
   }
   get precio() {
-    return this._precio;
+    return this.formatearAtributos(this._precio);
   }
   get rareza() {
     return this._rareza;
