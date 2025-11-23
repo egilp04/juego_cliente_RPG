@@ -50,21 +50,21 @@ window.addEventListener("load", iniciarJuego);
  */
 function iniciarJuego(e) {
   const seccion1 = document.getElementById("seccion-1");
-  mostrarSeccion(seccion1.id); // Mostrar la primera sección
-  seccion1Function(seccion1); // Inicializar sección 1
+  mostrarSeccion(seccion1.id);
+  seccion1Function(seccion1);
 }
 
 // ====================
 // SECCIÓN 1: Datos del jugador
 // ====================
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30); // Crear jugador
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
   datosJugador(jugador, seccion1.id); // Mostrar stats iniciales
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion2 = document.getElementById("seccion-2");
     mostrarSeccion(seccion2.id);
-    seccion2Function(seccion2, jugador); // Pasar a mercado
+    seccion2Function(seccion2, jugador);
   });
 }
 
@@ -74,8 +74,7 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.getElementById("mercado-container");
-  const productosComprar = aplicarDescuento(); // Aplicar descuentos a los productos
-
+  const productosComprar = aplicarDescuento();
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
     const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
@@ -84,7 +83,7 @@ function seccion2Function(seccion2, jugador) {
 
     // Imagen del producto
     const divImgProducto = document.createElement("div");
-    divImgProducto.setAttribute("id", "img-producto-container");
+    divImgProducto.setAttribute("class", "img-producto-container");
     const imgProducto = document.createElement("img");
     imgProducto.setAttribute("id", "img-producto");
     imgProducto.setAttribute("src", `${producto.imagen}`);
