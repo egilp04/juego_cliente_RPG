@@ -322,10 +322,12 @@ img {
 }
 
 .continuar:hover::before {
-  content: "🤞";
+  content: "⚔️";
 }
-
-.comprar {
+.continuar:hover::after {
+  content: "⚔️";
+}
+.producto button {
   padding: var(--padding-8) var(--padding-10);
   font-size: var(--font-size-md);
   background-color: transparent;
