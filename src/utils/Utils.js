@@ -31,9 +31,14 @@ export function reiniciarJuego() {
     casilla.innerHTML = "";
   });
   const mercado = document.getElementById("mercado-container");
-  if (!mercado) return;
-  mercado.querySelectorAll("button").forEach((btn) => {
-    btn.classList.add("comprar");
-    btn.textContent = "Añadir";
+  if (mercado) mercado.innerHTML = "";
+
+  const divEnemigosContainer = document.getElementById("enemigos-container");
+  if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
+
+  //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
+  document.querySelectorAll("button").forEach((btn) => {
+    const nuevo = btn.cloneNode(true);
+    btn.replaceWith(nuevo);
   });
 }
