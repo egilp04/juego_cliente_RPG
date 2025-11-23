@@ -601,7 +601,7 @@ img {
   }
   #ranking-container {
     font-size: var(--font-size-14);
-    line-height: calc(var(--linea-height-text) * var(--font-size-14s));
+    line-height: calc(var(--linea-height-text) * var(--font-size-14));
   }
   .seccion > div:last-child,
   .producto button {
