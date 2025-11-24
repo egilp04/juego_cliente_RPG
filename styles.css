@@ -227,6 +227,8 @@ h2 {
   overflow-y: auto;
   gap: var(--padding-20);
   overflow-x: hidden;
+  padding: var(--padding-10);
+  border-radius: var(--border-radius-12);
 }
 
 .producto,
@@ -435,7 +437,6 @@ img {
   #mercado-container,
   #enemigos-container {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: var(--padding-10);
   }
   .producto,
   .enemigo-container {
@@ -496,7 +497,6 @@ img {
   #mercado-container,
   #enemigos-container {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding: var(--padding-20);
   }
   #batalla-container {
     height: 48%;
