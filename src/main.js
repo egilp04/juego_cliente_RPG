@@ -231,6 +231,8 @@ function seccion5Function(seccion5, jugador, enemigos) {
   const resumenBatallas = document.querySelector(".resumen-batallas");
 
   resultadoBatallas.forEach((resultado, i) => {
+    const divBatalla = document.createElement("div");
+    divBatalla.setAttribute("class", "batalla-container");
     const turno = document.createElement("span");
     turno.textContent = `Batalla ${i + 1}`;
     const atacante = document.createElement("span");
@@ -244,12 +246,14 @@ function seccion5Function(seccion5, jugador, enemigos) {
     const vidaEnemigo = document.createElement("span");
     vidaEnemigo.textContent = `Vida enemigo: ${resultadoBatallas[i].vidaEnemigo}`;
 
-    resumenBatallas.appendChild(turno);
-    resumenBatallas.appendChild(atacante);
-    resumenBatallas.appendChild(atacado);
-    resumenBatallas.appendChild(danio);
-    resumenBatallas.appendChild(vidaJugador);
-    resumenBatallas.appendChild(vidaEnemigo);
+    divBatalla.appendChild(turno);
+    divBatalla.appendChild(atacante);
+    divBatalla.appendChild(atacado);
+    divBatalla.appendChild(danio);
+    divBatalla.appendChild(vidaJugador);
+    divBatalla.appendChild(vidaEnemigo);
+
+    resumenBatallas.appendChild(divBatalla);
   });
 
   const boton = seccion5.querySelector(".continuar");
