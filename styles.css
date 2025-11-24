@@ -229,6 +229,7 @@ h2 {
   overflow-x: hidden;
   padding: var(--padding-20);
   border-radius: var(--border-radius-12);
+  background-color: var(--color-secondary);
 }
 
 .producto,
