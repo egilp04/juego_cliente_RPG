@@ -70,7 +70,7 @@ function seccion1Function(seccion1) {
 // SECCIÓN 2: Mercado
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
-  const mercadoContainer = document.getElementById("mercado-container");
+  const mercadoContainer = document.querySelector(".mercado-container");
   const productosComprar = aplicarDescuento();
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
@@ -88,7 +88,7 @@ function seccion2Function(seccion2, jugador) {
 
     // Datos del producto
     const divDataProducto = document.createElement("div");
-    divDataProducto.setAttribute("id", "data-producto-container");
+    divDataProducto.setAttribute("class", "data-producto-container");
     const spanNombreProducto = document.createElement("span");
     spanNombreProducto.textContent = `${producto.nombre}`;
     const spanBonusProducto = document.createElement("span");
@@ -175,7 +175,7 @@ function seccion4Function(seccion4, jugador) {
     new Jefe("Jefe", avatarJefe, 20, 55),
   ];
 
-  const divEnemigosContainer = document.getElementById("enemigos-container");
+  const divEnemigosContainer = document.querySelector(".enemigos-container");
   enemigos.forEach((enemigo) => {
     const divEnemigo = document.createElement("div");
     divEnemigo.setAttribute("class", "enemigo-container");
@@ -218,17 +218,17 @@ function seccion5Function(seccion5, jugador, enemigos) {
 
   const { ganador, puntos, resultadoBatallas } = combate(enemigo, jugador);
 
-  document.getElementById("jugador-imagen").setAttribute("src", jugador.avatar);
-  document.getElementById("enemigo-imagen").setAttribute("src", enemigo.avatar);
+  document.querySelector(".jugador-imagen").setAttribute("src", jugador.avatar);
+  document.querySelector(".enemigo-imagen").setAttribute("src", enemigo.avatar);
   document
-    .getElementById("resultados-container")
+    .querySelector(".resultados-container")
     .querySelector("h2").textContent = `Ganador: ${ganador.nombre}`;
   document
-    .getElementById("resultados-container")
+    .querySelector(".resultados-container")
     .querySelector("p").textContent = `Puntos Obtenidos: ${puntos}`;
 
   //resultado batallas
-  const resumenBatallas = document.getElementById("resumen-batallas");
+  const resumenBatallas = document.querySelector(".resumen-batallas");
   console.log(resultadoBatallas);
   for (turno in resultadoBatallas) {
     const turno = document.createElement("span");
@@ -252,8 +252,8 @@ function seccion5Function(seccion5, jugador, enemigos) {
 
 function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
-  const spanRanking = document.getElementById("ranking-data");
-  const spanPuntuacion = document.getElementById("puntuacion-data");
+  const spanRanking = document.querySelector(".ranking-data");
+  const spanPuntuacion = document.querySelector(".puntuacion-data");
   if (ganador instanceof Enemigo) {
     spanRanking.textContent = `El jugador ha perdido 😭`;
     spanPuntuacion.textContent = `¡Vuelve a intentarlo!`;
@@ -279,15 +279,17 @@ function datosJugador(jugador, seccionid) {
     jugador.obtenerEstadisticasFinales();
 
   document.getElementById("title").textContent = "Aventura JS";
+  console.log(document.querySelector(`.imagen-jugador-${seccionid}`));
   document
-    .getElementById(`imagen-jugador-${seccionid}`)
+    .querySelector(`.imagen-jugador-${seccionid}`)
     .setAttribute("src", jugador.avatar);
   document
-    .getElementById(`nombre-jugador-container-${seccionid}`)
+    .querySelector(`.nombre-jugador-container-${seccionid}`)
     .querySelector("h2").textContent = jugador.nombre;
 
   const valores = Array.from(document.querySelectorAll(`.valor-${seccionid}`));
   const valoresJugador = [ataqueTotal, defensaTotal, vidaTotal, jugador.puntos];
+  console.log(valoresJugador);
   valores.forEach((valor, i) => {
     valor.textContent = `${valoresJugador[i]}`;
   });

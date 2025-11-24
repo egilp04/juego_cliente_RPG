@@ -30,10 +30,10 @@ export function reiniciarJuego() {
   casillas.forEach((casilla) => {
     casilla.innerHTML = "";
   });
-  const mercado = document.getElementById("mercado-container");
+  const mercado = document.querySelector("mercado-container");
   if (mercado) mercado.innerHTML = "";
 
-  const divEnemigosContainer = document.getElementById("enemigos-container");
+  const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
 
   //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
