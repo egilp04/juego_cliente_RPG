@@ -227,7 +227,7 @@ h2 {
   overflow-y: auto;
   gap: var(--padding-20);
   overflow-x: hidden;
-  padding: var(--padding-10);
+  padding: var(--padding-20);
   border-radius: var(--border-radius-12);
 }
 
