@@ -152,7 +152,6 @@ h2 {
 #seccion-1,
 #seccion-3 {
   gap: var(--gap-30);
-  margin-top: var(--margin-10);
 }
 #seccion-2 {
   gap: var(--gap-24);
@@ -407,10 +406,11 @@ img {
   cursor: not-allowed;
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1080px) {
   #seccion-1,
   #seccion-3 {
-    margin-top: var(--margin-30);
+    gap: var(--gap-40);
+    margin-top: var(--margin-20);
   }
   h1 {
     font-size: var(--font-size-40);
@@ -488,9 +488,13 @@ img {
   .jugador-info-container {
     width: 350px;
   }
+  .datos-jugador-container {
+    height: 170px;
+  }
   .mercado-container,
   .enemigos-container {
     height: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .img-producto-container,
   .imagen-enemigo-container {
@@ -519,6 +523,13 @@ img {
 }
 
 @media (max-width: 719px) {
+  #seccion-1,
+  #seccion-3 {
+    gap: var(--gap-40);
+  }
+  #seccion-2 {
+    gap: var(--gap-30);
+  }
   h1 {
     font-size: var(--font-size-24);
   }
@@ -532,12 +543,12 @@ img {
   .jugador-info-container {
     width: 300px;
   }
-  #seccion-1,
-  #seccion-3 {
-    gap: var(--gap-40);
+  .datos-jugador-container {
+    height: 160px;
   }
-  #seccion-2 {
-    gap: var(--gap-30);
+  .mercado-container,
+  .enemigos-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .batalla-container {
     height: 30%;
