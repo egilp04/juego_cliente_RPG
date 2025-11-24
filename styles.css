@@ -369,10 +369,7 @@ img {
 .reiniciar:hover::before {
   content: "⚔️";
 }
-.continuar:hover::after,
-.reiniciar:hover::after {
-  content: "⚔️";
-}
+
 .producto button {
   padding: var(--padding-10) var(--padding-20);
   font-size: var(--font-size-16);
