@@ -229,18 +229,28 @@ function seccion5Function(seccion5, jugador, enemigos) {
 
   //resultado batallas
   const resumenBatallas = document.querySelector(".resumen-batallas");
-  console.log(resultadoBatallas);
-  for (turno in resultadoBatallas) {
+
+  resultadoBatallas.forEach((resultado, i) => {
     const turno = document.createElement("span");
-    turno.textContent = `${turno}`;
+    turno.textContent = `Batalla ${i + 1}`;
     const atacante = document.createElement("span");
-    atacante.textContent = `${resultadoBatallas[turno.atacante]}`;
-    console.log(resultadoBatallas[turno.atacante]);
+    atacante.textContent = `Atacante: ${resultadoBatallas[i].atacante}`;
     const atacado = document.createElement("span");
+    atacado.textContent = `Atacado: ${resultadoBatallas[i].atacado}`;
     const danio = document.createElement("span");
+    danio.textContent = `Daño recibido: ${resultadoBatallas[i].danio}`;
     const vidaJugador = document.createElement("span");
+    vidaJugador.textContent = `Vida jugador: ${resultadoBatallas[i].vidaJugador}`;
     const vidaEnemigo = document.createElement("span");
-  }
+    vidaEnemigo.textContent = `Vida enemigo: ${resultadoBatallas[i].vidaEnemigo}`;
+
+    resumenBatallas.appendChild(turno);
+    resumenBatallas.appendChild(atacante);
+    resumenBatallas.appendChild(atacado);
+    resumenBatallas.appendChild(danio);
+    resumenBatallas.appendChild(vidaJugador);
+    resumenBatallas.appendChild(vidaEnemigo);
+  });
 
   const boton = seccion5.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -279,7 +289,6 @@ function datosJugador(jugador, seccionid) {
     jugador.obtenerEstadisticasFinales();
 
   document.getElementById("title").textContent = "Aventura JS";
-  console.log(document.querySelector(`.imagen-jugador-${seccionid}`));
   document
     .querySelector(`.imagen-jugador-${seccionid}`)
     .setAttribute("src", jugador.avatar);
@@ -289,7 +298,6 @@ function datosJugador(jugador, seccionid) {
 
   const valores = Array.from(document.querySelectorAll(`.valor-${seccionid}`));
   const valoresJugador = [ataqueTotal, defensaTotal, vidaTotal, jugador.puntos];
-  console.log(valoresJugador);
   valores.forEach((valor, i) => {
     valor.textContent = `${valoresJugador[i]}`;
   });

@@ -11,7 +11,7 @@ import { Jefe } from "../classes/enemigos/Jefe.js";
  */
 export function combate(enemigo, jugador) {
   const muerte = 0;
-  const resultadoBatallas = {};
+  let resultadoBatallas = [];
 
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
@@ -19,30 +19,25 @@ export function combate(enemigo, jugador) {
   let vidaJugador = vidaTotal + defensaTotal;
   let vidaEnemigo = enemigo.hp;
   do {
-    let resultadoBatallas = null;
     let turno = Math.floor(Math.random() * 2);
     if (turno <= 0) {
       vidaJugador = Math.max(vidaJugador - ataqueEnemigo, muerte);
-      resultadoBatallas = {
-        turno: {
-          atacante: "enemigo",
-          atacado: "jugador",
-          danio: `${ataqueEnemigo}`,
-          vidaJugador: `${vidaJugador}`,
-          vidaEnemigo: `${vidaEnemigo}`,
-        },
-      };
+      resultadoBatallas.push({
+        atacante: "enemigo",
+        atacado: "jugador",
+        danio: `${ataqueEnemigo}`,
+        vidaJugador: `${vidaJugador}`,
+        vidaEnemigo: `${vidaEnemigo}`,
+      });
     } else {
       vidaEnemigo = Math.max(vidaEnemigo - ataqueTotal, muerte);
-      resultadoBatallas = {
-        turno: {
-          atacante: "jugador",
-          atacado: "enemigo",
-          danio: `${ataqueTotal}`,
-          vidaJugador: `${vidaJugador}`,
-          vidaEnemigo: `${vidaEnemigo}`,
-        },
-      };
+      resultadoBatallas.push({
+        atacante: "jugador",
+        atacado: "enemigo",
+        danio: `${ataqueTotal}`,
+        vidaJugador: `${vidaJugador}`,
+        vidaEnemigo: `${vidaEnemigo}`,
+      });
     }
     jugador.hp = vidaJugador;
     enemigo.hp = vidaEnemigo;
