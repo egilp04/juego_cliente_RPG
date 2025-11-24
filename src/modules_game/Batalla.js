@@ -25,20 +25,22 @@ export function combate(enemigo, jugador) {
       vidaJugador = Math.max(vidaJugador - ataqueEnemigo, muerte);
       resultadoBatallas = {
         turno: {
-          atacante: enemigo,
-          atacado: jugador,
-          danio: ataqueEnemigo,
-          vida: vidaJugador,
+          atacante: "enemigo",
+          atacado: "jugador",
+          danio: `${ataqueEnemigo}`,
+          vidaJugador: `${vidaJugador}`,
+          vidaEnemigo: `${vidaEnemigo}`,
         },
       };
     } else {
       vidaEnemigo = Math.max(vidaEnemigo - ataqueTotal, muerte);
       resultadoBatallas = {
         turno: {
-          atacante: jugador,
-          atacado: enemigo,
-          danio: ataqueTotal,
-          vida: vidaEnemigo,
+          atacante: "jugador",
+          atacado: "enemigo",
+          danio: `${ataqueTotal}`,
+          vidaJugador: `${vidaJugador}`,
+          vidaEnemigo: `${vidaEnemigo}`,
         },
       };
     }

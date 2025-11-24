@@ -215,7 +215,9 @@ function seccion4Function(seccion4, jugador) {
 function seccion5Function(seccion5, jugador, enemigos) {
   document.getElementById("title").textContent = "Combate";
   const enemigo = enemigos[Math.floor(Math.random() * enemigos.length)];
+
   const { ganador, puntos, resultadoBatallas } = combate(enemigo, jugador);
+
   document.getElementById("jugador-imagen").setAttribute("src", jugador.avatar);
   document.getElementById("enemigo-imagen").setAttribute("src", enemigo.avatar);
   document
@@ -225,7 +227,21 @@ function seccion5Function(seccion5, jugador, enemigos) {
     .getElementById("resultados-container")
     .querySelector("p").textContent = `Puntos Obtenidos: ${puntos}`;
 
-    //resultaod batallas
+  //resultado batallas
+  const resumenBatallas = document.getElementById("resumen-batallas");
+  console.log(resultadoBatallas);
+  for (turno in resultadoBatallas) {
+    const turno = document.createElement("span");
+    turno.textContent = `${turno}`;
+    const atacante = document.createElement("span");
+    atacante.textContent = `${resultadoBatallas[turno.atacante]}`;
+    console.log(resultadoBatallas[turno.atacante]);
+    const atacado = document.createElement("span");
+    const danio = document.createElement("span");
+    const vidaJugador = document.createElement("span");
+    const vidaEnemigo = document.createElement("span");
+  }
+
   const boton = seccion5.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
