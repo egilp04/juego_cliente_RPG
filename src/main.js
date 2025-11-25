@@ -235,6 +235,7 @@ function seccion5Function(seccion5, jugador, enemigos) {
     divBatalla.setAttribute("class", "batalla-container");
     const turno = document.createElement("span");
     turno.textContent = `Batalla ${i + 1}`;
+
     const atacante = document.createElement("span");
     atacante.textContent = `Atacante: ${resultadoBatallas[i].atacante}`;
     const atacado = document.createElement("span");
