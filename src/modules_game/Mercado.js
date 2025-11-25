@@ -133,13 +133,12 @@ const listaProductos = [
     4
   ),
 ];
-let listaProductosFinales = [];
 /**
  * Filtra productos por rareza
  * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
  * @returns {Producto[]} Lista de productos que coinciden con la rareza
  */
-export function filtrarProductos(tipoRareza) {
+export function filtrarProductos(tipoRareza, listaProductosFinales) {
   return listaProductosFinales.filter(
     (producto) => tipoRareza === producto.rareza
   );
@@ -151,7 +150,7 @@ export function filtrarProductos(tipoRareza) {
  * @returns {Producto[]} Lista de productos finales con descuento aplicado
  */
 export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
-  listaProductosFinales = [];
+  let listaProductosFinales = [];
   listaProductos.forEach((producto) => {
     const productoClonado = producto.clonarProducto(); // evitar modificar el original
     if (producto.rareza === tipoRareza)
@@ -166,7 +165,7 @@ export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
  * @param {string} nombreProducto - Nombre del producto a buscar
  * @returns {Producto[]} Lista de productos que coinciden con el nombre
  */
-export function buscarProductoNombre(nombreProducto) {
+export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
   return listaProductosFinales.filter(
     (producto) => nombreProducto === producto.nombre
   );

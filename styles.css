@@ -389,7 +389,8 @@ img {
   content: "⚔️";
 }
 
-.producto button {
+.comprar,
+.retirar {
   padding: var(--padding-10) var(--padding-20);
   font-size: var(--font-size-16);
   font-family: var(--font-family-Montserrat);
@@ -400,22 +401,25 @@ img {
   border-radius: var(--border-radius-12);
   cursor: pointer;
 }
-.producto button:focus-visible,
-.producto button:focus {
+.comprar:focus-visible,
+.retirar:focus {
   border: 2px solid var(--color-primary);
   outline: none;
   offset: none;
 }
-.producto button:hover {
+.retirar button:hover,
+.comprar button:hover {
   border: 2px solid var(--color-accent);
   transform: scale(1.02);
   transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
 }
-.producto button:active {
+.retirar:active,
+.comprar:active {
   color: var(--color-dark3);
   border: 2px solid var(--color-dark3);
 }
-.producto button:disabled {
+.comprar:disabled,
+.retirar:disabled {
   background-color: var(--color-ligth2);
   color: var(--color-dark2);
   cursor: not-allowed;
@@ -450,6 +454,11 @@ img {
   .datos-jugador-container {
     height: 250px;
   }
+  .mercado-container,
+  .enemigos-container {
+    height: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 
   .batalla-container {
     gap: var(--gap-30);
@@ -472,7 +481,8 @@ img {
   }
   .continuar,
   .reiniciar,
-  .producto button {
+  .comprar,
+  .retirar {
     padding: var(--padding-14) var(--padding-8);
     height: 50px;
     width: 200px;
@@ -511,7 +521,7 @@ img {
   .mercado-container,
   .enemigos-container {
     height: 80%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   }
   .img-producto-container,
   .imagen-enemigo-container {
@@ -543,7 +553,8 @@ img {
   }
   .continuar,
   .reiniciar,
-  .producto button {
+  .comprar,
+  .retirar {
     padding: var(--padding-8) var(--padding-14);
     height: 36px;
   }
@@ -609,7 +620,8 @@ img {
   }
   .continuar,
   .reiniciar,
-  .producto button {
+  .comprar,
+  .retirar {
     padding: var(--padding-6) var(--padding-12);
     height: 30px;
   }
