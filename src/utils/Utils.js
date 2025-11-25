@@ -64,8 +64,15 @@ export function modificarProductos() {
   return producto;
 }
 
+function formatarDinero(precioNum) {
+  const precio = (precioNum / 100).toFixed(2).replace(".", ",") + "€";
+  return precio;
+}
+
 export function actualizarDinero(jugador) {
-  document.querySelector(
-    ".dinero-comprar"
-  ).textContent = `Dinero del jugador: ${jugador.dinero}€`;
+  console.log(jugador.dinero);
+  console.log(jugador);
+  document.querySelector(".dinero-comprar").textContent = `${formatarDinero(
+    jugador.dinero
+  )}`;
 }

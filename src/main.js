@@ -63,7 +63,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30, 50);
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30, 1000);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -124,14 +124,16 @@ function seccion2Function(seccion2, jugador) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
 
-        const dineroComrar = jugador.dinero - producto.precio;
+        if (jugador.dinero < producto.precio) {
+          return;
+        }
 
-        if (dineroComrar < producto.precio) return;
         jugador.addObjInventario(producto);
-        jugador.dinero = botonComprar.classList.remove("comprar");
+        botonComprar.classList.remove("comprar");
         botonComprar.classList.add("retirar");
         botonComprar.textContent = "retirar";
         jugador.dinero -= producto.precio;
+        console.log(jugador.dinero);
         actualizarDinero(jugador);
       } else {
         // Retirar del inventario
