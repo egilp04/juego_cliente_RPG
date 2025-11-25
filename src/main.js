@@ -112,10 +112,12 @@ function seccion2Function(seccion2, jugador) {
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
         jugador.addObjInventario(producto);
         botonComprar.classList.remove("comprar");
+        botonComprar.classList.add("retirar");
         botonComprar.textContent = "retirar";
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
+        botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
         botonComprar.textContent = "Añadir";
       }
