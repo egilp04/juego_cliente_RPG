@@ -166,7 +166,7 @@ h2 {
   padding: var(--padding-20);
 }
 #seccion-5 {
-  gap: var(--gap-20);
+  justify-content: space-around;
 }
 #seccion-6 {
   justify-content: center;
@@ -311,13 +311,16 @@ h2 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 76px;
+  height: auto;
+  max-height: 76px;
   background-color: var(--color-ligth1);
   color: var(--color-dark1);
   overflow-y: auto;
   border-radius: var(--border-radius-12);
   gap: var(--gap-20);
-  padding: var(--padding-10);
+  padding: var(--padding-12);
+  align-items: start;
+  justify-content: flex-start;
 }
 .batalla-container {
   display: flex;
@@ -431,6 +434,10 @@ img {
     gap: var(--gap-40);
     margin-top: var(--margin-20);
   }
+  #seccion-2,
+  #seccion-4 {
+    gap: var(--gap-40);
+  }
   h1 {
     font-size: var(--font-size-40);
   }
@@ -462,11 +469,9 @@ img {
 
   .batalla-container {
     gap: var(--gap-30);
+    height: 40%;
   }
 
-  #seccion-5 {
-    gap: var(--gap-30);
-  }
   #seccion-5 p {
     font-size: var(--font-size-18);
     line-height: calc(var(--linea-height-text) * var(--font-size-18));
@@ -534,15 +539,13 @@ img {
     font-size: var(--font-size-14);
     line-height: calc(var(--linea-height-text) * var(--font-size-14));
   }
-  #seccion-5 {
-    gap: var(--gap-28);
-  }
+
   #seccion-5 p {
     font-size: var(--font-size-16);
     line-height: calc(var(--linea-height-text) * var(--font-size-16));
   }
   .resumen-batallas {
-    height: 60px;
+    max-height: 60px;
   }
   .batalla-container {
     height: 40%;
@@ -562,12 +565,11 @@ img {
 
 @media (max-width: 719px) {
   #seccion-1,
-  #seccion-3 {
+  #seccion-3,
+  #seccion-2 {
     gap: var(--gap-40);
   }
-  #seccion-2 {
-    gap: var(--gap-30);
-  }
+
   h1 {
     font-size: var(--font-size-24);
   }
@@ -602,18 +604,16 @@ img {
     font-size: var(--font-size-20);
     line-height: calc(var(--linea-height-text) * var(--font-size-20));
   }
-  #seccion-5 {
-  }
+
   #seccion-5 p {
     font-size: var(--font-size-14);
     line-height: calc(var(--linea-height-text) * var(--font-size-14));
   }
   .resumen-batallas {
-    padding: var(--padding-10);
-    height: 120px;
+    max-height: 120px;
   }
   .batalla-container {
-    gap: var(--gap-10);
+    gap: var(--gap-20);
   }
   .batalla-container > span {
     font-size: var(--font-size-10);
