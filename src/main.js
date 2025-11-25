@@ -235,7 +235,7 @@ function seccion5Function(seccion5, jugador, enemigos) {
 
   resultadoBatallas.forEach((resultado, i) => {
     const divBatalla = document.createElement("div");
-    divBatalla.setAttribute("class", "batalla-container");
+    divBatalla.setAttribute("class", "batallita-container");
     const turno = document.createElement("span");
     turno.textContent = `Batalla ${i + 1}`;
 
