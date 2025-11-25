@@ -454,6 +454,11 @@ img {
   .datos-jugador-container {
     height: 250px;
   }
+  .mercado-container,
+  .enemigos-container {
+    height: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 
   .batalla-container {
     gap: var(--gap-30);
@@ -516,7 +521,7 @@ img {
   .mercado-container,
   .enemigos-container {
     height: 80%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   }
   .img-producto-container,
   .imagen-enemigo-container {
