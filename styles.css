@@ -330,6 +330,14 @@ h2 {
   height: 45%;
   gap: var(--gap-40);
 }
+.batallita-container {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: var(--gap-10);
+}
 .batalla-container > span {
   font-size: var(--font-size-18);
 }
@@ -526,7 +534,7 @@ img {
   .mercado-container,
   .enemigos-container {
     height: 80%;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
   .img-producto-container,
   .imagen-enemigo-container {
@@ -545,13 +553,13 @@ img {
     line-height: calc(var(--linea-height-text) * var(--font-size-16));
   }
   .resumen-batallas {
-    max-height: 60px;
+    max-height: 80px;
   }
   .batalla-container {
     height: 40%;
   }
 
-  .batalla-container > span {
+  .batallita-container > span {
     font-size: var(--font-size-12);
   }
   .continuar,
