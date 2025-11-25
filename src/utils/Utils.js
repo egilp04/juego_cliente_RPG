@@ -33,7 +33,7 @@ export function reiniciarJuego() {
 
   const mercado = document.querySelector(".mercado-container");
   if (mercado) mercado.innerHTML = "";
-
+  
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
 

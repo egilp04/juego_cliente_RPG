@@ -71,6 +71,7 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
+  
   const productosComprar = modificarProductos();
 
   productosComprar.forEach((producto) => {
@@ -92,8 +93,8 @@ function seccion2Function(seccion2, jugador) {
     const spanNombreProducto = document.createElement("span");
     const nombreP =
       producto.nombre.toLowerCase() === "espadeve"
-        ? `producto ${producto.nombre}🐶`
-        : `producto ${producto.nombre} `;
+        ? `${producto.nombre}🐶`
+        : `${producto.nombre} `;
     console.log(nombreP);
     spanNombreProducto.textContent = `${nombreP}`;
     const spanBonusProducto = document.createElement("span");
@@ -339,7 +340,7 @@ function rellenarCasillas(jugador) {
 }
 
 function modificarProductos() {
-  //Método que permite modificar algo dle producto
+  //Método que permite modificar algo del producto, opcional por producto.nombre
   const producto = aplicarDescuento();
   console.log(producto);
   producto.forEach((producto, i) => {
