@@ -71,18 +71,18 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
-  const productosComprar = aplicarDescuento();
+  const productosComprar = modificarProductos();
+
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
-    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
-    divProducto.setAttribute("class", "producto");
-    divProducto.setAttribute("id", `${idProducto}`);
+    const nombreProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
+    divProducto.setAttribute("class", `producto ${nombreProducto}`);
 
     // Imagen del producto
     const divImgProducto = document.createElement("div");
     divImgProducto.setAttribute("class", "img-producto-container");
     const imgProducto = document.createElement("img");
-    imgProducto.setAttribute("id", "img-producto");
+    imgProducto.setAttribute("class", "img-producto");
     imgProducto.setAttribute("src", `${producto.imagen}`);
     divImgProducto.appendChild(imgProducto);
 
@@ -90,7 +90,12 @@ function seccion2Function(seccion2, jugador) {
     const divDataProducto = document.createElement("div");
     divDataProducto.setAttribute("class", "data-producto-container");
     const spanNombreProducto = document.createElement("span");
-    spanNombreProducto.textContent = `${producto.nombre}`;
+    const nombreP =
+      producto.nombre.toLowerCase() === "espadeve"
+        ? `producto ${producto.nombre}🐶`
+        : `producto ${producto.nombre} `;
+    console.log(nombreP);
+    spanNombreProducto.textContent = `${nombreP}`;
     const spanBonusProducto = document.createElement("span");
     spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
       producto.bonus
@@ -329,4 +334,19 @@ function rellenarCasillas(jugador) {
       casilla.appendChild(divCasillas);
     }
   });
+}
+
+function modificarProductos() {
+  //Método que permite modificar algo dle producto
+  const producto = aplicarDescuento();
+  console.log(producto);
+  producto.forEach((producto, i) => {
+    if (i == 0) {
+      producto.precio = 10;
+      producto.mascota = "teddy";
+      producto.nombre = "Espadeve";
+    }
+  });
+
+  return producto;
 }

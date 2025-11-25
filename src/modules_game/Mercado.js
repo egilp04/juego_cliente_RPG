@@ -160,6 +160,7 @@ export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
   });
   return listaProductosFinales;
 }
+
 /**
  * Busca productos por nombre exacto
  * @param {string} nombreProducto - Nombre del producto a buscar
