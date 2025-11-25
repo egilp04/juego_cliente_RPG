@@ -30,11 +30,15 @@ export function reiniciarJuego() {
   casillas.forEach((casilla) => {
     casilla.innerHTML = "";
   });
-  const mercado = document.querySelector("mercado-container");
+
+  const mercado = document.querySelector(".mercado-container");
   if (mercado) mercado.innerHTML = "";
 
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
+
+  const resumenBatallas = document.querySelector(".resumen-batallas");
+  if (resumenBatallas) resumenBatallas.innerHTML = "";
 
   //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
   document.querySelectorAll("button").forEach((btn) => {
