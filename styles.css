@@ -83,6 +83,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: var(--border-12);
+}
+*::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-ligth1);
+  border-radius: var(--border-12);
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -322,6 +337,13 @@ h2 {
   align-items: start;
   justify-content: flex-start;
 }
+.resumen-batallas::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: var(--border-12);
+}
+.resumen-batallas::-webkit-scrollbar {
+  width: 6px;
+}
 .batalla-container {
   display: flex;
   justify-content: center;
@@ -338,6 +360,7 @@ h2 {
   width: 100%;
   gap: var(--gap-10);
 }
+
 .batalla-container > span {
   font-size: var(--font-size-18);
 }
