@@ -1,7 +1,7 @@
 // ====================
 // IMPORTACIONES
 // ====================
-// Clases de jugadores y enemigos
+// Clases de jugadores y enemigos y productos
 import { Cazador } from "./classes/indexJugadores.js";
 import {
   Goblin,
@@ -11,6 +11,7 @@ import {
   Jefe,
 } from "./classes/indexEnemigos.js";
 import { Enemigo } from "./classes/enemigos/Enemigo.js";
+import { Producto } from "././classes/productos/Producto.js";
 // Avatares de los personajes
 import {
   avatarCazador,
@@ -30,6 +31,7 @@ import {
   mostrarSeccion,
   efectosVisuales,
   encontrarProducto,
+  reiniciarJuego,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -38,9 +40,6 @@ import {
   aplicarDescuento,
   buscarProductoNombre,
 } from "./modules_game/Mercado.js";
-
-//funcion para reiniciar el juego
-import { reiniciarJuego } from "./utils/Utils.js";
 
 // EVENTO DE INICIO
 window.addEventListener("load", iniciarJuego);
@@ -96,7 +95,9 @@ function seccion2Function(seccion2, jugador) {
       producto.bonus
     }`;
     const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `Precio. ${producto.precio}`;
+    spanPrecioProducto.textContent = `Precio. ${producto.formatearAtributos(
+      producto.precio
+    )}`;
     divDataProducto.appendChild(spanNombreProducto);
     divDataProducto.appendChild(spanBonusProducto);
     divDataProducto.appendChild(spanPrecioProducto);
