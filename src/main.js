@@ -40,7 +40,13 @@ import {
 } from "./modules_game/Mercado.js";
 
 //funcion para reiniciar el juego
-import { reiniciarJuego } from "./utils/Utils.js";
+import {
+  reiniciarJuego,
+  modificarProductos,
+  actualizarDinero,
+} from "./utils/Utils.js";
+
+import { Producto } from "././classes/productos/Producto.js";
 
 // EVENTO DE INICIO
 window.addEventListener("load", iniciarJuego);
@@ -57,7 +63,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30, 50);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -71,7 +77,7 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
-  
+
   const productosComprar = modificarProductos();
 
   productosComprar.forEach((producto) => {
@@ -95,14 +101,15 @@ function seccion2Function(seccion2, jugador) {
       producto.nombre.toLowerCase() === "espadeve"
         ? `${producto.nombre}🐶`
         : `${producto.nombre} `;
-    console.log(nombreP);
     spanNombreProducto.textContent = `${nombreP}`;
     const spanBonusProducto = document.createElement("span");
     spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
       producto.bonus
     }`;
     const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `Precio. ${producto.precio}`;
+    spanPrecioProducto.textContent = `Precio ${producto.formatearAtributos(
+      producto.precio
+    )}`;
     divDataProducto.appendChild(spanNombreProducto);
     divDataProducto.appendChild(spanBonusProducto);
     divDataProducto.appendChild(spanPrecioProducto);
@@ -116,27 +123,34 @@ function seccion2Function(seccion2, jugador) {
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
+
+        const dineroComrar = jugador.dinero - producto.precio;
+
+        if (dineroComrar < producto.precio) return;
         jugador.addObjInventario(producto);
-        botonComprar.classList.remove("comprar");
+        jugador.dinero = botonComprar.classList.remove("comprar");
         botonComprar.classList.add("retirar");
         botonComprar.textContent = "retirar";
+        jugador.dinero -= producto.precio;
+        actualizarDinero(jugador);
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
         botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
         botonComprar.textContent = "Añadir";
+        jugador.dinero += producto.precio;
+        actualizarDinero(jugador);
       }
       efectosVisuales();
       rellenarCasillas(jugador);
     });
-
     divProducto.appendChild(divImgProducto);
     divProducto.appendChild(divDataProducto);
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
-
+  actualizarDinero(jugador);
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -337,19 +351,4 @@ function rellenarCasillas(jugador) {
       casilla.appendChild(divCasillas);
     }
   });
-}
-
-function modificarProductos() {
-  //Método que permite modificar algo del producto, opcional por producto.nombre
-  const producto = aplicarDescuento();
-  console.log(producto);
-  producto.forEach((producto, i) => {
-    if (i == 0) {
-      producto.precio = 10;
-      producto.mascota = "teddy";
-      producto.nombre = "Espadeve";
-    }
-  });
-
-  return producto;
 }

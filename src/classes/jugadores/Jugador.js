@@ -25,6 +25,7 @@ export class Jugador {
     avatar,
     ataque,
     defensa,
+    dinero,
     puntos,
     vidaMaxima,
     inventario
@@ -34,6 +35,7 @@ export class Jugador {
     this._avatar = avatar;
     this._ataque = ataque;
     this._defensa = defensa;
+    this._dinero = dinero;
     this._puntos = puntos;
     this._vidaMaxima = vidaMaxima;
     this._inventario = inventario;
@@ -165,6 +167,15 @@ export class Jugador {
   set defensa(defensa) {
     this._defensa = defensa;
   }
+
+  get dinero() {
+    return this._dinero;
+  }
+
+  set dinero(dinero) {
+    this._dinero = dinero;
+  }
+
   /**
    * Suma puntos al total del jugador
    * @param {number} puntos - Cantidad de puntos a sumar

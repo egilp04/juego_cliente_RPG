@@ -1,3 +1,5 @@
+import { aplicarDescuento } from "../modules_game/Mercado.js";
+
 export function mostrarSeccion(id) {
   mostrarFooter(id);
   const secciones = Array.from(document.querySelectorAll(".seccion"));
@@ -33,7 +35,7 @@ export function reiniciarJuego() {
 
   const mercado = document.querySelector(".mercado-container");
   if (mercado) mercado.innerHTML = "";
-  
+
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
 
@@ -45,4 +47,25 @@ export function reiniciarJuego() {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
   });
+}
+
+export function modificarProductos() {
+  //Método que permite modificar algo del producto, opcional por producto.nombre
+  const producto = aplicarDescuento();
+  console.log(producto);
+  producto.forEach((producto, i) => {
+    if (i == 0) {
+      producto.precio = 10;
+      producto.mascota = "teddy";
+      producto.nombre = "Espadeve";
+    }
+  });
+
+  return producto;
+}
+
+export function actualizarDinero(jugador) {
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `Dinero del jugador: ${jugador.dinero}€`;
 }
