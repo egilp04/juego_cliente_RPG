@@ -32,6 +32,8 @@ import {
   efectosVisuales,
   encontrarProducto,
   reiniciarJuego,
+  modificarProductos,
+  actualizarDinero,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
