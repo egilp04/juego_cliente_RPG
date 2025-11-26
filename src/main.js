@@ -240,15 +240,15 @@ function seccion5Function(seccion5, jugador, enemigos) {
     turno.textContent = `Batalla ${i + 1}`;
 
     const atacante = document.createElement("span");
-    atacante.textContent = `Atacante: ${resultadoBatallas[i].atacante}`;
+    atacante.textContent = `Atacante: ${resultado.atacante}`;
     const atacado = document.createElement("span");
-    atacado.textContent = `Atacado: ${resultadoBatallas[i].atacado}`;
+    atacado.textContent = `Atacado: ${resultado.atacado}`;
     const danio = document.createElement("span");
-    danio.textContent = `Daño recibido: ${resultadoBatallas[i].danio}`;
+    danio.textContent = `Daño recibido: ${resultado.danioRecibido}`;
     const vidaJugador = document.createElement("span");
-    vidaJugador.textContent = `Vida jugador: ${resultadoBatallas[i].vidaJugador}`;
+    vidaJugador.textContent = `Vida jugador: ${resultado.vidaJugadorTotal}`;
     const vidaEnemigo = document.createElement("span");
-    vidaEnemigo.textContent = `Vida enemigo: ${resultadoBatallas[i].vidaEnemigo}`;
+    vidaEnemigo.textContent = `Vida enemigo: ${resultado.vidaEnemigoTotal}`;
 
     divBatalla.appendChild(turno);
     divBatalla.appendChild(atacante);
