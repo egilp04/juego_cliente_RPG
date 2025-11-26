@@ -1,7 +1,7 @@
 // ====================
 // IMPORTACIONES
 // ====================
-// Clases de jugadores y enemigos
+// Clases de jugadores y enemigos y productos
 import { Cazador } from "./classes/indexJugadores.js";
 import {
   Goblin,
@@ -11,6 +11,7 @@ import {
   Jefe,
 } from "./classes/indexEnemigos.js";
 import { Enemigo } from "./classes/enemigos/Enemigo.js";
+import { Producto } from "././classes/productos/Producto.js";
 // Avatares de los personajes
 import {
   avatarCazador,
@@ -30,6 +31,7 @@ import {
   mostrarSeccion,
   efectosVisuales,
   encontrarProducto,
+  reiniciarJuego,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -38,9 +40,6 @@ import {
   aplicarDescuento,
   buscarProductoNombre,
 } from "./modules_game/Mercado.js";
-
-//funcion para reiniciar el juego
-import { reiniciarJuego } from "./utils/Utils.js";
 
 // EVENTO DE INICIO
 window.addEventListener("load", iniciarJuego);
@@ -96,7 +95,9 @@ function seccion2Function(seccion2, jugador) {
       producto.bonus
     }`;
     const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `Precio. ${producto.precio}`;
+    spanPrecioProducto.textContent = `Precio. ${producto.formatearAtributos(
+      producto.precio
+    )}`;
     divDataProducto.appendChild(spanNombreProducto);
     divDataProducto.appendChild(spanBonusProducto);
     divDataProducto.appendChild(spanPrecioProducto);
@@ -239,15 +240,15 @@ function seccion5Function(seccion5, jugador, enemigos) {
     turno.textContent = `Batalla ${i + 1}`;
 
     const atacante = document.createElement("span");
-    atacante.textContent = `Atacante: ${resultadoBatallas[i].atacante}`;
+    atacante.textContent = `Atacante: ${resultado.atacante}`;
     const atacado = document.createElement("span");
-    atacado.textContent = `Atacado: ${resultadoBatallas[i].atacado}`;
+    atacado.textContent = `Atacado: ${resultado.atacado}`;
     const danio = document.createElement("span");
-    danio.textContent = `Daño recibido: ${resultadoBatallas[i].danio}`;
+    danio.textContent = `Daño recibido: ${resultado.danioRecibido}`;
     const vidaJugador = document.createElement("span");
-    vidaJugador.textContent = `Vida jugador: ${resultadoBatallas[i].vidaJugador}`;
+    vidaJugador.textContent = `Vida jugador: ${resultado.vidaJugadorTotal}`;
     const vidaEnemigo = document.createElement("span");
-    vidaEnemigo.textContent = `Vida enemigo: ${resultadoBatallas[i].vidaEnemigo}`;
+    vidaEnemigo.textContent = `Vida enemigo: ${resultado.vidaEnemigoTotal}`;
 
     divBatalla.appendChild(turno);
     divBatalla.appendChild(atacante);
