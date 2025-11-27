@@ -117,7 +117,7 @@ function seccion2Function(seccion2, jugador) {
         botonComprar.classList.add("retirar");
         setTimeout(() => {
           botonComprar.textContent = "retirar";
-        }, 1000);
+        }, 500);
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
@@ -126,7 +126,7 @@ function seccion2Function(seccion2, jugador) {
         botonComprar.textContent = "😭";
         setTimeout(() => {
           botonComprar.textContent = "Añadir";
-        }, 1000);
+        }, 500);
       }
       rellenarCasillas(jugador);
     });
@@ -221,6 +221,10 @@ function seccion4Function(seccion4, jugador) {
 
 // SECCIÓN 5: Combate
 function seccion5Function(seccion5, jugador, enemigos) {
+  const resumenBatallas = document.querySelector(".resumen-batallas");
+  const resultadosContainer = document.querySelector(".resultados-container");
+  resumenBatallas.style.opacity = "0";
+  resultadosContainer.style.opacity = "0";
   batallaAnimacionAleatoria();
 
   document.getElementById("title").textContent = "Combate";
@@ -237,8 +241,10 @@ function seccion5Function(seccion5, jugador, enemigos) {
     .querySelector(".resultados-container")
     .querySelector("p").textContent = `Puntos Obtenidos: ${puntos}`;
 
-  //resultado batallas
-  const resumenBatallas = document.querySelector(".resumen-batallas");
+  setTimeout(() => {
+    resumenBatallas.style.opacity = "1";
+    resultadosContainer.style.opacity = "1";
+  }, 3000);
 
   resultadoBatallas.forEach((resultado, i) => {
     const divBatalla = document.createElement("div");
@@ -303,7 +309,7 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   const boton = seccion6.querySelector(".reiniciar");
   setTimeout(() => {
     boton.disabled = false;
-  }, 2500);
+  }, 3000);
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();

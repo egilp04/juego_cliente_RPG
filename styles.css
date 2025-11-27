@@ -327,11 +327,15 @@ h2 {
   font-size: var(--font-size-40);
   line-height: calc(var(--linea-height-text) * var(--font-size-40));
 }
+
 .resultados-container {
+  opacity: 0;
   height: 20px;
   overflow: hidden;
+  transition: opacity 1s ease;
 }
 .resumen-batallas {
+  opacity: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -345,6 +349,7 @@ h2 {
   padding: var(--padding-12);
   align-items: start;
   justify-content: flex-start;
+  transition: opacity 1s ease;
 }
 .resumen-batallas::-webkit-scrollbar-thumb {
   background: var(--color-accent);
@@ -455,7 +460,6 @@ img.img-inventario:hover {
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-12);
   cursor: pointer;
-  transition: background-color 1s ease, transform 1s ease;
 }
 .comprar:focus-visible,
 .retirar:focus {
@@ -466,7 +470,7 @@ img.img-inventario:hover {
 .retirar:hover,
 .comprar:hover {
   border: 2px solid var(--color-accent);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .retirar:active,
 .comprar:active {
