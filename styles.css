@@ -484,7 +484,7 @@ img.img-inventario:hover {
   box-shadow: 0 8px 15px rgba(217, 168, 108, 0.6);
 }
 .jugador-tarjeta:hover {
-  box-shadow: 0 4px 15px rgba(108, 217, 115, 0.6);
+  box-shadow: 0 4px 15px rgba(108, 217, 115, 0.72);
 }
 .enemigo-tarjeta:hover {
   box-shadow: 0 4px 15px rgba(237, 154, 127, 0.6);
@@ -529,6 +529,17 @@ img.img-inventario:hover {
 @keyframes moveLeft {
   to {
     transform: translateX(0);
+  }
+}
+
+.appear {
+  transform: scale(0);
+  animation: getBigger 3.2s forwards;
+}
+
+@keyframes getBigger {
+  to {
+    transform: scale(1);
   }
 }
 

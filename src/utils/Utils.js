@@ -52,10 +52,19 @@ export function batallaAnimacionAleatoria() {
     ".enemigo-imagen-container"
   );
 
+  const jugadorImg = document.querySelector(".enemigo-imagen");
+  const enemigoImg = document.querySelector(".jugador-imagen");
+
   divJugadorAnimacion.classList.remove("animate-move-left");
   divEnemigoAnimacion.classList.remove("animate-move-right");
+  jugadorImg.classList.remove("appear");
+  enemigoImg.classList.remove("appear");
+
   void divJugadorAnimacion.offsetWidth;
   void divEnemigoAnimacion.offsetWidth;
+
   divJugadorAnimacion.classList.add("animate-move-left");
   divEnemigoAnimacion.classList.add("animate-move-right");
+  jugadorImg.classList.add("appear");
+  enemigoImg.classList.add("appear");
 }

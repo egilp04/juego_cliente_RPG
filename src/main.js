@@ -56,7 +56,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 0, avatarCazador, 0, 0);
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 20, 20);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -303,7 +303,7 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   const boton = seccion6.querySelector(".reiniciar");
   setTimeout(() => {
     boton.disabled = false;
-  }, 3000);
+  }, 2500);
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();
