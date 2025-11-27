@@ -30,6 +30,8 @@
   --font-size-36: 2.25rem;
   --font-size-40: 2.5rem;
   --font-size-50: 3.125rem;
+  --font-size-100: 6.25rem;
+  --font-size-150: 9.375rem;
 
   --font-weigth-regular: 400;
   --font-weigth-medium: 500;
@@ -385,6 +387,16 @@ img {
   height: 100%;
   object-fit: contain;
 }
+img.img-inventario {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+img.img-inventario:hover {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
+}
 
 /* Botones*/
 .continuar,
@@ -443,6 +455,7 @@ img {
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-12);
   cursor: pointer;
+  transition: background-color 1s ease, transform 1s ease;
 }
 .comprar:focus-visible,
 .retirar:focus {
@@ -450,11 +463,10 @@ img {
   outline: none;
   offset: none;
 }
-.retirar button:hover,
-.comprar button:hover {
+.retirar:hover,
+.comprar:hover {
   border: 2px solid var(--color-accent);
-  transform: scale(1.02);
-  transition: background-color 0.4s ease, color 0.4s ease, scale 0.4s ease;
+  transform: scale(1.1);
 }
 .retirar:active,
 .comprar:active {
@@ -466,6 +478,58 @@ img {
   background-color: var(--color-ligth2);
   color: var(--color-dark2);
   cursor: not-allowed;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 8px 15px rgba(217, 168, 108, 0.6);
+}
+.jugador-tarjeta:hover {
+  box-shadow: 0 4px 15px rgba(108, 217, 115, 0.6);
+}
+.enemigo-tarjeta:hover {
+  box-shadow: 0 4px 15px rgba(237, 154, 127, 0.6);
+}
+.loser-icon {
+  font-size: var(--font-size-100);
+  opacity: 0;
+  animation: fadeIn 2s forwards, rotate 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-move-right {
+  transform: translateX(-1000px);
+  animation: moveRight 3s forwards;
+}
+
+@keyframes moveRight {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-move-left {
+  transform: translateX(1000px);
+  animation: moveLeft 3s forwards;
+}
+
+@keyframes moveLeft {
+  to {
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 1080px) {
@@ -486,6 +550,7 @@ img {
   .casilla {
     height: 50px;
     width: 50px;
+    overflow: hidden;
   }
   .estadisticas-container > div,
   .producto,
@@ -608,6 +673,9 @@ img {
     font-size: var(--font-size-20);
     line-height: calc(var(--linea-height-text) * var(--font-size-20));
   }
+  .loser-icon {
+    font-size: var(--font-size-150);
+  }
 }
 
 @media (max-width: 719px) {
@@ -693,5 +761,8 @@ img {
     font-size: var(--font-size-12);
     line-height: calc(var(--linea-height-text) * var(--font-size-12));
     padding: var(--padding-6) var(--padding-12);
+  }
+  .loser-icon {
+    font-size: var(--font-size-100);
   }
 }

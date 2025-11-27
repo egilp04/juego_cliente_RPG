@@ -44,7 +44,6 @@ export function combate(enemigo, jugador) {
     }
     jugador.hp = vidaJugador;
     enemigo.hp = vidaEnemigo;
-    console.log(resultadoBatallas);
   } while (vidaJugador > muerte && vidaEnemigo > muerte);
   const ganador = vidaJugador > 0 ? jugador : enemigo;
   let puntos = 0;

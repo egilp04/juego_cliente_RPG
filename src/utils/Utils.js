@@ -18,9 +18,6 @@ function mostrarFooter(id) {
 export function encontrarProducto(listaProducto, indiceProducto) {
   return listaProducto[indiceProducto];
 }
-export function efectosVisuales() {
-  console.log("efecto del boton, del color de la tarjeta");
-}
 
 /**
  * Reiniciar todos los elementos de la UI
@@ -45,4 +42,20 @@ export function reiniciarJuego() {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
   });
+}
+
+export function batallaAnimacionAleatoria() {
+  const divJugadorAnimacion = document.querySelector(
+    ".jugador-imagen-container"
+  );
+  const divEnemigoAnimacion = document.querySelector(
+    ".enemigo-imagen-container"
+  );
+
+  divJugadorAnimacion.classList.remove("animate-move-left");
+  divEnemigoAnimacion.classList.remove("animate-move-right");
+  void divJugadorAnimacion.offsetWidth;
+  void divEnemigoAnimacion.offsetWidth;
+  divJugadorAnimacion.classList.add("animate-move-left");
+  divEnemigoAnimacion.classList.add("animate-move-right");
 }
