@@ -144,8 +144,7 @@ export function filtrarProductos(tipoRareza, listaProductosFinales) {
   );
 }
 /**
- * Aplica un descuento a los productos de la rareza indicada
- * @param {string} tipoRareza - Rareza a la que aplicar el descuento (por defecto "raro")
+ * Aplica un descuento a los productos de la rareza aleatoria
  * @param {number} descuento - Porcentaje de descuento en formato decimal (por defecto 0.2 → 20%)
  * @returns {Producto[]} Lista de productos finales con descuento aplicado
  */
