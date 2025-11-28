@@ -1,4 +1,8 @@
-import { aplicarDescuento } from "../modules_game/Mercado.js";
+import {
+  aplicarDescuento,
+  buscarProductoNombre,
+  obtenerProductosFinales,
+} from "../modules_game/Mercado.js";
 
 export function mostrarSeccion(id) {
   mostrarFooter(id);
@@ -15,10 +19,6 @@ function mostrarFooter(id) {
   const footer = document.querySelector("footer");
   if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
   else footer.style.display = "";
-}
-
-export function encontrarProducto(listaProducto, indiceProducto) {
-  return listaProducto[indiceProducto];
 }
 
 /**
@@ -69,4 +69,13 @@ export function batallaAnimacionAleatoria() {
   divEnemigoAnimacion.classList.add("animate-move-right");
   jugadorImg.classList.add("appear");
   enemigoImg.classList.add("appear");
+}
+
+export function modificarProducto(producto, dato, valor) {
+  productoNuevo = { ...producto, dato: valor };
+  return productoNuevo;
+}
+
+export function encontrarProducto(listaProducto, index) {
+  return listaProducto[index];
 }

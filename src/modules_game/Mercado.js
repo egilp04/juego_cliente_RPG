@@ -133,6 +133,7 @@ const listaProductos = [
     4
   ),
 ];
+
 /**
  * Filtra productos por rareza
  * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
@@ -155,9 +156,9 @@ export function aplicarDescuento(descuento = 0.2) {
     rarezaArmas.epico,
     rarezaArmas.raro,
   ];
+  let listaProductosFinales = [];
   const tipoRareza =
     rarezasDescuento[Math.floor(Math.random() * rarezasDescuento.length)];
-  let listaProductosFinales = [];
   listaProductos.forEach((producto) => {
     const productoClonado = producto.clonarProducto();
     if (producto.rareza === tipoRareza)
@@ -174,6 +175,11 @@ export function aplicarDescuento(descuento = 0.2) {
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
   return listaProductosFinales.filter(
-    (producto) => nombreProducto === producto.nombre
+    (producto) =>
+      nombreProducto.toLocaleLowerCase() === producto.nombre.toLocaleLowerCase()
   );
+}
+
+export function obtenerProductosFinales() {
+  return listaProductosFinales;
 }

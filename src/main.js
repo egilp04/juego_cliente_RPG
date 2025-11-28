@@ -32,6 +32,7 @@ import {
   encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
+  modificarProducto,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -70,10 +71,12 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
-
-  const productosComprar = modificarProductos();
+  const productosComprar = aplicarDescuento();
+  
+  modificarProducto(producto, nombre, "espadeve");
 
   productosComprar.forEach((producto) => {
+    console.log(encontrarProducto(productosComprar, producto));
     const divProducto = document.createElement("div");
     const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
     divProducto.setAttribute("class", "producto tarjeta");
@@ -117,7 +120,6 @@ function seccion2Function(seccion2, jugador) {
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
-
         if (jugador.dinero < producto.precio) {
           return;
         }
