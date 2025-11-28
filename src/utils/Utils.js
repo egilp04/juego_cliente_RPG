@@ -1,7 +1,6 @@
 import {
   aplicarDescuento,
   buscarProductoNombre,
-  obtenerProductosFinales,
 } from "../modules_game/Mercado.js";
 
 export function mostrarSeccion(id) {
@@ -73,9 +72,13 @@ export function batallaAnimacionAleatoria() {
 
 export function modificarProducto(producto, dato, valor) {
   productoNuevo = { ...producto, dato: valor };
+  console.log(productoNuevo);
   return productoNuevo;
 }
 
-export function encontrarProducto(listaProducto, index) {
-  return listaProducto[index];
+export function encontrarIndiceProducto(producto, listaProducto) {
+  const index = listaProducto.indexOf(producto);
+  return index;
 }
+
+export function encontrarProducto(index, listaProducto) {}

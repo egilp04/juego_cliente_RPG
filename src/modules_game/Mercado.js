@@ -21,6 +21,7 @@ import {
 // ====================
 const listaProductos = [
   new Espada_Corta(
+    1,
     "Espada corta",
     "src/assests/img/objects_img/espada_corta.webp",
     120.0,
@@ -29,6 +30,7 @@ const listaProductos = [
     8
   ),
   new Arco_Caza(
+    2,
     "Arco caza",
     "src/assests/img/objects_img/arco.webp",
     140.0,
@@ -37,6 +39,7 @@ const listaProductos = [
     7
   ),
   new Armadura_Cuero(
+    3,
     "Armadura cuero",
     "src/assests/img/objects_img/armadura.webp",
     180.0,
@@ -45,6 +48,7 @@ const listaProductos = [
     6
   ),
   new Pocion_Peque(
+    4,
     "Poción pequeña",
     "src/assests/img/objects_img/pocion_peque.webp",
     40.0,
@@ -53,6 +57,7 @@ const listaProductos = [
     20
   ),
   new Espada_Runica(
+    5,
     "Espada rúnica",
     "src/assests/img/objects_img/espada_runica.webp",
     460.0,
@@ -61,6 +66,7 @@ const listaProductos = [
     18
   ),
   new Escudo_Roble(
+    6,
     "Escudo roble",
     "src/assests/img/objects_img/escudo.webp",
     320.0,
@@ -69,6 +75,7 @@ const listaProductos = [
     14
   ),
   new Pocion_Grande(
+    7,
     "Poción grande",
     "src/assests/img/objects_img/pocion_grande.webp",
     110.0,
@@ -77,6 +84,7 @@ const listaProductos = [
     60
   ),
   new Mandoble_Epico(
+    8,
     "Mandoble épico",
     "src/assests/img/objects_img/mandoble.webp",
     950.0,
@@ -85,6 +93,7 @@ const listaProductos = [
     32
   ),
   new Placas_Draconicas(
+    9,
     "Placas dracónicas",
     "src/assests/img/objects_img/placas_draconicas.webp",
     880.0,
@@ -93,6 +102,7 @@ const listaProductos = [
     28
   ),
   new Elixir_Legendario(
+    10,
     "Elixir legendario",
     "src/assests/img/objects_img/elixir.webp",
     520.0,
@@ -101,6 +111,7 @@ const listaProductos = [
     150
   ),
   new Manzana(
+    11,
     "Manzana",
     "src/assests/img/objects_img/manzana.webp",
     40.0,
@@ -109,6 +120,7 @@ const listaProductos = [
     10
   ),
   new Casco(
+    12,
     "Casco",
     "src/assests/img/objects_img/casco.webp",
     100.0,
@@ -117,6 +129,7 @@ const listaProductos = [
     10
   ),
   new Hacha(
+    13,
     "Hacha",
     "src/assests/img/objects_img/hacha.webp",
     120.0,
@@ -125,6 +138,7 @@ const listaProductos = [
     8
   ),
   new Botas(
+    14,
     "Botas",
     "src/assests/img/objects_img/botas.webp",
     80.0,
@@ -178,8 +192,4 @@ export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
     (producto) =>
       nombreProducto.toLocaleLowerCase() === producto.nombre.toLocaleLowerCase()
   );
-}
-
-export function obtenerProductosFinales() {
-  return listaProductosFinales;
 }

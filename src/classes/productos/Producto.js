@@ -1,5 +1,6 @@
 export class Producto {
-  constructor(nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+    this._id = id;
     this._nombre = nombre;
     this._imagen = imagen;
     this._precio = precio;
@@ -25,6 +26,9 @@ export class Producto {
   get bonus() {
     return this._bonus;
   }
+  get id() {
+    return this._id;
+  }
   set nombre(nombre) {
     this._nombre = nombre;
   }
@@ -43,7 +47,9 @@ export class Producto {
   set bonus(bonus) {
     this._bonus = bonus;
   }
-
+  set id(id) {
+    this._id = id;
+  }
   formatearAtributos = function (precioNum) {
     const precio = (precioNum / 100).toFixed(2).replace(".", ",") + "€";
     return precio;
@@ -55,10 +61,11 @@ export class Producto {
 
   clonarProducto = function () {
     return new Producto(
+      this._id,
       this._nombre,
       this._imagen,
-      this._precio,
       this._rareza,
+      this._precio,
       this._tipo,
       this._bonus
     );

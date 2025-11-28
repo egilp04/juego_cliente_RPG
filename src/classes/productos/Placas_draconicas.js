@@ -2,7 +2,7 @@ import { Producto } from "./Producto.js";
 
 /**
  * Clase Placas_Draconicas
- * 
+ *
  * Representa un producto defensivo especial: placas dracónicas.
  * Hereda de la clase Producto, incluyendo todas las propiedades básicas:
  * nombre, imagen, precio, rareza, tipo y bonus.
@@ -17,7 +17,7 @@ export class Placas_Draconicas extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "armadura")
    * @param {number} bonus - Valor de bonificación que aporta (ej. defensa extra)
    */
-  constructor(nombre, imagen, precio, rareza, tipo, bonus) {
-    super(nombre, imagen, precio, rareza, tipo, bonus);
+  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+    super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

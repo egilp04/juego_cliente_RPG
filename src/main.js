@@ -33,6 +33,7 @@ import {
   reiniciarJuego,
   batallaAnimacionAleatoria,
   modificarProducto,
+  encontrarIndiceProducto,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -72,11 +73,9 @@ function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
   const productosComprar = aplicarDescuento();
-  
-  modificarProducto(producto, nombre, "espadeve");
+  console.log(productosComprar);
 
   productosComprar.forEach((producto) => {
-    console.log(encontrarProducto(productosComprar, producto));
     const divProducto = document.createElement("div");
     const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
     divProducto.setAttribute("class", "producto tarjeta");
@@ -123,8 +122,8 @@ function seccion2Function(seccion2, jugador) {
         if (jugador.dinero < producto.precio) {
           return;
         }
-
         jugador.addObjInventario(producto);
+        actualizarDinero(jugador, producto.precio);
         const productoTarjeta = botonComprar.closest(".producto");
         const colorAntiguo = productoTarjeta.style.backgroundColor;
         productoTarjeta.style.backgroundColor = "#edefc9ff";
@@ -154,7 +153,6 @@ function seccion2Function(seccion2, jugador) {
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
-  actualizarDinero(jugador);
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -390,4 +388,9 @@ function rellenarCasillas(jugador) {
       casilla.appendChild(divCasillas);
     }
   });
+}
+
+function actualizarDinero(jugador, dinero) {
+  jugador.dinero = dinero;
+  console.log(dinero);
 }

@@ -17,7 +17,7 @@ export class Pocion_Peque extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "consumible")
    * @param {number} bonus - Valor de bonificación que aporta (ej. vida extra)
    */
-  constructor(nombre, imagen, precio, rareza, tipo, bonus) {
-    super(nombre, imagen, precio, rareza, tipo, bonus);
+  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+    super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

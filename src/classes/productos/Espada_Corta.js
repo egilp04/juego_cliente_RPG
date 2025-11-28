@@ -17,7 +17,7 @@ export class Espada_Corta extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "arma")
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
-  constructor(nombre, imagen, precio, rareza, tipo, bonus) {
-    super(nombre, imagen, precio, rareza, tipo, bonus);
+  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+    super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }
