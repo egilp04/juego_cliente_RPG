@@ -72,89 +72,41 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
+  mercadoContainer.innerHTML = "";
   const productosComprar = aplicarDescuento();
-  console.log(productosComprar);
 
-  productosComprar.forEach((producto) => {
-    const divProducto = document.createElement("div");
-    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
-    divProducto.setAttribute("class", "producto tarjeta");
-    divProducto.setAttribute("id", `${idProducto}`);
+  crearMercado(productosComprar);
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
 
-    // Imagen del producto
-    const divImgProducto = document.createElement("div");
-    divImgProducto.setAttribute("class", "img-producto-container");
-    const imgProducto = document.createElement("img");
-    imgProducto.setAttribute("class", "img-producto");
-    imgProducto.setAttribute("src", `${producto.imagen}`);
-    divImgProducto.appendChild(imgProducto);
-
-    // Datos del producto
-    const divDataProducto = document.createElement("div");
-    divDataProducto.setAttribute("class", "data-producto-container");
-    const spanNombreProducto = document.createElement("span");
-    // const nombreP =
-    //   producto.nombre.toLowerCase() === "espadeve"
-    //     ? `${producto.nombre}🐶`
-    //     : `${producto.nombre} `;
-    // spanNombreProducto.textContent = `${nombreP}`;
-    const spanBonusProducto = document.createElement("span");
-    spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
-      producto.bonus
-    }`;
-    const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `Precio. ${producto.formatearAtributos(
-      producto.precio
-    )}`;
-    divDataProducto.appendChild(spanNombreProducto);
-    divDataProducto.appendChild(spanBonusProducto);
-    divDataProducto.appendChild(spanPrecioProducto);
-
-    const botonComprar = document.createElement("button");
-    botonComprar.setAttribute("class", "comprar");
-    botonComprar.textContent = "Añadir";
-    botonComprar.addEventListener("click", (e) => {
-      const MAX_INVENTARIO = 6;
-
-      if (botonComprar.classList.contains("comprar")) {
-        // Añadir al inventario si no está lleno
-        if (jugador.inventario.length >= MAX_INVENTARIO) return;
-        if (jugador.dinero < producto.precio) {
-          return;
-        }
-        jugador.addObjInventario(producto);
-        actualizarDinero(jugador, producto.precio);
-        const productoTarjeta = botonComprar.closest(".producto");
-        const colorAntiguo = productoTarjeta.style.backgroundColor;
-        productoTarjeta.style.backgroundColor = "#edefc9ff";
-        setTimeout(() => {
-          productoTarjeta.style.backgroundColor = colorAntiguo;
-        }, 250);
-        botonComprar.textContent = "Gracias!😁";
-        botonComprar.classList.remove("comprar");
-        botonComprar.classList.add("retirar");
-        setTimeout(() => {
-          botonComprar.textContent = "retirar";
-        }, 500);
-      } else {
-        // Retirar del inventario
-        jugador.eliminarObjInventario(producto);
-        botonComprar.classList.remove("retirar");
-        botonComprar.classList.add("comprar");
-        botonComprar.textContent = "😭";
-        setTimeout(() => {
-          botonComprar.textContent = "Añadir";
-        }, 500);
-      }
-      rellenarCasillas(jugador);
-    });
-    divProducto.appendChild(divImgProducto);
-    divProducto.appendChild(divDataProducto);
-    divProducto.appendChild(botonComprar);
-    mercadoContainer.appendChild(divProducto);
+  const formularioNombre = document.querySelector(".formNombre");
+  const formularioRareza = document.querySelector(".formRareza");
+  formularioNombre.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const productosNombre = buscarProductoNombre(
+      document.getElementById("nombreProducto").value,
+      productosComprar
+    );
+    if (productosNombre) crearMercado(productosNombre);
+    else {
+      const mensaje = document.createElement("h1");
+      mensaje = "No hay productos con este nombre";
+      document.querySelector(".mercado-container").appendChild(mensaje);
+    }
   });
 
-  document.querySelector(".dinero-comprar").textContent = `${jugador.dinero}`;
+  formularioRareza.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const rarezaSelect = document.getElementById("rareza").value;
+    const productosRareza = filtrarProductos(rarezaSelect, productosComprar);
+    if (productosRareza) crearMercado(productosNombre);
+    else {
+      const mensaje = document.createElement("h1");
+      mensaje = "No hay productos con este nombre";
+      document.querySelector(".mercado-container").appendChild(mensaje);
+    }
+  });
 
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
@@ -393,7 +345,95 @@ function rellenarCasillas(jugador) {
   });
 }
 
-function actualizarDinero(jugador, dinero) {
-  jugador.dinero = dinero;
-  console.log(dinero);
+function actualizarDinero(jugador, precio, operacion) {
+  const dineroAntiguo = jugador.dinero;
+  if (operacion == "sumar") jugador.dinero = dineroAntiguo + precio;
+  else if (operacion == "restar") jugador.dinero = dineroAntiguo - precio;
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
+}
+
+function crearMercado(productosComprar) {
+  const mercadoContainer = document.querySelector(".mercado-container");
+
+  productosComprar.forEach((producto) => {
+    const divProducto = document.createElement("div");
+    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
+    divProducto.setAttribute("class", "producto tarjeta");
+    divProducto.setAttribute("id", `${idProducto}`);
+
+    // Imagen del producto
+    const divImgProducto = document.createElement("div");
+    divImgProducto.setAttribute("class", "img-producto-container");
+    const imgProducto = document.createElement("img");
+    imgProducto.setAttribute("class", "img-producto");
+    imgProducto.setAttribute("src", `${producto.imagen}`);
+    divImgProducto.appendChild(imgProducto);
+
+    // Datos del producto
+    const divDataProducto = document.createElement("div");
+    divDataProducto.setAttribute("class", "data-producto-container");
+    const spanNombreProducto = document.createElement("span");
+    // const nombreP =
+    //   producto.nombre.toLowerCase() === "espadeve"
+    //     ? `${producto.nombre}🐶`
+    //     : `${producto.nombre} `;
+    // spanNombreProducto.textContent = `${nombreP}`;
+    const spanBonusProducto = document.createElement("span");
+    spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
+      producto.bonus
+    }`;
+    const spanPrecioProducto = document.createElement("span");
+    spanPrecioProducto.textContent = `Precio. ${producto.formatearAtributos(
+      producto.precio
+    )}`;
+    divDataProducto.appendChild(spanNombreProducto);
+    divDataProducto.appendChild(spanBonusProducto);
+    divDataProducto.appendChild(spanPrecioProducto);
+
+    const botonComprar = document.createElement("button");
+    botonComprar.setAttribute("class", "comprar");
+    botonComprar.textContent = "Añadir";
+    botonComprar.addEventListener("click", (e) => {
+      const MAX_INVENTARIO = 6;
+
+      if (botonComprar.classList.contains("comprar")) {
+        // Añadir al inventario si no está lleno
+        if (jugador.inventario.length >= MAX_INVENTARIO) return;
+        if (jugador.dinero < producto.precio) {
+          return;
+        }
+        jugador.addObjInventario(producto);
+        actualizarDinero(jugador, producto.precio, "restar");
+        const productoTarjeta = botonComprar.closest(".producto");
+        const colorAntiguo = productoTarjeta.style.backgroundColor;
+        productoTarjeta.style.backgroundColor = "#edefc9ff";
+        setTimeout(() => {
+          productoTarjeta.style.backgroundColor = colorAntiguo;
+        }, 250);
+        botonComprar.textContent = "Gracias!😁";
+        botonComprar.classList.remove("comprar");
+        botonComprar.classList.add("retirar");
+        setTimeout(() => {
+          botonComprar.textContent = "retirar";
+        }, 500);
+      } else {
+        // Retirar del inventario
+        jugador.eliminarObjInventario(producto);
+        actualizarDinero(jugador, producto.precio, "sumar");
+        botonComprar.classList.remove("retirar");
+        botonComprar.classList.add("comprar");
+        botonComprar.textContent = "😭";
+        setTimeout(() => {
+          botonComprar.textContent = "Añadir";
+        }, 500);
+      }
+      rellenarCasillas(jugador);
+    });
+    divProducto.appendChild(divImgProducto);
+    divProducto.appendChild(divDataProducto);
+    divProducto.appendChild(botonComprar);
+    mercadoContainer.appendChild(divProducto);
+  });
 }
