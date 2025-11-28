@@ -91,11 +91,11 @@ function seccion2Function(seccion2, jugador) {
     const divDataProducto = document.createElement("div");
     divDataProducto.setAttribute("class", "data-producto-container");
     const spanNombreProducto = document.createElement("span");
-    const nombreP =
-      producto.nombre.toLowerCase() === "espadeve"
-        ? `${producto.nombre}🐶`
-        : `${producto.nombre} `;
-    spanNombreProducto.textContent = `${nombreP}`;
+    // const nombreP =
+    //   producto.nombre.toLowerCase() === "espadeve"
+    //     ? `${producto.nombre}🐶`
+    //     : `${producto.nombre} `;
+    // spanNombreProducto.textContent = `${nombreP}`;
     const spanBonusProducto = document.createElement("span");
     spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
       producto.bonus
