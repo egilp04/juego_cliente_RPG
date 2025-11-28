@@ -112,6 +112,12 @@ function seccion2Function(seccion2, jugador) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
         jugador.addObjInventario(producto);
+        const productoTarjeta = botonComprar.closest(".producto");
+        const colorAntiguo = productoTarjeta.style.backgroundColor;
+        productoTarjeta.style.backgroundColor = "#edefc9ff";
+        setTimeout(() => {
+          productoTarjeta.style.backgroundColor = colorAntiguo;
+        }, 250);
         botonComprar.textContent = "Gracias!😁";
         botonComprar.classList.remove("comprar");
         botonComprar.classList.add("retirar");
