@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Jugador</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Jugador</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>Jugador<span class="signature">(nombre, hp, avatar, ataque, defensa, puntos, vidaMaxima, inventario)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Clase JugadorRepresenta a un jugador en el juego con atributos básicoscomo nombre, puntos de vida, ataque, defensa, inventario y puntos.También incluye métodos para gestionar el inventario y calcular estadísticas totales.</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="Jugador"><span class="type-signature"></span>new Jugador<span class="signature">(nombre, hp, avatar, ataque, defensa, puntos, vidaMaxima, inventario)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Constructor de la clase Jugador
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nombre</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Nombre del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Puntos de vida actuales</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>avatar</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Imagen o referencia visual del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ataque</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Valor de ataque base del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defensa</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Valor de defensa base del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>puntos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Puntos del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>vidaMaxima</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Vida máxima del jugador</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inventario</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Producto></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Lista de objetos que posee el jugador</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Jugador.html">Jugador</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="addObjInventario"><span class="type-signature"></span>addObjInventario<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Añade un objeto al inventario
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line183">line 183</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ataque"><span class="type-signature"></span>ataque<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve el valor de ataque base del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ataque"><span class="type-signature"></span>ataque<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece el valor de ataque base del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line157">line 157</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="avatar"><span class="type-signature"></span>avatar<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve la referencia visual o avatar del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="avatar"><span class="type-signature"></span>avatar<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece la referencia visual o avatar del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="defensa"><span class="type-signature"></span>defensa<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve el valor de defensa base del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line102">line 102</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="defensa"><span class="type-signature"></span>defensa<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece el valor de defensa base del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line165">line 165</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="eliminarObjInventario"><span class="type-signature"></span>eliminarObjInventario<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Elimina un objeto del inventario
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line192">line 192</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="hp"><span class="type-signature"></span>hp<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve los puntos de vida actuales del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="hp"><span class="type-signature"></span>hp<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece los puntos de vida actuales del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="inventario"><span class="type-signature"></span>inventario<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve el inventario completo del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line86">line 86</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="inventario"><span class="type-signature"></span>inventario<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece el inventario del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="nombre"><span class="type-signature"></span>nombre<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve el nombre del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="nombre"><span class="type-signature"></span>nombre<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece el nombre del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line109">line 109</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="obtenerAtaqueTotal"><span class="type-signature"></span>obtenerAtaqueTotal<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Calcula el ataque total del jugador sumando bonus de armas
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line224">line 224</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="obtenerDefensaTotal"><span class="type-signature"></span>obtenerDefensaTotal<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Calcula la defensa total del jugador sumando bonus de armaduras
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line236">line 236</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="obtenerEstadisticasFinales"><span class="type-signature"></span>obtenerEstadisticasFinales<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve las estadísticas finales del jugadorteniendo en cuenta los bonus de los objetos en el inventario
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line205">line 205</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="obtenerVidaTotal"><span class="type-signature"></span>obtenerVidaTotal<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Calcula la vida total del jugador sumando bonus de consumiblessin superar la vida máxima
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line249">line 249</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="puntos"><span class="type-signature"></span>puntos<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve los puntos acumulados del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="puntos"><span class="type-signature"></span>puntos<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece los puntos acumulados del jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line133">line 133</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="sumarPuntos"><span class="type-signature"></span>sumarPuntos<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Suma puntos al total del jugador
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line173">line 173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="verificarTamInventario"><span class="type-signature"></span>verificarTamInventario<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Verifica si el inventario tiene objetos
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line261">line 261</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vidaMaxima"><span class="type-signature"></span>vidaMaxima<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Devuelve la vida máxima que puede tener el jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vidaMaxima"><span class="type-signature"></span>vidaMaxima<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Establece la vida máxima que puede tener el jugador.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_jugadores_Jugador.js.html">classes/jugadores/Jugador.js</a>, <a href="classes_jugadores_Jugador.js.html#line141">line 141</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arco_Caza.html">Arco_Caza</a></li><li><a href="Armadura_Cuero.html">Armadura_Cuero</a></li><li><a href="Bandido.html">Bandido</a></li><li><a href="Botas.html">Botas</a></li><li><a href="Casco.html">Casco</a></li><li><a href="Cazador.html">Cazador</a></li><li><a href="Dragon.html">Dragon</a></li><li><a href="Elixir_Legendario.html">Elixir_Legendario</a></li><li><a href="Enemigo.html">Enemigo</a></li><li><a href="Escudo_Roble.html">Escudo_Roble</a></li><li><a href="Espada_Corta.html">Espada_Corta</a></li><li><a href="Espada_Runica.html">Espada_Runica</a></li><li><a href="Goblin.html">Goblin</a></li><li><a href="Hacha.html">Hacha</a></li><li><a href="Jefe.html">Jefe</a></li><li><a href="Jugador.html">Jugador</a></li><li><a href="Lobo.html">Lobo</a></li><li><a href="Mandoble_Epico.html">Mandoble_Epico</a></li><li><a href="Manzana.html">Manzana</a></li><li><a href="Placas_Draconicas.html">Placas_Draconicas</a></li><li><a href="Pocion_Grande.html">Pocion_Grande</a></li><li><a href="Pocion_Peque.html">Pocion_Peque</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aplicarDescuento">aplicarDescuento</a></li><li><a href="global.html#avatarBandido">avatarBandido</a></li><li><a href="global.html#avatarCazador">avatarCazador</a></li><li><a href="global.html#avatarDragon">avatarDragon</a></li><li><a href="global.html#avatarGoblin">avatarGoblin</a></li><li><a href="global.html#avatarJefe">avatarJefe</a></li><li><a href="global.html#avatarLobo">avatarLobo</a></li><li><a href="global.html#batallaAnimacionAleatoria">batallaAnimacionAleatoria</a></li><li><a href="global.html#buscarProductoNombre">buscarProductoNombre</a></li><li><a href="global.html#combate">combate</a></li><li><a href="global.html#datosJugador">datosJugador</a></li><li><a href="global.html#distinguirJugador">distinguirJugador</a></li><li><a href="global.html#encontrarProducto">encontrarProducto</a></li><li><a href="global.html#estadisticaAportaArma">estadisticaAportaArma</a></li><li><a href="global.html#filtrarProductos">filtrarProductos</a></li><li><a href="global.html#iniciarJuego">iniciarJuego</a></li><li><a href="global.html#manejarCompra">manejarCompra</a></li><li><a href="global.html#mostrarFooter">mostrarFooter</a></li><li><a href="global.html#mostrarSeccion">mostrarSeccion</a></li><li><a href="global.html#puntosBase">puntosBase</a></li><li><a href="global.html#rarezaArmas">rarezaArmas</a></li><li><a href="global.html#reiniciarJuego">reiniciarJuego</a></li><li><a href="global.html#rellenarCasillas">rellenarCasillas</a></li><li><a href="global.html#seccion1Function">seccion1Function</a></li><li><a href="global.html#seccion2Function">seccion2Function</a></li><li><a href="global.html#seccion3Function">seccion3Function</a></li><li><a href="global.html#seccion4Function">seccion4Function</a></li><li><a href="global.html#seccion5Function">seccion5Function</a></li><li><a href="global.html#seccion6Function">seccion6Function</a></li><li><a href="global.html#tipoArma">tipoArma</a></li><li><a href="global.html#vidaMaximaJugador">vidaMaximaJugador</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Nov 28 2025 10:26:11 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
