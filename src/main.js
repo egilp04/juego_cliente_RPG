@@ -120,10 +120,37 @@ function seccion2Function(seccion2, jugador) {
     const botonComprar = document.createElement("button");
     botonComprar.setAttribute("class", "comprar");
     botonComprar.textContent = "Añadir";
+    botonComprar.addEventListener("click", (e) => {
+      const MAX_INVENTARIO = 6;
 
-    botonComprar.addEventListener("click", () =>
-      manejarCompra(jugador, producto, botonComprar)
-    );
+      if (botonComprar.classList.contains("comprar")) {
+        // Añadir al inventario si no está lleno
+        if (jugador.inventario.length >= MAX_INVENTARIO) return;
+        jugador.addObjInventario(producto);
+        const productoTarjeta = botonComprar.closest(".producto");
+        const colorAntiguo = productoTarjeta.style.backgroundColor;
+        productoTarjeta.style.backgroundColor = "#edefc9ff";
+        setTimeout(() => {
+          productoTarjeta.style.backgroundColor = colorAntiguo;
+        }, 250);
+        botonComprar.textContent = "Gracias!😁";
+        botonComprar.classList.remove("comprar");
+        botonComprar.classList.add("retirar");
+        setTimeout(() => {
+          botonComprar.textContent = "retirar";
+        }, 500);
+      } else {
+        // Retirar del inventario
+        jugador.eliminarObjInventario(producto);
+        botonComprar.classList.remove("retirar");
+        botonComprar.classList.add("comprar");
+        botonComprar.textContent = "😭";
+        setTimeout(() => {
+          botonComprar.textContent = "Añadir";
+        }, 500);
+      }
+      rellenarCasillas(jugador);
+    });
 
     divProducto.appendChild(divImgProducto);
     divProducto.appendChild(divDataProducto);
@@ -212,7 +239,7 @@ function seccion4Function(seccion4, jugador) {
     new Goblin("Goblin", avatarGoblin, 6, 30),
     new Lobo("Lobo", avatarLobo, 9, 42),
     new Dragon("Dragon", avatarDragon, 28, 140, "aliento Igeno"),
-    new Bandido("Bandido", avatarBandido, 12, 55),
+    new Bandido("Bandido", avatarBandido, 12, 50),
     new Jefe("Jefe", avatarJefe, 20, 55),
   ];
 
@@ -233,9 +260,12 @@ function seccion4Function(seccion4, jugador) {
     spanNombre.textContent = enemigo.nombre;
     const spanPuntos = document.createElement("span");
     spanPuntos.textContent = `${enemigo.ataque} puntos de ataque`;
+    const spanVida = document.createElement("span");
+    spanVida.textContent = `${enemigo.hp} hp (vida)`;
 
     divData.appendChild(spanNombre);
     divData.appendChild(spanPuntos);
+    divData.appendChild(spanVida);
 
     divEnemigo.appendChild(divImagen);
     divEnemigo.appendChild(divData);
