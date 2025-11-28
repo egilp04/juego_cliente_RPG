@@ -149,10 +149,17 @@ export function filtrarProductos(tipoRareza, listaProductosFinales) {
  * @param {number} descuento - Porcentaje de descuento en formato decimal (por defecto 0.2 → 20%)
  * @returns {Producto[]} Lista de productos finales con descuento aplicado
  */
-export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
+export function aplicarDescuento(descuento = 0.2) {
+  const rarezasDescuento = [
+    rarezaArmas.comun,
+    rarezaArmas.epico,
+    rarezaArmas.raro,
+  ];
+  const tipoRareza =
+    rarezasDescuento[Math.floor(Math.random() * rarezasDescuento.length)];
   let listaProductosFinales = [];
   listaProductos.forEach((producto) => {
-    const productoClonado = producto.clonarProducto(); // evitar modificar el original
+    const productoClonado = producto.clonarProducto();
     if (producto.rareza === tipoRareza)
       productoClonado.aplicarDescuento(descuento);
     listaProductosFinales.push(productoClonado);
