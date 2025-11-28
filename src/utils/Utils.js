@@ -1,3 +1,7 @@
+/**
+ * Muestra una sección específica por su ID y oculta las demás.
+ * @param {string} id - ID de la sección a mostrar.
+ */
 export function mostrarSeccion(id) {
   mostrarFooter(id);
   const secciones = Array.from(document.querySelectorAll(".seccion"));
@@ -9,18 +13,28 @@ export function mostrarSeccion(id) {
   seccionMostrar.style.display = "";
 }
 
+/**
+ * Muestra u oculta el footer dependiendo de la sección actual.
+ * @param {string} id - ID de la sección actual.
+ */
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
   if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
   else footer.style.display = "";
 }
 
+/**
+ * Obtiene un producto de una lista por su índice.
+ * @param {Array} listaProducto - Lista de productos.
+ * @param {number} indiceProducto - Índice del producto a buscar.
+ * @returns {*} El producto encontrado.
+ */
 export function encontrarProducto(listaProducto, indiceProducto) {
   return listaProducto[indiceProducto];
 }
 
 /**
- * Reiniciar todos los elementos de la UI
+ * Reinicia todos los elementos de la interfaz del juego, limpiando contenido y reseteando eventos.
  */
 export function reiniciarJuego() {
   const casillas = Array.from(document.querySelectorAll(".casilla"));
@@ -37,13 +51,17 @@ export function reiniciarJuego() {
   const resumenBatallas = document.querySelector(".resumen-batallas");
   if (resumenBatallas) resumenBatallas.innerHTML = "";
 
-  //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
+  // Elimina listeners antiguos duplicados clonando los botones.
   document.querySelectorAll("button").forEach((btn) => {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
   });
 }
 
+/**
+ * Ejecuta las animaciones de ataque entre jugador y enemigo.
+ * Reinicia animaciones previas para permitir reproducirlas nuevamente.
+ */
 export function batallaAnimacionAleatoria() {
   const divJugadorAnimacion = document.querySelector(
     ".jugador-imagen-container"
@@ -60,6 +78,7 @@ export function batallaAnimacionAleatoria() {
   jugadorImg.classList.remove("appear");
   enemigoImg.classList.remove("appear");
 
+  // Reinicia las animaciones forzando reflow.
   void divJugadorAnimacion.offsetWidth;
   void divEnemigoAnimacion.offsetWidth;
 
