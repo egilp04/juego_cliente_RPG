@@ -185,7 +185,7 @@ function seccion4Function(seccion4, jugador) {
     new Goblin("Goblin", avatarGoblin, 6, 30),
     new Lobo("Lobo", avatarLobo, 9, 42),
     new Dragon("Dragon", avatarDragon, 28, 140, "aliento Igeno"),
-    new Bandido("Bandido", avatarBandido, 12, 55),
+    new Bandido("Bandido", avatarBandido, 12, 50),
     new Jefe("Jefe", avatarJefe, 20, 55),
   ];
 
@@ -206,9 +206,12 @@ function seccion4Function(seccion4, jugador) {
     spanNombre.textContent = enemigo.nombre;
     const spanPuntos = document.createElement("span");
     spanPuntos.textContent = `${enemigo.ataque} puntos de ataque`;
+    const spanVida = document.createElement("span");
+    spanVida.textContent = `${enemigo.hp} hp (vida)`;
 
     divData.appendChild(spanNombre);
     divData.appendChild(spanPuntos);
+    divData.appendChild(spanVida);
 
     divEnemigo.appendChild(divImagen);
     divEnemigo.appendChild(divData);
