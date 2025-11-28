@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Arco_Caza
@@ -17,7 +18,15 @@ export class Arco_Caza extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "arma")
    * @param {number} bonus - Valor de bonificación que aporta
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/espada_corta.webp",
+    precio = 140.0,
+    rareza = rarezaArmas.comun,
+    tipo = tipoArma.arma,
+    bonus = 7
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

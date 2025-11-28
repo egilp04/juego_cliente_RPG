@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Mandoble_Epico
@@ -17,7 +18,15 @@ export class Mandoble_Epico extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "arma")
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/mandoble.webp",
+    precio = 950.0,
+    rareza = rarezaArmas.epico,
+    tipo = tipoArma.arma,
+    bonus = 32
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

@@ -1,3 +1,5 @@
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
+
 export class Producto {
   constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
     this._id = id;

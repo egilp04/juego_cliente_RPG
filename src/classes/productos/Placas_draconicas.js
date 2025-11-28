@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Placas_Draconicas
@@ -17,7 +18,15 @@ export class Placas_Draconicas extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "armadura")
    * @param {number} bonus - Valor de bonificación que aporta (ej. defensa extra)
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/placas_draconicas.webp",
+    precio = 880.0,
+    rareza = rarezaArmas.epico,
+    tipo = tipoArma.armadura,
+    bonus = 28
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

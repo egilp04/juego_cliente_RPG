@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Hacha
@@ -17,7 +18,15 @@ export class Hacha extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "arma")
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/hacha.webp",
+    precio = 120.0,
+    rareza = rarezaArmas.comun,
+    tipo = tipoArma.arma,
+    bonus = 8
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

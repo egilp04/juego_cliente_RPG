@@ -11,7 +11,6 @@ import {
   Jefe,
 } from "./classes/indexEnemigos.js";
 import { Enemigo } from "./classes/enemigos/Enemigo.js";
-import { Producto } from "././classes/productos/Producto.js";
 // Avatares de los personajes
 import {
   avatarCazador,
@@ -26,6 +25,26 @@ import {
 import { combate } from "./modules_game/Batalla.js";
 import { distinguirJugador } from "./modules_game/Ranking.js";
 
+//productos
+import {
+  Arco_Caza,
+  Armadura_Cuero,
+  Botas,
+  Casco,
+  Elixir_Legendario,
+  Escudo_Roble,
+  Espada_Corta,
+  Espada_Runica,
+  Hacha,
+  Mandoble_Epico,
+  Manzana,
+  Placas_Draconicas,
+  Pocion_Grande,
+  Pocion_Peque,
+} from "./classes/indexProductos.js";
+
+import { rarezaArmas, tipoArma } from "./constants/Constants.js";
+
 // Utilidades para UI y manipulación DOM
 import {
   mostrarSeccion,
@@ -35,6 +54,7 @@ import {
   modificarProducto,
   encontrarIndiceProducto,
   reiniciarMercado,
+  nombreTipoNuevo,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -42,6 +62,7 @@ import {
   filtrarProductos,
   aplicarDescuento,
   buscarProductoNombre,
+  addProducto,
 } from "./modules_game/Mercado.js";
 
 // EVENTO DE INICIO
@@ -73,15 +94,156 @@ function seccion1Function(seccion1) {
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   reiniciarMercado();
-  const productosComprar = aplicarDescuento();
+  const listaProductos = [
+    new Espada_Corta(
+      1,
+      "Espada corta",
+      "src/assests/img/objects_img/espada_corta.webp",
+      120.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      8
+    ),
+    new Arco_Caza(
+      2,
+      "Arco caza",
+      "src/assests/img/objects_img/arco.webp",
+      140.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      7
+    ),
+    new Armadura_Cuero(
+      3,
+      "Armadura cuero",
+      "src/assests/img/objects_img/armadura.webp",
+      180.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      6
+    ),
+    new Pocion_Peque(
+      4,
+      "Poción pequeña",
+      "src/assests/img/objects_img/pocion_peque.webp",
+      40.0,
+      rarezaArmas.comun,
+      tipoArma.consumible,
+      20
+    ),
+    new Espada_Runica(
+      5,
+      "Espada rúnica",
+      "src/assests/img/objects_img/espada_runica.webp",
+      460.0,
+      rarezaArmas.raro,
+      tipoArma.arma,
+      18
+    ),
+    new Escudo_Roble(
+      6,
+      "Escudo roble",
+      "src/assests/img/objects_img/escudo.webp",
+      320.0,
+      rarezaArmas.raro,
+      tipoArma.armadura,
+      14
+    ),
+    new Pocion_Grande(
+      7,
+      "Poción grande",
+      "src/assests/img/objects_img/pocion_grande.webp",
+      110.0,
+      rarezaArmas.raro,
+      tipoArma.consumible,
+      60
+    ),
+    new Mandoble_Epico(
+      8,
+      "Mandoble épico",
+      "src/assests/img/objects_img/mandoble.webp",
+      950.0,
+      rarezaArmas.epico,
+      tipoArma.arma,
+      32
+    ),
+    new Placas_Draconicas(
+      9,
+      "Placas dracónicas",
+      "src/assests/img/objects_img/placas_draconicas.webp",
+      880.0,
+      rarezaArmas.epico,
+      tipoArma.armadura,
+      28
+    ),
+    new Elixir_Legendario(
+      10,
+      "Elixir legendario",
+      "src/assests/img/objects_img/elixir.webp",
+      520.0,
+      rarezaArmas.epico,
+      tipoArma.consumible,
+      150
+    ),
+    new Manzana(
+      11,
+      "Manzana",
+      "src/assests/img/objects_img/manzana.webp",
+      40.0,
+      rarezaArmas.comun,
+      tipoArma.consumible,
+      10
+    ),
+    new Casco(
+      12,
+      "Casco",
+      "src/assests/img/objects_img/casco.webp",
+      100.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      10
+    ),
+    new Hacha(
+      13,
+      "Hacha",
+      "src/assests/img/objects_img/hacha.webp",
+      120.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      8
+    ),
+    new Botas(
+      14,
+      "Botas",
+      "src/assests/img/objects_img/botas.webp",
+      80.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      4
+    ),
+  ];
 
+  const selectProductos = document.getElementById("tipoProductoNuevo");
+  listaProductos.forEach((producto) => {
+    const option = document.createElement("option");
+    option.value = `${producto.nombre.toLowerCase()}`;
+    option.textContent = producto.nombre;
+    selectProductos.appendChild(option);
+  });
+
+  let productosComprar = aplicarDescuento(listaProductos);
   crearMercado(productosComprar, jugador);
+
   document.querySelector(
     ".dinero-comprar"
   ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
 
   const formularioNombre = document.querySelector(".formNombre");
   const formularioRareza = document.querySelector(".formRareza");
+  const formularioNuevoProducto = document.querySelector(
+    ".nuevoElementoMercado"
+  );
+
   formularioNombre.addEventListener("submit", (e) => {
     e.preventDefault();
     const productosNombre = buscarProductoNombre(
@@ -106,6 +268,22 @@ function seccion2Function(seccion2, jugador) {
       mensaje = "No hay productos con este nombre";
       document.querySelector(".mercado-container").appendChild(mensaje);
     }
+  });
+
+  formularioNuevoProducto.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombreProducto = document.getElementById("nombreProductoNuevo").value;
+    const tipoProductoNuevo =
+      document.getElementById("tipoProductoNuevo").value;
+
+    console.log(tipoProductoNuevo);
+    productosComprar = addProducto(
+      nombreProducto,
+      nombreTipoNuevo(tipoProductoNuevo),
+      productosComprar
+    );
+    console.log("creando mercado");
+    crearMercado(productosComprar, jugador);
   });
 
   // Continuar a sección 3
@@ -394,27 +572,35 @@ function crearMercado(productosComprar, jugador) {
     divDataProducto.appendChild(spanPrecioProducto);
 
     const botonComprar = document.createElement("button");
-    for (let i = 0; i < jugador.inventario.length; i++) {
-      console.log(productosComprar[i].id);
-      console.log(producto.id);
-      if (jugador.inventario[i].id === producto.id) {
+    let existe = false;
+
+    if (jugador.inventario.length > 0) {
+      for (let i = 0; i < jugador.inventario.length; i++) {
+        if (jugador.inventario[i].id === producto.id) {
+          existe = true;
+        }
+      }
+      if (existe) {
         botonComprar.setAttribute("class", "retirar");
         botonComprar.textContent = "Retirar";
       } else {
         botonComprar.setAttribute("class", "comprar");
         botonComprar.textContent = "Añadir";
       }
+    } else {
+      botonComprar.setAttribute("class", "comprar");
+      botonComprar.textContent = "Añadir";
     }
 
     botonComprar.addEventListener("click", (e) => {
       const MAX_INVENTARIO = 6;
+
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
         if (jugador.dinero < producto.precio) {
           return;
         }
-        console.log(jugador.inventario);
         jugador.addObjInventario(producto);
         actualizarDinero(jugador, producto.precio, "restar");
         const productoTarjeta = botonComprar.closest(".producto");

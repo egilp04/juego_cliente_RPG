@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Espada_Runica
@@ -17,7 +18,15 @@ export class Espada_Runica extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "arma")
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/espada_runica.webp",
+    precio = 460.0,
+    rareza = rarezaArmas.raro,
+    tipo = tipoArma.arma,
+    bonus = 18
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }

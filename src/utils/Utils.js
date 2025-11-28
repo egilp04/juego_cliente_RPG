@@ -92,3 +92,11 @@ export function reiniciarMercado() {
     btn.replaceWith(nuevo);
   });
 }
+
+export function nombreTipoNuevo(nombre) {
+  const nombreCompleto = nombre.split(" ");
+  console.log(nombreCompleto);
+  if (nombreCompleto.length > 1)
+    return `${nombreCompleto[0]}_${nombreCompleto[1]}`;
+  else return nombreCompleto[0];
+}

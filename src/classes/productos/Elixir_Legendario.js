@@ -1,4 +1,5 @@
 import { Producto } from "./Producto.js";
+import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 /**
  * Clase Elixir_Legendario
@@ -17,7 +18,15 @@ export class Elixir_Legendario extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "consumible")
    * @param {number} bonus - Valor de bonificación que aporta (ej. vida extra)
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(
+    id,
+    nombre,
+    imagen = "src/assests/img/objects_img/elixir.webp",
+    precio = 520.0,
+    rareza = rarezaArmas.epico,
+    tipo = tipoArma.consumible,
+    bonus = 150
+  ) {
     super(id, nombre, imagen, precio, rareza, tipo, bonus);
   }
 }
