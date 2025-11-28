@@ -394,21 +394,27 @@ function crearMercado(productosComprar, jugador) {
     divDataProducto.appendChild(spanPrecioProducto);
 
     const botonComprar = document.createElement("button");
-    botonComprar.setAttribute("class", "comprar");
-    botonComprar.textContent = "Añadir";
+    for (let i = 0; i < jugador.inventario.length; i++) {
+      console.log(productosComprar[i].id);
+      console.log(producto.id);
+      if (jugador.inventario[i].id === producto.id) {
+        botonComprar.setAttribute("class", "retirar");
+        botonComprar.textContent = "Retirar";
+      } else {
+        botonComprar.setAttribute("class", "comprar");
+        botonComprar.textContent = "Añadir";
+      }
+    }
+
     botonComprar.addEventListener("click", (e) => {
       const MAX_INVENTARIO = 6;
-
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
         if (jugador.dinero < producto.precio) {
           return;
         }
-        for (let i = 0; i < jugador.inventario; i++) {
-          if (productosComprar[i].id === producto.id) return;
-        }
-
+        console.log(jugador.inventario);
         jugador.addObjInventario(producto);
         actualizarDinero(jugador, producto.precio, "restar");
         const productoTarjeta = botonComprar.closest(".producto");
