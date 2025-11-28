@@ -344,6 +344,7 @@ h2 {
   background-color: var(--color-ligth1);
   color: var(--color-dark1);
   overflow-y: auto;
+  overflow-x: hidden;
   border-radius: var(--border-radius-12);
   gap: var(--gap-20);
   padding: var(--padding-12);
@@ -635,7 +636,7 @@ img.img-inventario:hover {
   }
   .jugador-info-container {
     width: 560px;
-    margin-top: var(--margin-100);
+    margin-top: var(--margin-80);
   }
   .datos-jugador-container {
     height: 500px;

@@ -221,6 +221,9 @@ function seccion4Function(seccion4, jugador) {
 
 // SECCIÓN 5: Combate
 function seccion5Function(seccion5, jugador, enemigos) {
+  const boton = seccion5.querySelector(".continuar");
+  boton.disabled = true;
+
   const resumenBatallas = document.querySelector(".resumen-batallas");
   const resultadosContainer = document.querySelector(".resultados-container");
   resumenBatallas.style.opacity = "0";
@@ -273,7 +276,9 @@ function seccion5Function(seccion5, jugador, enemigos) {
     resumenBatallas.appendChild(divBatalla);
   });
 
-  const boton = seccion5.querySelector(".continuar");
+  setTimeout(() => {
+    boton.disabled = false;
+  }, 3500);
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
     mostrarSeccion(seccion6.id);
@@ -285,6 +290,9 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
+  const boton = seccion6.querySelector(".reiniciar");
+  boton.disabled = true;
+
   if (ganador instanceof Enemigo) {
     spanRanking.textContent = `El jugador ha perdido`;
     spanPuntuacion.textContent = `¡Vuelve a intentarlo!`;
@@ -306,7 +314,6 @@ function seccion6Function(seccion6, puntuacion, ganador) {
     spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
   }
 
-  const boton = seccion6.querySelector(".reiniciar");
   setTimeout(() => {
     boton.disabled = false;
   }, 3000);
