@@ -153,6 +153,9 @@ function seccion2Function(seccion2, jugador) {
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
+
+  document.querySelector(".dinero-comprar").textContent = `${jugador.dinero}`;
+
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
   boton.addEventListener("click", (e) => {

@@ -273,4 +273,9 @@ export class Jugador {
     if (!this.inventario || this.inventario.length <= 0) return false;
     else return true;
   };
+
+  dineroFormateo = function (dinero) {
+    const dinerito = (dinero / 100).toFixed(2).replace(".", ",") + "€";
+    return dinerito;
+  };
 }
