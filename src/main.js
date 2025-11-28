@@ -29,11 +29,8 @@ import { distinguirJugador } from "./modules_game/Ranking.js";
 // Utilidades para UI y manipulación DOM
 import {
   mostrarSeccion,
-  efectosVisuales,
   encontrarProducto,
   reiniciarJuego,
-  modificarProductos,
-  actualizarDinero,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -58,7 +55,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30, 1000);
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -77,8 +74,9 @@ function seccion2Function(seccion2, jugador) {
 
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
-    const nombreProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
-    divProducto.setAttribute("class", `producto ${nombreProducto}`);
+    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
+    divProducto.setAttribute("class", "producto");
+    divProducto.setAttribute("id", `${idProducto}`);
 
     // Imagen del producto
     const divImgProducto = document.createElement("div");
@@ -124,22 +122,23 @@ function seccion2Function(seccion2, jugador) {
         }
 
         jugador.addObjInventario(producto);
+        const productoTarjeta = botonComprar.closest(".producto");
+        const colorAntiguo = productoTarjeta.style.backgroundColor;
+        productoTarjeta.style.backgroundColor = "#edefc9ff";
+        setTimeout(() => {
+          productoTarjeta.style.backgroundColor = colorAntiguo;
+        }, 250);
+        botonComprar.textContent = "Gracias!😁";
         botonComprar.classList.remove("comprar");
         botonComprar.classList.add("retirar");
         botonComprar.textContent = "retirar";
-        jugador.dinero -= producto.precio;
-        console.log(jugador.dinero);
-        actualizarDinero(jugador);
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
         botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
         botonComprar.textContent = "Añadir";
-        jugador.dinero += producto.precio;
-        actualizarDinero(jugador);
       }
-      efectosVisuales();
       rellenarCasillas(jugador);
     });
     divProducto.appendChild(divImgProducto);
@@ -190,14 +189,14 @@ function seccion4Function(seccion4, jugador) {
     new Goblin("Goblin", avatarGoblin, 6, 30),
     new Lobo("Lobo", avatarLobo, 9, 42),
     new Dragon("Dragon", avatarDragon, 28, 140, "aliento Igeno"),
-    new Bandido("Bandido", avatarBandido, 12, 55),
+    new Bandido("Bandido", avatarBandido, 12, 50),
     new Jefe("Jefe", avatarJefe, 20, 55),
   ];
 
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   enemigos.forEach((enemigo) => {
     const divEnemigo = document.createElement("div");
-    divEnemigo.setAttribute("class", "enemigo-container");
+    divEnemigo.setAttribute("class", "enemigo-container enemigo-tarjeta");
 
     const divImagen = document.createElement("div");
     divImagen.setAttribute("class", "imagen-enemigo-container");
@@ -211,9 +210,12 @@ function seccion4Function(seccion4, jugador) {
     spanNombre.textContent = enemigo.nombre;
     const spanPuntos = document.createElement("span");
     spanPuntos.textContent = `${enemigo.ataque} puntos de ataque`;
+    const spanVida = document.createElement("span");
+    spanVida.textContent = `${enemigo.hp} hp (vida)`;
 
     divData.appendChild(spanNombre);
     divData.appendChild(spanPuntos);
+    divData.appendChild(spanVida);
 
     divEnemigo.appendChild(divImagen);
     divEnemigo.appendChild(divData);
@@ -232,6 +234,15 @@ function seccion4Function(seccion4, jugador) {
 
 // SECCIÓN 5: Combate
 function seccion5Function(seccion5, jugador, enemigos) {
+  const boton = seccion5.querySelector(".continuar");
+  boton.disabled = true;
+
+  const resumenBatallas = document.querySelector(".resumen-batallas");
+  const resultadosContainer = document.querySelector(".resultados-container");
+  resumenBatallas.style.opacity = "0";
+  resultadosContainer.style.opacity = "0";
+  batallaAnimacionAleatoria();
+
   document.getElementById("title").textContent = "Combate";
   const enemigo = enemigos[Math.floor(Math.random() * enemigos.length)];
 
@@ -246,8 +257,10 @@ function seccion5Function(seccion5, jugador, enemigos) {
     .querySelector(".resultados-container")
     .querySelector("p").textContent = `Puntos Obtenidos: ${puntos}`;
 
-  //resultado batallas
-  const resumenBatallas = document.querySelector(".resumen-batallas");
+  setTimeout(() => {
+    resumenBatallas.style.opacity = "1";
+    resultadosContainer.style.opacity = "1";
+  }, 3000);
 
   resultadoBatallas.forEach((resultado, i) => {
     const divBatalla = document.createElement("div");
@@ -256,15 +269,15 @@ function seccion5Function(seccion5, jugador, enemigos) {
     turno.textContent = `Batalla ${i + 1}`;
 
     const atacante = document.createElement("span");
-    atacante.textContent = `Atacante: ${resultadoBatallas[i].atacante}`;
+    atacante.textContent = `Atacante: ${resultado.atacante}`;
     const atacado = document.createElement("span");
-    atacado.textContent = `Atacado: ${resultadoBatallas[i].atacado}`;
+    atacado.textContent = `Atacado: ${resultado.atacado}`;
     const danio = document.createElement("span");
-    danio.textContent = `Daño recibido: ${resultadoBatallas[i].danio}`;
+    danio.textContent = `Daño recibido: ${resultado.danioRecibido}`;
     const vidaJugador = document.createElement("span");
-    vidaJugador.textContent = `Vida jugador: ${resultadoBatallas[i].vidaJugador}`;
+    vidaJugador.textContent = `Vida jugador: ${resultado.vidaJugadorTotal}`;
     const vidaEnemigo = document.createElement("span");
-    vidaEnemigo.textContent = `Vida enemigo: ${resultadoBatallas[i].vidaEnemigo}`;
+    vidaEnemigo.textContent = `Vida enemigo: ${resultado.vidaEnemigoTotal}`;
 
     divBatalla.appendChild(turno);
     divBatalla.appendChild(atacante);
@@ -276,7 +289,9 @@ function seccion5Function(seccion5, jugador, enemigos) {
     resumenBatallas.appendChild(divBatalla);
   });
 
-  const boton = seccion5.querySelector(".continuar");
+  setTimeout(() => {
+    boton.disabled = false;
+  }, 3500);
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
     mostrarSeccion(seccion6.id);
@@ -288,17 +303,33 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
+  const boton = seccion6.querySelector(".reiniciar");
+  boton.disabled = true;
+
   if (ganador instanceof Enemigo) {
-    spanRanking.textContent = `El jugador ha perdido 😭`;
+    spanRanking.textContent = `El jugador ha perdido`;
     spanPuntuacion.textContent = `¡Vuelve a intentarlo!`;
+    const loserDiv = document.querySelector(".loser");
+    loserDiv.style.display = "block";
   } else {
+    var heart = confetti.shapeFromPath({
+      path: "M10 30 A20 20 0 0 1 50 30 A20 20 0 0 1 90 30 Q90 60 50 90 Q10 60 10 30 Z",
+    });
+    confetti({
+      shapes: [heart],
+      startVelocity: 30,
+      spread: 80,
+      particleCount: 200,
+    });
     spanRanking.textContent = `El jugador ha logrado ser un: ${distinguirJugador(
       puntuacion
     )}`;
     spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
   }
 
-  const boton = seccion6.querySelector(".reiniciar");
+  setTimeout(() => {
+    boton.disabled = false;
+  }, 3000);
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();
@@ -339,11 +370,14 @@ function rellenarCasillas(jugador) {
     const producto = inventario[i];
     if (producto) {
       const divCasillas = document.createElement("div");
+      divCasillas.setAttribute("class", "img-casilla-container");
       divCasillas.style.width = "100%";
       divCasillas.style.height = "100%";
+      divCasillas.style.overflow = "hidden";
 
       const img = document.createElement("img");
       img.setAttribute("src", producto.imagen);
+      img.setAttribute("class", "img-inventario");
       divCasillas.appendChild(img);
       casilla.appendChild(divCasillas);
     }

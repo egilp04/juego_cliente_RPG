@@ -22,7 +22,7 @@ import {
 const listaProductos = [
   new Espada_Corta(
     "Espada corta",
-    "src/assests/img/objects_img/espada_corta.png",
+    "src/assests/img/objects_img/espada_corta.webp",
     120.0,
     rarezaArmas.comun,
     tipoArma.arma,
@@ -30,7 +30,7 @@ const listaProductos = [
   ),
   new Arco_Caza(
     "Arco caza",
-    "src/assests/img/objects_img/arco.png",
+    "src/assests/img/objects_img/arco.webp",
     140.0,
     rarezaArmas.comun,
     tipoArma.arma,
@@ -38,7 +38,7 @@ const listaProductos = [
   ),
   new Armadura_Cuero(
     "Armadura cuero",
-    "src/assests/img/objects_img/armadura.png",
+    "src/assests/img/objects_img/armadura.webp",
     180.0,
     rarezaArmas.comun,
     tipoArma.armadura,
@@ -46,7 +46,7 @@ const listaProductos = [
   ),
   new Pocion_Peque(
     "Poción pequeña",
-    "src/assests/img/objects_img/pocion_peque.png",
+    "src/assests/img/objects_img/pocion_peque.webp",
     40.0,
     rarezaArmas.comun,
     tipoArma.consumible,
@@ -54,7 +54,7 @@ const listaProductos = [
   ),
   new Espada_Runica(
     "Espada rúnica",
-    "src/assests/img/objects_img/espada_runica.png",
+    "src/assests/img/objects_img/espada_runica.webp",
     460.0,
     rarezaArmas.raro,
     tipoArma.arma,
@@ -62,7 +62,7 @@ const listaProductos = [
   ),
   new Escudo_Roble(
     "Escudo roble",
-    "src/assests/img/objects_img/escudo.png",
+    "src/assests/img/objects_img/escudo.webp",
     320.0,
     rarezaArmas.raro,
     tipoArma.armadura,
@@ -70,7 +70,7 @@ const listaProductos = [
   ),
   new Pocion_Grande(
     "Poción grande",
-    "src/assests/img/objects_img/pocion_grande.png",
+    "src/assests/img/objects_img/pocion_grande.webp",
     110.0,
     rarezaArmas.raro,
     tipoArma.consumible,
@@ -78,7 +78,7 @@ const listaProductos = [
   ),
   new Mandoble_Epico(
     "Mandoble épico",
-    "src/assests/img/objects_img/mandoble.png",
+    "src/assests/img/objects_img/mandoble.webp",
     950.0,
     rarezaArmas.epico,
     tipoArma.arma,
@@ -86,7 +86,7 @@ const listaProductos = [
   ),
   new Placas_Draconicas(
     "Placas dracónicas",
-    "src/assests/img/objects_img/placas_draconicas.png",
+    "src/assests/img/objects_img/placas_draconicas.webp",
     880.0,
     rarezaArmas.epico,
     tipoArma.armadura,
@@ -94,7 +94,7 @@ const listaProductos = [
   ),
   new Elixir_Legendario(
     "Elixir legendario",
-    "src/assests/img/objects_img/elixir.png",
+    "src/assests/img/objects_img/elixir.webp",
     520.0,
     rarezaArmas.epico,
     tipoArma.consumible,
@@ -102,7 +102,7 @@ const listaProductos = [
   ),
   new Manzana(
     "Manzana",
-    "src/assests/img/objects_img/manzana.png",
+    "src/assests/img/objects_img/manzana.webp",
     40.0,
     rarezaArmas.comun,
     tipoArma.consumible,
@@ -110,7 +110,7 @@ const listaProductos = [
   ),
   new Casco(
     "Casco",
-    "src/assests/img/objects_img/casco.png",
+    "src/assests/img/objects_img/casco.webp",
     100.0,
     rarezaArmas.comun,
     tipoArma.armadura,
@@ -118,7 +118,7 @@ const listaProductos = [
   ),
   new Hacha(
     "Hacha",
-    "src/assests/img/objects_img/hacha.png",
+    "src/assests/img/objects_img/hacha.webp",
     120.0,
     rarezaArmas.comun,
     tipoArma.arma,
@@ -126,7 +126,7 @@ const listaProductos = [
   ),
   new Botas(
     "Botas",
-    "src/assests/img/objects_img/botas.png",
+    "src/assests/img/objects_img/botas.webp",
     80.0,
     rarezaArmas.comun,
     tipoArma.armadura,
@@ -149,10 +149,17 @@ export function filtrarProductos(tipoRareza, listaProductosFinales) {
  * @param {number} descuento - Porcentaje de descuento en formato decimal (por defecto 0.2 → 20%)
  * @returns {Producto[]} Lista de productos finales con descuento aplicado
  */
-export function aplicarDescuento(tipoRareza = "raro", descuento = 0.2) {
+export function aplicarDescuento(descuento = 0.2) {
+  const rarezasDescuento = [
+    rarezaArmas.comun,
+    rarezaArmas.epico,
+    rarezaArmas.raro,
+  ];
+  const tipoRareza =
+    rarezasDescuento[Math.floor(Math.random() * rarezasDescuento.length)];
   let listaProductosFinales = [];
   listaProductos.forEach((producto) => {
-    const productoClonado = producto.clonarProducto(); // evitar modificar el original
+    const productoClonado = producto.clonarProducto();
     if (producto.rareza === tipoRareza)
       productoClonado.aplicarDescuento(descuento);
     listaProductosFinales.push(productoClonado);

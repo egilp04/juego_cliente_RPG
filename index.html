@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./src/assests/icons/game.ico" />
     <link rel="stylesheet" href="styles.css" />
     <script src="./src/main.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   </head>
   <body>
     <header>
@@ -14,7 +15,7 @@
     </header>
     <main>
       <section id="seccion-1" class="seccion seccion-1">
-        <div class="jugador-info-container">
+        <div class="jugador-info-container jugador-tarjeta">
           <div class="datos-jugador-container">
             <div class="imagen-jugador-container">
               <img class="imagen-jugador-seccion-1" alt="imagen del jugador" />
@@ -55,7 +56,7 @@
         </div>
       </section>
       <section id="seccion-3" class="seccion seccion-3">
-        <div class="jugador-info-container">
+        <div class="jugador-info-container jugador-tarjeta">
           <div class="datos-jugador-container">
             <div class="imagen-jugador-container">
               <img class="imagen-jugador-seccion-3" alt="imagen del jugador" />
@@ -96,11 +97,11 @@
       </section>
       <section id="seccion-5" class="seccion seccion-5">
         <div class="batalla-container">
-          <div class="jugador-imagen-container">
+          <div class="jugador-imagen-container jugador-tarjeta">
             <img class="jugador-imagen" />
           </div>
           <span class="batalla-vs">VS</span>
-          <div class="enemigo-imagen-container">
+          <div class="enemigo-imagen-container enemigo-tarjeta">
             <img class="enemigo-imagen" />
           </div>
         </div>
@@ -121,10 +122,11 @@
           <span class="puntuacion-data"></span>
         </div>
         <div>
-          <button type="button" class="reiniciar boton-reiniciar">
+          <button type="button" class="reiniciar boton-reiniciar" disabled>
             Reiniciar
           </button>
         </div>
+        <div class="loser" hidden><p class="loser-icon">😭</p></div>
       </section>
     </main>
     <footer>

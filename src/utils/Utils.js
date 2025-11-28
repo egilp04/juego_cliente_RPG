@@ -20,9 +20,6 @@ function mostrarFooter(id) {
 export function encontrarProducto(listaProducto, indiceProducto) {
   return listaProducto[indiceProducto];
 }
-export function efectosVisuales() {
-  console.log("efecto del boton, del color de la tarjeta");
-}
 
 /**
  * Reiniciar todos los elementos de la UI
@@ -49,30 +46,27 @@ export function reiniciarJuego() {
   });
 }
 
-export function modificarProductos() {
-  //Método que permite modificar algo del producto, opcional por producto.nombre
-  const producto = aplicarDescuento();
-  console.log(producto);
-  producto.forEach((producto, i) => {
-    if (i == 0) {
-      producto.precio = 10;
-      producto.mascota = "teddy";
-      producto.nombre = "Espadeve";
-    }
-  });
+export function batallaAnimacionAleatoria() {
+  const divJugadorAnimacion = document.querySelector(
+    ".jugador-imagen-container"
+  );
+  const divEnemigoAnimacion = document.querySelector(
+    ".enemigo-imagen-container"
+  );
 
-  return producto;
-}
+  const jugadorImg = document.querySelector(".enemigo-imagen");
+  const enemigoImg = document.querySelector(".jugador-imagen");
 
-function formatarDinero(precioNum) {
-  const precio = (precioNum / 100).toFixed(2).replace(".", ",") + "€";
-  return precio;
-}
+  divJugadorAnimacion.classList.remove("animate-move-left");
+  divEnemigoAnimacion.classList.remove("animate-move-right");
+  jugadorImg.classList.remove("appear");
+  enemigoImg.classList.remove("appear");
 
-export function actualizarDinero(jugador) {
-  console.log(jugador.dinero);
-  console.log(jugador);
-  document.querySelector(".dinero-comprar").textContent = `${formatarDinero(
-    jugador.dinero
-  )}`;
+  void divJugadorAnimacion.offsetWidth;
+  void divEnemigoAnimacion.offsetWidth;
+
+  divJugadorAnimacion.classList.add("animate-move-left");
+  divEnemigoAnimacion.classList.add("animate-move-right");
+  jugadorImg.classList.add("appear");
+  enemigoImg.classList.add("appear");
 }

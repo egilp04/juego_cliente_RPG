@@ -1,5 +1,5 @@
 import { Jefe } from "../classes/enemigos/Jefe.js";
-
+import { Resultados } from "../classes/resultados/Resultados.js";
 /**
  * Simula un combate entre un enemigo y un jugador.
  *
@@ -12,7 +12,6 @@ import { Jefe } from "../classes/enemigos/Jefe.js";
 export function combate(enemigo, jugador) {
   const muerte = 0;
   let resultadoBatallas = [];
-
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
   const ataqueEnemigo = enemigo.ataque;
@@ -22,22 +21,26 @@ export function combate(enemigo, jugador) {
     let turno = Math.floor(Math.random() * 2);
     if (turno <= 0) {
       vidaJugador = Math.max(vidaJugador - ataqueEnemigo, muerte);
-      resultadoBatallas.push({
-        atacante: "enemigo",
-        atacado: "jugador",
-        danio: `${ataqueEnemigo}`,
-        vidaJugador: `${vidaJugador}`,
-        vidaEnemigo: `${vidaEnemigo}`,
-      });
+      resultadoBatallas.push(
+        new Resultados(
+          "Enemigo",
+          "Jugador",
+          vidaJugador,
+          vidaEnemigo,
+          ataqueEnemigo
+        )
+      );
     } else {
       vidaEnemigo = Math.max(vidaEnemigo - ataqueTotal, muerte);
-      resultadoBatallas.push({
-        atacante: "jugador",
-        atacado: "enemigo",
-        danio: `${ataqueTotal}`,
-        vidaJugador: `${vidaJugador}`,
-        vidaEnemigo: `${vidaEnemigo}`,
-      });
+      resultadoBatallas.push(
+        new Resultados(
+          "Jugador",
+          "Enemigo",
+          vidaJugador,
+          vidaEnemigo,
+          ataqueTotal
+        )
+      );
     }
     jugador.hp = vidaJugador;
     enemigo.hp = vidaEnemigo;
