@@ -195,6 +195,7 @@ h2 {
 #seccion-6 {
   justify-content: center;
   gap: var(--gap-30);
+  margin-top: var(--margin-40);
 }
 
 /* Jugadores */
