@@ -188,8 +188,10 @@ export function aplicarDescuento(descuento = 0.2) {
  * @returns {Producto[]} Lista de productos que coinciden con el nombre
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
-  return listaProductosFinales.filter(
-    (producto) =>
-      nombreProducto.toLocaleLowerCase() === producto.nombre.toLocaleLowerCase()
-  );
+  const nombre = nombreProducto.toLowerCase();
+  return listaProductosFinales.filter((producto) => {
+    const completo = producto.nombre.toLowerCase();
+    const primeraPalabra = producto.nombre.split(" ")[0].toLowerCase();
+    return nombre === completo || nombre === primeraPalabra;
+  });
 }

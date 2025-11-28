@@ -34,6 +34,7 @@ import {
   batallaAnimacionAleatoria,
   modificarProducto,
   encontrarIndiceProducto,
+  reiniciarMercado,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -71,11 +72,10 @@ function seccion1Function(seccion1) {
 // SECCIÓN 2: Mercado
 function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
-  const mercadoContainer = document.querySelector(".mercado-container");
-  mercadoContainer.innerHTML = "";
+  reiniciarMercado();
   const productosComprar = aplicarDescuento();
 
-  crearMercado(productosComprar);
+  crearMercado(productosComprar, jugador);
   document.querySelector(
     ".dinero-comprar"
   ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
@@ -88,7 +88,7 @@ function seccion2Function(seccion2, jugador) {
       document.getElementById("nombreProducto").value,
       productosComprar
     );
-    if (productosNombre) crearMercado(productosNombre);
+    if (productosNombre.length > 0) crearMercado(productosNombre, jugador);
     else {
       const mensaje = document.createElement("h1");
       mensaje = "No hay productos con este nombre";
@@ -100,7 +100,7 @@ function seccion2Function(seccion2, jugador) {
     e.preventDefault();
     const rarezaSelect = document.getElementById("rareza").value;
     const productosRareza = filtrarProductos(rarezaSelect, productosComprar);
-    if (productosRareza) crearMercado(productosNombre);
+    if (productosRareza.length > 0) crearMercado(productosRareza, jugador);
     else {
       const mensaje = document.createElement("h1");
       mensaje = "No hay productos con este nombre";
@@ -354,7 +354,8 @@ function actualizarDinero(jugador, precio, operacion) {
   ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
 }
 
-function crearMercado(productosComprar) {
+function crearMercado(productosComprar, jugador) {
+  reiniciarMercado();
   const mercadoContainer = document.querySelector(".mercado-container");
 
   productosComprar.forEach((producto) => {
@@ -379,7 +380,7 @@ function crearMercado(productosComprar) {
     //   producto.nombre.toLowerCase() === "espadeve"
     //     ? `${producto.nombre}🐶`
     //     : `${producto.nombre} `;
-    // spanNombreProducto.textContent = `${nombreP}`;
+    spanNombreProducto.textContent = `${producto.nombre}`;
     const spanBonusProducto = document.createElement("span");
     spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
       producto.bonus
@@ -404,6 +405,10 @@ function crearMercado(productosComprar) {
         if (jugador.dinero < producto.precio) {
           return;
         }
+        for (let i = 0; i < jugador.inventario; i++) {
+          if (productosComprar[i].id === producto.id) return;
+        }
+
         jugador.addObjInventario(producto);
         actualizarDinero(jugador, producto.precio, "restar");
         const productoTarjeta = botonComprar.closest(".producto");

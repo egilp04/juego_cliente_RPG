@@ -82,3 +82,13 @@ export function encontrarIndiceProducto(producto, listaProducto) {
 }
 
 export function encontrarProducto(index, listaProducto) {}
+
+export function reiniciarMercado() {
+  const mercado = document.querySelector(".mercado-container");
+  if (mercado) mercado.innerHTML = "";
+
+  document.querySelectorAll(".mercado-container button").forEach((btn) => {
+    const nuevo = btn.cloneNode(true);
+    btn.replaceWith(nuevo);
+  });
+}
