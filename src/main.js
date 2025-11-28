@@ -31,6 +31,7 @@ import {
   mostrarSeccion,
   encontrarProducto,
   reiniciarJuego,
+  batallaAnimacionAleatoria,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -55,7 +56,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 50, 30);
+  const jugador = new Cazador("Cazador", 30, avatarCazador, 20, 20);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -75,7 +76,7 @@ function seccion2Function(seccion2, jugador) {
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
     const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
-    divProducto.setAttribute("class", "producto");
+    divProducto.setAttribute("class", "producto tarjeta");
     divProducto.setAttribute("id", `${idProducto}`);
 
     // Imagen del producto
@@ -131,13 +132,18 @@ function seccion2Function(seccion2, jugador) {
         botonComprar.textContent = "Gracias!😁";
         botonComprar.classList.remove("comprar");
         botonComprar.classList.add("retirar");
-        botonComprar.textContent = "retirar";
+        setTimeout(() => {
+          botonComprar.textContent = "retirar";
+        }, 500);
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
         botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
-        botonComprar.textContent = "Añadir";
+        botonComprar.textContent = "😭";
+        setTimeout(() => {
+          botonComprar.textContent = "Añadir";
+        }, 500);
       }
       rellenarCasillas(jugador);
     });
