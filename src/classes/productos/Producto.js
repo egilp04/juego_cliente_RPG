@@ -64,8 +64,8 @@ export class Producto {
       this._id,
       this._nombre,
       this._imagen,
-      this._rareza,
       this._precio,
+      this._rareza,
       this._tipo,
       this._bonus
     );
