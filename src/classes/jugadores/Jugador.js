@@ -201,9 +201,7 @@ export class Jugador {
    * @param {Producto} producto - Producto a eliminar
    */
   eliminarObjInventario = function (producto) {
-    const indexDelete = this._inventario.findIndex(
-      (p) => p.nombre === producto.nombre
-    );
+    const indexDelete = this._inventario.findIndex((p) => p.id === producto.id);
     if (indexDelete === -1) return;
     this._inventario.splice(indexDelete, 1);
   };
