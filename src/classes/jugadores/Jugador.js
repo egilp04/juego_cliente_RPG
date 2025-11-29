@@ -282,4 +282,8 @@ export class Jugador {
       (producto) => producto.tipo != "consumible"
     );
   };
+
+  eliminarUltimoElemento = function () {
+    this._inventario.splice(-1, 1);
+  };
 }
