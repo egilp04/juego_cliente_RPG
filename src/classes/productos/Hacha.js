@@ -25,8 +25,9 @@ export class Hacha extends Producto {
     precio = 120.0,
     rareza = rarezaArmas.comun,
     tipo = tipoArma.arma,
-    bonus = 8
+    bonus = 8,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

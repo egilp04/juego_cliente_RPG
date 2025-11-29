@@ -276,4 +276,10 @@ export class Jugador {
     const dinerito = (dinero / 100).toFixed(2).replace(".", ",") + "€";
     return dinerito;
   };
+
+  eliminarCuraciones = function () {
+    this._inventario = this._inventario.filter(
+      (producto) => producto.tipo != "consumible"
+    );
+  };
 }

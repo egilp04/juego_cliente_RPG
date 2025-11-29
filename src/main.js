@@ -59,10 +59,11 @@ import {
 
 // Funciones para gestión de productos y mercado
 import {
-  filtrarProductos,
+  filtrarProductosRareza,
   aplicarDescuento,
   buscarProductoNombre,
   addProducto,
+  filtrarProductosTipo,
 } from "./modules_game/Mercado.js";
 
 // EVENTO DE INICIO
@@ -224,6 +225,11 @@ function seccion2Function(seccion2, jugador) {
   ];
 
   const selectProductos = document.getElementById("tipoProductoNuevo");
+  const optionDft = document.createElement("option");
+  optionDft.value = "";
+  optionDft.textContent = "Seleccione un tipo de producto";
+  selectProductos.appendChild(optionDft);
+
   listaProductos.forEach((producto) => {
     const option = document.createElement("option");
     option.value = `${producto.nombre.toLowerCase()}`;
@@ -232,6 +238,7 @@ function seccion2Function(seccion2, jugador) {
   });
 
   let productosComprar = aplicarDescuento(listaProductos);
+
   crearMercado(productosComprar, jugador);
 
   document.querySelector(
@@ -240,9 +247,13 @@ function seccion2Function(seccion2, jugador) {
 
   const formularioNombre = document.querySelector(".formNombre");
   const formularioRareza = document.querySelector(".formRareza");
+  const formularioTipoProducto = document.querySelector(".formTipo");
   const formularioNuevoProducto = document.querySelector(
     ".nuevoElementoMercado"
   );
+
+  const pMensajeError = document.createElement("p");
+  pMensajeError.style.color = "#f5eac5";
 
   formularioNombre.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -252,21 +263,47 @@ function seccion2Function(seccion2, jugador) {
     );
     if (productosNombre.length > 0) crearMercado(productosNombre, jugador);
     else {
-      const mensaje = document.createElement("h1");
-      mensaje = "No hay productos con este nombre";
-      document.querySelector(".mercado-container").appendChild(mensaje);
+      pMensajeError.textContent = "No existen productos con este nombre";
+      formularioNombre.appendChild(pMensajeError);
+
+      setTimeout(() => {
+        pMensajeError.remove();
+      }, 2000);
     }
   });
 
   formularioRareza.addEventListener("submit", (e) => {
     e.preventDefault();
     const rarezaSelect = document.getElementById("rareza").value;
-    const productosRareza = filtrarProductos(rarezaSelect, productosComprar);
+    const productosRareza = filtrarProductosRareza(
+      rarezaSelect,
+      productosComprar
+    );
     if (productosRareza.length > 0) crearMercado(productosRareza, jugador);
     else {
-      const mensaje = document.createElement("h1");
-      mensaje = "No hay productos con este nombre";
-      document.querySelector(".mercado-container").appendChild(mensaje);
+      pMensajeError.textContent = "No existen productos con esta rareza";
+      formularioRareza.appendChild(pMensajeError);
+      setTimeout(() => {
+        pMensajeError.remove();
+      }, 2000);
+    }
+  });
+
+  formularioTipoProducto.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const tipoProductoSelect = document.getElementById("tipoProducto").value;
+    const productosTipo = filtrarProductosTipo(
+      tipoProductoSelect,
+      productosComprar
+    );
+    if (productosTipo.length > 0) crearMercado(productosTipo, jugador);
+    else {
+      pMensajeError.textContent = "No existen productos con este tipo";
+      formularioTipoProducto.appendChild(pMensajeError);
+
+      setTimeout(() => {
+        pMensajeError.remove();
+      }, 2000);
     }
   });
 
@@ -275,15 +312,38 @@ function seccion2Function(seccion2, jugador) {
     const nombreProducto = document.getElementById("nombreProductoNuevo").value;
     const tipoProductoNuevo =
       document.getElementById("tipoProductoNuevo").value;
+    let nombreValido = true;
+    productosComprar.forEach((producto) => {
+      if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase())
+        nombreValido = false;
+    });
 
-    console.log(tipoProductoNuevo);
-    productosComprar = addProducto(
-      nombreProducto,
-      nombreTipoNuevo(tipoProductoNuevo),
-      productosComprar
-    );
-    console.log("creando mercado");
-    crearMercado(productosComprar, jugador);
+    console.log(nombreValido);
+
+    if (nombreValido) {
+      productosComprar = addProducto(
+        nombreProducto,
+        nombreTipoNuevo(tipoProductoNuevo),
+        productosComprar
+      );
+      console.log("creando mercado");
+      crearMercado(productosComprar, jugador);
+    } else {
+      const nombreProductoNuevoDiv = document.getElementById(
+        "nombreProductoNuevo"
+      );
+      nombreProductoNuevoDiv.style.backgroundColor = "red";
+      nombreProductoNuevoDiv.title = "Nombre ya existente";
+
+      pMensajeError.textContent = "El nombre ya existe";
+      pMensajeError.style.color = "#f5eac5";
+      formularioNuevoProducto.appendChild(pMensajeError);
+      setTimeout(() => {
+        nombreProductoNuevoDiv.style.backgroundColor = "";
+        nombreProductoNuevoDiv.title = "";
+        pMensajeError.remove();
+      }, 2000);
+    }
   });
 
   // Continuar a sección 3
@@ -314,6 +374,8 @@ function estadisticaAportaArma(tipoArma) {
 // SECCIÓN 3: Stats jugador
 function seccion3Function(seccion3, jugador) {
   datosJugador(jugador, seccion3.id);
+  jugador.eliminarCuraciones();
+  rellenarCasillas(jugador);
   const boton = seccion3.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     const seccion4 = document.getElementById("seccion-4");
@@ -558,7 +620,10 @@ function crearMercado(productosComprar, jugador) {
     //   producto.nombre.toLowerCase() === "espadeve"
     //     ? `${producto.nombre}🐶`
     //     : `${producto.nombre} `;
-    spanNombreProducto.textContent = `${producto.nombre}`;
+
+    spanNombreProducto.textContent = producto.descuento
+      ? `${producto.nombre} 💸`
+      : `${producto.nombre}`;
     const spanBonusProducto = document.createElement("span");
     spanBonusProducto.textContent = `${estadisticaAportaArma(producto.tipo)}: ${
       producto.bonus

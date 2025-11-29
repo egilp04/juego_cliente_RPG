@@ -18,17 +18,16 @@ export class Casco extends Producto {
    * @param {string} tipo - Tipo de producto (ej. "armadura")
    * @param {number} bonus - Valor de bonificación que aporta
    */
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+  constructor(
+    id,
+    nombre,
+    imagen,
+    precio,
+    rareza,
+    tipo,
+    bonus,
+    descuento = false
+  ) {
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }
-
-new Casco(
-  12,
-  "Casco",
-  "src/assests/img/objects_img/casco.webp",
-  100.0,
-  rarezaArmas.comun,
-  tipoArma.armadura,
-  10
-);

@@ -25,8 +25,9 @@ export class Pocion_Grande extends Producto {
     precio = 110.0,
     rareza = rarezaArmas.raro,
     tipo = tipoArma.consumible,
-    bonus = 60
+    bonus = 60,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

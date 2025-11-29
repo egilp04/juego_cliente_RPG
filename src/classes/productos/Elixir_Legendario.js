@@ -25,8 +25,9 @@ export class Elixir_Legendario extends Producto {
     precio = 520.0,
     rareza = rarezaArmas.epico,
     tipo = tipoArma.consumible,
-    bonus = 150
+    bonus = 150,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

@@ -25,8 +25,9 @@ export class Mandoble_Epico extends Producto {
     precio = 950.0,
     rareza = rarezaArmas.epico,
     tipo = tipoArma.arma,
-    bonus = 32
+    bonus = 32,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

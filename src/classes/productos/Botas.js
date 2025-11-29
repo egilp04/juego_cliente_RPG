@@ -25,8 +25,9 @@ export class Botas extends Producto {
     precio = 80.0,
     rareza = rarezaArmas.comun,
     tipo = tipoArma.armadura,
-    bonus = 4
+    bonus = 4,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

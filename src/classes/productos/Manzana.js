@@ -25,8 +25,9 @@ export class Manzana extends Producto {
     precio = 40.0,
     rareza = rarezaArmas.comun,
     tipo = tipoArma.consumible,
-    bonus = 10
+    bonus = 10,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

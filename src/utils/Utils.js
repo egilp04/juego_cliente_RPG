@@ -83,6 +83,7 @@ export function encontrarIndiceProducto(producto, listaProducto) {
 
 export function encontrarProducto(index, listaProducto) {}
 
+
 export function reiniciarMercado() {
   const mercado = document.querySelector(".mercado-container");
   if (mercado) mercado.innerHTML = "";

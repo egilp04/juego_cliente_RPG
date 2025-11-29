@@ -21,11 +21,18 @@ import {
  * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
  * @returns {Producto[]} Lista de productos que coinciden con la rareza
  */
-export function filtrarProductos(tipoRareza, listaProductosFinales) {
+export function filtrarProductosRareza(tipoRareza, listaProductosFinales) {
+  if (!tipoRareza || tipoRareza.trim() === "") return listaProductosFinales;
   return listaProductosFinales.filter(
     (producto) => tipoRareza === producto.rareza
   );
 }
+
+export function filtrarProductosTipo(tipoArma, listaProductosFinales) {
+  if (!tipoArma || tipoArma.trim() === "") return listaProductosFinales;
+  return listaProductosFinales.filter((producto) => tipoArma === producto.tipo);
+}
+
 /**
  * Aplica un descuento a los productos de la rareza indicada
  * @param {string} tipoRareza - Rareza a la que aplicar el descuento (por defecto "raro")
@@ -56,6 +63,9 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
  * @returns {Producto[]} Lista de productos que coinciden con el nombre
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
+  if (!nombreProducto || nombreProducto.trim() === "")
+    return listaProductosFinales;
+
   const nombre = nombreProducto.toLowerCase();
   return listaProductosFinales.filter((producto) => {
     const completo = producto.nombre.toLowerCase();

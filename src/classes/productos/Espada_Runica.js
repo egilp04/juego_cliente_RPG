@@ -25,8 +25,9 @@ export class Espada_Runica extends Producto {
     precio = 460.0,
     rareza = rarezaArmas.raro,
     tipo = tipoArma.arma,
-    bonus = 18
+    bonus = 18,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

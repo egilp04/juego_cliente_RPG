@@ -25,8 +25,9 @@ export class Escudo_Roble extends Producto {
     precio = 320.0,
     rareza = rarezaArmas.raro,
     tipo = tipoArma.armadura,
-    bonus = 14
+    bonus = 14,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

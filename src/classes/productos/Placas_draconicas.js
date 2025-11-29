@@ -25,8 +25,9 @@ export class Placas_Draconicas extends Producto {
     precio = 880.0,
     rareza = rarezaArmas.epico,
     tipo = tipoArma.armadura,
-    bonus = 28
+    bonus = 28,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

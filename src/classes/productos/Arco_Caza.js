@@ -25,8 +25,9 @@ export class Arco_Caza extends Producto {
     precio = 140.0,
     rareza = rarezaArmas.comun,
     tipo = tipoArma.arma,
-    bonus = 7
+    bonus = 7,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

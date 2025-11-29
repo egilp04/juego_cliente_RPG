@@ -25,8 +25,9 @@ export class Armadura_Cuero extends Producto {
     precio = 180.0,
     rareza = rarezaArmas.comun,
     tipo = tipoArma.armadura,
-    bonus = 6
+    bonus = 6,
+    descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus);
+    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }
