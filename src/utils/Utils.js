@@ -43,7 +43,10 @@ export function reiniciarJuego() {
   });
 
   const mercado = document.querySelector(".mercado-container");
-  if (mercado) mercado.innerHTML = "";
+  if (mercado) {
+    mercado.innerHTML = "";
+    mercado.scrollTop = 0;
+  }
 
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
