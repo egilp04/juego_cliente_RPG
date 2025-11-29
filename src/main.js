@@ -36,10 +36,29 @@ import {
 
 // Funciones para gestión de productos y mercado
 import {
-  filtrarProductos,
+  filtrarProductosRareza,
   aplicarDescuento,
   buscarProductoNombre,
 } from "./modules_game/Mercado.js";
+
+//Productos
+import { rarezaArmas, tipoArma } from "./constants/Constants.js";
+import {
+  Arco_Caza,
+  Armadura_Cuero,
+  Botas,
+  Casco,
+  Elixir_Legendario,
+  Escudo_Roble,
+  Espada_Corta,
+  Espada_Runica,
+  Hacha,
+  Mandoble_Epico,
+  Manzana,
+  Placas_Draconicas,
+  Pocion_Grande,
+  Pocion_Peque,
+} from "./classes/indexProductos.js";
 
 // EVENTO DE INICIO
 /**
@@ -82,9 +101,124 @@ function seccion1Function(seccion1) {
  * @param {Jugador} jugador - Instancia del jugador
  */
 function seccion2Function(seccion2, jugador) {
+  const listaProductos = [
+    new Espada_Corta(
+      "Espada corta",
+      "src/assests/img/objects_img/espada_corta.webp",
+      120.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      8
+    ),
+    new Arco_Caza(
+      "Arco caza",
+      "src/assests/img/objects_img/arco.webp",
+      140.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      7
+    ),
+    new Armadura_Cuero(
+      "Armadura cuero",
+      "src/assests/img/objects_img/armadura.webp",
+      180.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      6
+    ),
+    new Pocion_Peque(
+      "Poción pequeña",
+      "src/assests/img/objects_img/pocion_peque.webp",
+      40.0,
+      rarezaArmas.comun,
+      tipoArma.consumible,
+      20
+    ),
+    new Espada_Runica(
+      "Espada rúnica",
+      "src/assests/img/objects_img/espada_runica.webp",
+      460.0,
+      rarezaArmas.raro,
+      tipoArma.arma,
+      18
+    ),
+    new Escudo_Roble(
+      "Escudo roble",
+      "src/assests/img/objects_img/escudo.webp",
+      320.0,
+      rarezaArmas.raro,
+      tipoArma.armadura,
+      14
+    ),
+    new Pocion_Grande(
+      "Poción grande",
+      "src/assests/img/objects_img/pocion_grande.webp",
+      110.0,
+      rarezaArmas.raro,
+      tipoArma.consumible,
+      60
+    ),
+    new Mandoble_Epico(
+      "Mandoble épico",
+      "src/assests/img/objects_img/mandoble.webp",
+      950.0,
+      rarezaArmas.epico,
+      tipoArma.arma,
+      32
+    ),
+    new Placas_Draconicas(
+      "Placas dracónicas",
+      "src/assests/img/objects_img/placas_draconicas.webp",
+      880.0,
+      rarezaArmas.epico,
+      tipoArma.armadura,
+      28
+    ),
+    new Elixir_Legendario(
+      "Elixir legendario",
+      "src/assests/img/objects_img/elixir.webp",
+      520.0,
+      rarezaArmas.epico,
+      tipoArma.consumible,
+      150
+    ),
+    new Manzana(
+      "Manzana",
+      "src/assests/img/objects_img/manzana.webp",
+      40.0,
+      rarezaArmas.comun,
+      tipoArma.consumible,
+      10
+    ),
+    new Casco(
+      "Casco",
+      "src/assests/img/objects_img/casco.webp",
+      100.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      10
+    ),
+    new Hacha(
+      "Hacha",
+      "src/assests/img/objects_img/hacha.webp",
+      120.0,
+      rarezaArmas.comun,
+      tipoArma.arma,
+      8
+    ),
+    new Botas(
+      "Botas",
+      "src/assests/img/objects_img/botas.webp",
+      80.0,
+      rarezaArmas.comun,
+      tipoArma.armadura,
+      4
+    ),
+  ];
+
   document.getElementById("title").textContent = "Mercado Negro";
   const mercadoContainer = document.querySelector(".mercado-container");
-  const productosComprar = aplicarDescuento();
+  const productosComprar = aplicarDescuento(listaProductos);
 
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
@@ -158,6 +292,8 @@ function seccion2Function(seccion2, jugador) {
 
     mercadoContainer.appendChild(divProducto);
   });
+
+  mercadoContainer.scrollTop = 0;
 
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
