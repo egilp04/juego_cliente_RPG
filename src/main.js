@@ -270,6 +270,7 @@ function seccion2Function(seccion2, jugador) {
         pMensajeError.remove();
       }, 2000);
     }
+    e.currentTarget.reset();
   });
 
   formularioRareza.addEventListener("submit", (e) => {
@@ -344,6 +345,7 @@ function seccion2Function(seccion2, jugador) {
         pMensajeError.remove();
       }, 2000);
     }
+    e.currentTarget.reset();
   });
 
   // Continuar a sección 3

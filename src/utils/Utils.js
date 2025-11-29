@@ -30,7 +30,10 @@ export function reiniciarJuego() {
   });
 
   const mercado = document.querySelector(".mercado-container");
-  if (mercado) mercado.innerHTML = "";
+  if (mercado) {
+    mercado.innerHTML = "";
+    mercado.scrollTop = 0;
+  }
 
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
@@ -42,6 +45,11 @@ export function reiniciarJuego() {
   document.querySelectorAll("button").forEach((btn) => {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
+  });
+
+  document.querySelectorAll("form").forEach((form) => {
+    const nuevoForm = form.cloneNode(true);
+    form.replaceWith(nuevoForm);
   });
 }
 
@@ -83,11 +91,12 @@ export function encontrarIndiceProducto(producto, listaProducto) {
 
 export function encontrarProducto(index, listaProducto) {}
 
-
 export function reiniciarMercado() {
   const mercado = document.querySelector(".mercado-container");
-  if (mercado) mercado.innerHTML = "";
-
+  if (mercado) {
+    mercado.innerHTML = "";
+    mercado.scrollTop = 0;
+  }
   document.querySelectorAll(".mercado-container button").forEach((btn) => {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
