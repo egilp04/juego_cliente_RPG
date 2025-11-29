@@ -36,7 +36,7 @@ import {
 
 // Funciones para gestión de productos y mercado
 import {
-  filtrarProductos,
+  filtrarProductosRareza,
   aplicarDescuento,
   buscarProductoNombre,
 } from "./modules_game/Mercado.js";
