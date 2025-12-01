@@ -56,6 +56,8 @@ import {
   reiniciarMercado,
   nombreTipoNuevo,
   comprobarJugador,
+  validarJugador,
+  mostrarFormularioSeccion0,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -84,11 +86,31 @@ function iniciarJuego(e) {
 function seccion0Function(seccion0) {
   const boton = seccion0.querySelector(".continuar");
   boton.disabled = true;
-  let avanzar = false;
 
+  const formularioJugadorInicio = document.querySelector(
+    ".formulario-iniciarSesion-jugador"
+  );
   const formularioJugadorRegistro = document.querySelector(
     ".formulario-registro-jugador"
   );
+
+  mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
+
+  formularioJugadorInicio.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombreJugadorInicio = document.querySelector(".nombreJugadorInicio");
+    const claveJugadorInicio = document.querySelector(".claveJugadorInicio");
+
+    if (
+      !comprobarJugador(nombreJugadorInicio.value, claveJugadorInicio.value)
+    ) {
+      mostrarFormularioSeccion0("formulario-registro-jugador");
+    } else {
+      boton.disabled = false;
+      e.currentTarget.reset();
+    }
+  });
+
   formularioJugadorRegistro.addEventListener("submit", (e) => {
     e.preventDefault();
     const nombreJugadorRegistro = document.querySelector(
@@ -98,27 +120,29 @@ function seccion0Function(seccion0) {
       ".claveJugadorRegistro"
     );
     if (
-      !comprobarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
+      !validarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
     ) {
       nombreJugadorRegistro.style.backgroundColor = "red";
       claveJugadorRegistro.style.backgroundColor = "red";
+      e.currentTarget.reset();
     } else {
-      avanzar = true;
-      console.log(avanzar);
-      boton.disabled = false;
+      mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
+      e.currentTarget.reset();
     }
   });
   boton.addEventListener("click", (e) => {
-    if (!avanzar) return;
     const seccion1 = document.getElementById("seccion-1");
-    mostrarSeccion(seccion1.id, nombreJugadorRegistro.value);
-    seccion1Function(seccion1, nombreJugadorRegistro);
+    mostrarSeccion(seccion1.id);
+    seccion1Function(
+      seccion1,
+      document.querySelector(".nombreJugadorRegistro").value
+    );
   });
 }
 
 function seccion1Function(seccion1, nombreJugadorRegistro) {
   const jugador = new Cazador(
-    `${nombreJugadorRegistro.value}`,
+    `${nombreJugadorRegistro}`,
     30,
     avatarCazador,
     20,

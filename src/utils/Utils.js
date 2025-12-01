@@ -16,7 +16,8 @@ export function mostrarSeccion(id) {
 
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
+  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-0")
+    footer.style.display = "none";
   else footer.style.display = "";
 }
 
@@ -111,7 +112,7 @@ export function nombreTipoNuevo(nombre) {
   else return nombreCompleto[0];
 }
 
-export function comprobarJugador(nombre, clave) {
+export function validarJugador(nombre, clave) {
   const nombreRegex = /^[a-z]{1,9}$/;
   const claveRegex = /^[a-z]{1,9}$/;
   if (!nombreRegex.test(nombre) && claveRegex.test(clave)) {
@@ -126,4 +127,33 @@ export function comprobarJugador(nombre, clave) {
     localStorage.setItem("jugadoresRegistrados", JSON.stringify(datos));
   }
   return true;
+}
+
+export function mostrarFormularioSeccion0(formularioClass) {
+  const formularios = Array.from(document.querySelectorAll(".form-seccion-0"));
+  formularios.forEach((formulario) => {
+    formulario.style.display = "none";
+  });
+
+  const formInicioMostrar = document.querySelector(`.${formularioClass}`);
+  formInicioMostrar.style.display = "";
+}
+
+export function comprobarJugador(nombre, clave) {
+  let datos = [];
+  let encontrado = false;
+  if (localStorage.getItem("jugadoresRegistrados")) {
+    datos = JSON.parse(localStorage.getItem("jugadoresRegistrados"));
+    datos.forEach((dato) => {
+      if (
+        dato.nombre.toLowerCase() == nombre &&
+        dato.clave.toLowerCase() == clave
+      ) {
+        encontrado = true;
+      }
+    });
+    if (encontrado) return true;
+    else return false;
+  }
+  return false;
 }
