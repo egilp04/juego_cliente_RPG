@@ -105,17 +105,15 @@ function seccion0Function(seccion0) {
     } else {
       avanzar = true;
       console.log(avanzar);
+      boton.disabled = false;
     }
   });
-
-  if (avanzar) {
-    boton.disabled = false;
-    boton.addEventListener("click", (e) => {
-      const seccion1 = document.getElementById("seccion-1");
-      mostrarSeccion(seccion1.id, nombreJugadorRegistro.value);
-      seccion1Function(seccion1, nombreJugadorRegistro);
-    });
-  }
+  boton.addEventListener("click", (e) => {
+    if (!avanzar) return;
+    const seccion1 = document.getElementById("seccion-1");
+    mostrarSeccion(seccion1.id, nombreJugadorRegistro.value);
+    seccion1Function(seccion1, nombreJugadorRegistro);
+  });
 }
 
 function seccion1Function(seccion1, nombreJugadorRegistro) {
