@@ -110,3 +110,20 @@ export function nombreTipoNuevo(nombre) {
     return `${nombreCompleto[0]}_${nombreCompleto[1]}`;
   else return nombreCompleto[0];
 }
+
+export function comprobarJugador(nombre, clave) {
+  const nombreRegex = /^[a-z]{1,9}$/;
+  const claveRegex = /^[a-z]{1,9}$/;
+  if (!nombreRegex.test(nombre) && claveRegex.test(clave)) {
+    return false;
+  } else {
+    let datos = [];
+    const nuevoJugador = { nombre: nombre, clave: clave };
+    if (localStorage.getItem("jugadoresRegistrados")) {
+      datos = JSON.parse(localStorage.getItem("jugadoresRegistrados"));
+    }
+    datos.push(nuevoJugador);
+    localStorage.setItem("jugadoresRegistrados", JSON.stringify(datos));
+  }
+  return true;
+}

@@ -14,6 +14,26 @@
       <h1 class="title" id="title"></h1>
     </header>
     <main>
+      <section id="seccion-0" class="seccion seccion-0">
+        <form class="formulario-iniciarSesion-jugador" hidden>
+          <input placeholder="Nombre del jugador" class="nombreJugadorInicio" />
+          <input placeholder="Clave del jugado" class="nombreJugadorInicio" />
+          <button type="submit" class="boton-iniciarSesion">Entrar</button>
+        </form>
+        <form class="formulario-registro-jugador">
+          <input
+            placeholder="Nombre del jugador"
+            class="nombreJugadorRegistro"
+          />
+          <input placeholder="Clave del jugado" class="claveJugadorRegistro" />
+          <button type="submit">Entrar</button>
+        </form>
+        <div>
+          <button type="button" class="continuar boton-continuar-0">
+            Continuar
+          </button>
+        </div>
+      </section>
       <section id="seccion-1" class="seccion seccion-1">
         <div class="jugador-info-container jugador-tarjeta">
           <div class="datos-jugador-container">
@@ -51,13 +71,13 @@
           <form class="formNombre">
             <input
               placeholder="Introduce el nombre"
-              id="nombreProducto"
+              class="nombreProducto"
               name="nombreProducto"
             />
             <button type="submit">buscar</button>
           </form>
           <form class="formRareza">
-            <select name="rareza" id="rareza">
+            <select name="rareza" class="rareza">
               <option value="" selected>Seleccionar rareza</option>
               <option value="raro">Raro</option>
               <option value="comun">Comun</option>
@@ -66,7 +86,7 @@
             <button type="submit">buscar</button>
           </form>
           <form class="formTipo">
-            <select name="tipoProducto" id="tipoProducto">
+            <select name="tipoProducto" class="tipoProducto">
               <option value="" selected>Seleccionar tipo producto</option>
               <option value="arma">Arma</option>
               <option value="armadura">Armadura</option>
@@ -77,10 +97,10 @@
           <form class="nuevoElementoMercado">
             <input
               placeholder="nombre producto"
-              id="nombreProductoNuevo"
+              class="nombreProductoNuevo"
               name="nombreProductoNuevo"
             />
-            <select id="tipoProductoNuevo"></select>
+            <select class="tipoProductoNuevo"></select>
             <button type="submit">Añadir al mercado</button>
           </form>
         </div>

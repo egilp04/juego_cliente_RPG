@@ -55,6 +55,7 @@ import {
   encontrarIndiceProducto,
   reiniciarMercado,
   nombreTipoNuevo,
+  comprobarJugador,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -74,14 +75,58 @@ window.addEventListener("load", iniciarJuego);
  * @param {Event} e - Evento de carga de la ventana
  */
 function iniciarJuego(e) {
-  const seccion1 = document.getElementById("seccion-1");
-  mostrarSeccion(seccion1.id);
-  seccion1Function(seccion1);
+  const seccion0 = document.getElementById("seccion-0");
+  mostrarSeccion(seccion0.id);
+  seccion0Function(seccion0);
 }
 
 // SECCIÓN 1: Datos del jugador
-function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 30, avatarCazador, 20, 20, 1000);
+function seccion0Function(seccion0) {
+  const boton = seccion0.querySelector(".continuar");
+  boton.disabled = true;
+  let avanzar = false;
+
+  const formularioJugadorRegistro = document.querySelector(
+    ".formulario-registro-jugador"
+  );
+  formularioJugadorRegistro.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombreJugadorRegistro = document.querySelector(
+      ".nombreJugadorRegistro"
+    );
+    const claveJugadorRegistro = document.querySelector(
+      ".claveJugadorRegistro"
+    );
+    if (
+      !comprobarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
+    ) {
+      nombreJugadorRegistro.style.backgroundColor = "red";
+      claveJugadorRegistro.style.backgroundColor = "red";
+    } else {
+      avanzar = true;
+      console.log(avanzar);
+    }
+  });
+
+  if (avanzar) {
+    boton.disabled = false;
+    boton.addEventListener("click", (e) => {
+      const seccion1 = document.getElementById("seccion-1");
+      mostrarSeccion(seccion1.id, nombreJugadorRegistro.value);
+      seccion1Function(seccion1, nombreJugadorRegistro);
+    });
+  }
+}
+
+function seccion1Function(seccion1, nombreJugadorRegistro) {
+  const jugador = new Cazador(
+    `${nombreJugadorRegistro.value}`,
+    30,
+    avatarCazador,
+    20,
+    20,
+    1000
+  );
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -224,7 +269,7 @@ function seccion2Function(seccion2, jugador) {
     ),
   ];
 
-  const selectProductos = document.getElementById("tipoProductoNuevo");
+  const selectProductos = document.querySelector(".tipoProductoNuevo");
   const optionDft = document.createElement("option");
   optionDft.value = "";
   optionDft.textContent = "Seleccione un tipo de producto";
@@ -258,7 +303,7 @@ function seccion2Function(seccion2, jugador) {
   formularioNombre.addEventListener("submit", (e) => {
     e.preventDefault();
     const productosNombre = buscarProductoNombre(
-      document.getElementById("nombreProducto").value,
+      document.querySelector(".nombreProducto").value,
       productosComprar
     );
     if (productosNombre.length > 0) crearMercado(productosNombre, jugador);
@@ -275,7 +320,7 @@ function seccion2Function(seccion2, jugador) {
 
   formularioRareza.addEventListener("submit", (e) => {
     e.preventDefault();
-    const rarezaSelect = document.getElementById("rareza").value;
+    const rarezaSelect = document.querySelector(".rareza").value;
     const productosRareza = filtrarProductosRareza(
       rarezaSelect,
       productosComprar
@@ -292,7 +337,7 @@ function seccion2Function(seccion2, jugador) {
 
   formularioTipoProducto.addEventListener("submit", (e) => {
     e.preventDefault();
-    const tipoProductoSelect = document.getElementById("tipoProducto").value;
+    const tipoProductoSelect = document.querySelector(".tipoProducto").value;
     const productosTipo = filtrarProductosTipo(
       tipoProductoSelect,
       productosComprar
@@ -310,7 +355,7 @@ function seccion2Function(seccion2, jugador) {
 
   formularioNuevoProducto.addEventListener("submit", (e) => {
     e.preventDefault();
-    const nombreProducto = document.getElementById("nombreProductoNuevo").value;
+    const nombreProducto = document.querySelector(".nombreProductoNuevo").value;
     const tipoProductoNuevo =
       document.getElementById("tipoProductoNuevo").value;
     let nombreValido = true;
