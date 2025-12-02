@@ -1,0 +1,130 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Espada corta",
+      "imagen": "src/assests/img/objects_img/espada_corta.webp",
+      "precio": 120.0,
+      "rareza": "comun",
+      "tipo": "arma",
+      "valor": 8
+    },
+    {
+      "id": 2,
+      "nombre": "Arco caza",
+      "imagen": "src/assests/img/objects_img/arco.webp",
+      "precio": 140.0,
+      "rareza": "comun",
+      "tipo": "arma",
+      "valor": 7
+    },
+    {
+      "id": 3,
+      "nombre": "Armadura cuero",
+      "imagen": "src/assests/img/objects_img/armadura.webp",
+      "precio": 180.0,
+      "rareza": "comun",
+      "tipo": "armadura",
+      "valor": 6
+    },
+    {
+      "id": 4,
+      "nombre": "Poción pequeña",
+      "imagen": "src/assests/img/objects_img/pocion_peque.webp",
+      "precio": 40.0,
+      "rareza": "comun",
+      "tipo": "consumible",
+      "valor": 20
+    },
+    {
+      "id": 5,
+      "nombre": "Espada rúnica",
+      "imagen": "src/assests/img/objects_img/espada_runica.webp",
+      "precio": 460.0,
+      "rareza": "raro",
+      "tipo": "arma",
+      "valor": 18
+    },
+    {
+      "id": 6,
+      "nombre": "Escudo roble",
+      "imagen": "src/assests/img/objects_img/escudo.webp",
+      "precio": 320.0,
+      "rareza": "raro",
+      "tipo": "armadura",
+      "valor": 14
+    },
+    {
+      "id": 7,
+      "nombre": "Poción grande",
+      "imagen": "src/assests/img/objects_img/pocion_grande.webp",
+      "precio": 110.0,
+      "rareza": "raro",
+      "tipo": "consumible",
+      "valor": 60
+    },
+    {
+      "id": 8,
+      "nombre": "Mandoble épico",
+      "imagen": "src/assests/img/objects_img/mandoble.webp",
+      "precio": 950.0,
+      "rareza": "epico",
+      "tipo": "arma",
+      "valor": 32
+    },
+    {
+      "id": 9,
+      "nombre": "Placas dracónicas",
+      "imagen": "src/assests/img/objects_img/placas_draconicas.webp",
+      "precio": 880.0,
+      "rareza": "epico",
+      "tipo": "armadura",
+      "valor": 28
+    },
+    {
+      "id": 10,
+      "nombre": "Elixir legendario",
+      "imagen": "src/assests/img/objects_img/elixir.webp",
+      "precio": 520.0,
+      "rareza": "epico",
+      "tipo": "consumible",
+      "valor": 150
+    },
+    {
+      "id": 11,
+      "nombre": "Manzana",
+      "imagen": "src/assests/img/objects_img/manzana.webp",
+      "precio": 40.0,
+      "rareza": "comun",
+      "tipo": "consumible",
+      "valor": 10
+    },
+    {
+      "id": 12,
+      "nombre": "Casco",
+      "imagen": "src/assests/img/objects_img/casco.webp",
+      "precio": 100.0,
+      "rareza": "comun",
+      "tipo": "armadura",
+      "valor": 10
+    },
+    {
+      "id": 13,
+      "nombre": "Hacha",
+      "imagen": "src/assests/img/objects_img/hacha.webp",
+      "precio": 120.0,
+      "rareza": "comun",
+      "tipo": "arma",
+      "valor": 8
+    },
+    {
+      "id": 14,
+      "nombre": "Botas",
+      "imagen": "src/assests/img/objects_img/botas.webp",
+      "precio": 80.0,
+      "rareza": "comun",
+      "tipo": "armadura",
+      "valor": 4
+    }
+  ]
+}
