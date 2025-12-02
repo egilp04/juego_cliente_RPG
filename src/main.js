@@ -556,13 +556,27 @@ function seccion6Function(seccion6, puntuacion, ganador, jugador) {
   boton.addEventListener("click", (e) => {
     const seccion7 = document.getElementById("seccion-7");
     mostrarSeccion(seccion7.id);
-    seccion7Function(seccion7);
+    seccion7Function(seccion7, jugador.nombre, ganador.nombre, puntuacion);
   });
 }
 
-function seccion7Function(seccion7) {
+function seccion7Function(seccion7, nombreJugador, ganadorNombre, puntuacion) {
   const boton = seccion7.querySelector(".reiniciar");
+  let registros = [];
+  const data = `${ganador.nombre}-${puntuacion}`;
+
+  if (getCookie(`${nombreJugador}-resultados`)) {
+    try {
+      registros = JSON.parse(cookieActual);
+    } catch (e) {
+      registros = [];
+    }
+  }
+
+  registros.push(registros);
+
   //tabal de la cookie con los resultados
+
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();
