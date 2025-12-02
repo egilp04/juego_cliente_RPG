@@ -526,7 +526,7 @@ function seccion6Function(seccion6, puntuacion, ganador, jugador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
-  const boton = seccion6.querySelector(".reiniciar");
+  const boton = seccion6.querySelector(".continuar");
   boton.disabled = true;
 
   if (ganador instanceof Enemigo) {
@@ -553,6 +553,16 @@ function seccion6Function(seccion6, puntuacion, ganador, jugador) {
   setTimeout(() => {
     boton.disabled = false;
   }, 3000);
+  boton.addEventListener("click", (e) => {
+    const seccion7 = document.getElementById("seccion-7");
+    mostrarSeccion(seccion7.id);
+    seccion7Function(seccion7);
+  });
+}
+
+function seccion7Function(seccion7) {
+  const boton = seccion7.querySelector(".reiniciar");
+  //tabal de la cookie con los resultados
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();
@@ -742,11 +752,13 @@ function guardarDatosPartida(puntuacion, ganador, jugador) {
   const data = `${ganador.nombre}-${puntuacion}`;
   let registros = [];
 
-  if (!getCookie(nombreJugador)) {
-    registros.push(data);
-  } else {
-    registros = JSON.parse(getCookie(nombreJugador));
-    registros.push(data);
+  if (getCookie(`${nombreJugador}-resultados`)) {
+    try {
+      registros = JSON.parse(cookieActual);
+    } catch (e) {
+      registros = [];
+    }
   }
-  createNewCookie(nombreJugador, registros);
+  registros.push(data);
+  createNewCookie(`${nombreJugador}-resultados`, registros);
 }
