@@ -1,10 +1,4 @@
 import { rarezaArmas, tipoArma } from "../constants/Constants.js";
-
-
-// ====================
-// Lista inicial de productos del juego
-// ====================
-
 /**
  * Filtra productos por rareza
  * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
