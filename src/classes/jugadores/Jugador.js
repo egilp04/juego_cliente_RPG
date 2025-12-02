@@ -26,9 +26,9 @@ export class Jugador {
     ataque,
     defensa,
     dinero,
+    inventario,
     puntos,
-    vidaMaxima,
-    inventario
+    vidaMaxima
   ) {
     this._nombre = nombre;
     this._hp = hp;
@@ -36,9 +36,9 @@ export class Jugador {
     this._ataque = ataque;
     this._defensa = defensa;
     this._dinero = dinero;
+    this._inventario = inventario;
     this._puntos = puntos;
     this._vidaMaxima = vidaMaxima;
-    this._inventario = inventario;
   }
 
   /**

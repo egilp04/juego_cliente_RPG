@@ -27,9 +27,9 @@ export class Cazador extends Jugador {
     ataque,
     defensa,
     dinero,
+    inventario = [],
     puntos = puntosBase,
-    vidaMaxima = vidaMaximaJugador,
-    inventario = []
+    vidaMaxima = vidaMaximaJugador
   ) {
     super(
       nombre,
@@ -38,9 +38,9 @@ export class Cazador extends Jugador {
       ataque,
       defensa,
       dinero,
+      inventario,
       puntos,
-      vidaMaxima,
-      inventario
+      vidaMaxima
     );
   }
 }

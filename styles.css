@@ -404,6 +404,10 @@ img.img-inventario:hover {
   transition: transform 0.5s ease;
 }
 
+th {
+  color: var(--color-accent);
+}
+
 /* Botones*/
 .continuar,
 .reiniciar {

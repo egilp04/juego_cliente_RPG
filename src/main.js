@@ -60,6 +60,7 @@ import {
   getCookie,
   updateCookie,
   deleteCookie,
+  castProducto,
   // reemplazarProducto,
 } from "./utils/Utils.js";
 
@@ -197,15 +198,53 @@ function seccion0Function(seccion0) {
 }
 
 function seccion1Function(seccion1, nombreJugadorIngresado) {
-  const jugador = new Cazador(
-    `${nombreJugadorIngresado}`,
-    30,
-    avatarCazador,
-    20,
-    20,
-    1000
-  );
+  const datos = obtenerInventarioGuardado(nombreJugadorIngresado);
+  let inventario = [];
+  if (datos) {
+    for (let dato of datos) {
+      console.log(dato);
+      inventario.push(castProducto(dato));
+    }
+  }
+  let puntos = 100;
+  if (getCookie(`${nombreJugadorIngresado}-resultados`)) {
+    const puntosAnterioresCookie = JSON.parse(
+      getCookie(`${nombreJugadorIngresado}-resultados`)
+    );
+    console.log(puntosAnterioresCookie);
+    puntosAnterioresCookie.forEach((puntoAnterior) => {
+      console.log(puntoAnterior[1]);
+      puntos += parseInt(puntoAnterior.split("-")[1]);
+      console.log(puntos);
+    });
+  }
+
+  let jugador;
+  if (inventario.length > 0) {
+    jugador = new Cazador(
+      `${nombreJugadorIngresado}`,
+      30,
+      avatarCazador,
+      20,
+      20,
+      1000,
+      inventario,
+      puntos
+    );
+  } else {
+    jugador = new Cazador(
+      `${nombreJugadorIngresado}`,
+      30,
+      avatarCazador,
+      20,
+      20,
+      1000,
+      puntos
+    );
+  }
   datosJugador(jugador, seccion1.id);
+  rellenarCasillas(jugador);
+
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -248,6 +287,20 @@ async function seccion2Function(seccion2, jugador) {
   });
 
   let productosComprar = aplicarDescuento(listaProductos);
+
+  if (jugador.inventario.length > 0) {
+    let dineroFinal = jugador.dinero;
+    const inventarioCookie = jugador.inventario;
+    inventarioCookie.forEach((elemento) => {
+      const producto = productosComprar.find(
+        (p) => p.nombre === elemento.nombre
+      );
+      if (producto) {
+        dineroFinal -= producto.precio;
+      }
+    });
+    jugador.dinero = dineroFinal;
+  }
 
   crearMercado(productosComprar, jugador);
 
@@ -394,7 +447,7 @@ function estadisticaAportaArma(tipoArma) {
 // SECCIÓN 3: Stats jugador
 function seccion3Function(seccion3, jugador) {
   datosJugador(jugador, seccion3.id);
-  jugador.eliminarCuraciones();
+  // jugador.eliminarCuraciones();
   rellenarCasillas(jugador);
   const boton = seccion3.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -522,7 +575,6 @@ function seccion5Function(seccion5, jugador, enemigos) {
 }
 
 function seccion6Function(seccion6, puntuacion, ganador, jugador) {
-  guardarDatosPartida(puntuacion, ganador, jugador);
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
@@ -560,28 +612,41 @@ function seccion6Function(seccion6, puntuacion, ganador, jugador) {
   });
 }
 
-function seccion7Function(seccion7, nombreJugador, ganadorNombre, puntuacion) {
-  const boton = seccion7.querySelector(".reiniciar");
-  let registros = [];
-  const data = `${ganador.nombre}-${puntuacion}`;
+function seccion7Function(seccion7, nombreJugador, nombreGanador, puntuacion) {
+  guardarDatosPartida(puntuacion, nombreJugador, nombreGanador);
 
+  const boton = seccion7.querySelector(".reiniciar");
+  const tablaRegistrosBody = document
+    .querySelector(".resultados-guardados")
+    .querySelector("tbody");
+  tablaRegistrosBody.innerHTML = "";
+
+  let registros = [];
   if (getCookie(`${nombreJugador}-resultados`)) {
     try {
-      registros = JSON.parse(cookieActual);
+      registros = JSON.parse(getCookie(`${nombreJugador}-resultados`));
     } catch (e) {
       registros = [];
     }
   }
 
-  registros.push(registros);
-
-  //tabal de la cookie con los resultados
+  registros.forEach((registro) => {
+    const fila = document.createElement("tr");
+    const datosRegistro = registro.split("-");
+    datosRegistro.forEach((dato) => {
+      const columna = document.createElement("td");
+      columna.textContent = `${dato}`;
+      columna.style.color = "#f5eac5";
+      fila.appendChild(columna);
+    });
+    tablaRegistrosBody.appendChild(fila);
+  });
 
   boton.addEventListener("click", (e) => {
-    const seccion1 = document.getElementById("seccion-1");
+    const seccion0 = document.getElementById("seccion-0");
     reiniciarJuego();
-    mostrarSeccion(seccion1.id);
-    seccion1Function(seccion1);
+    mostrarSeccion(seccion0.id);
+    seccion0Function(seccion0);
   });
 }
 
@@ -611,6 +676,8 @@ function datosJugador(jugador, seccionid) {
  */
 function rellenarCasillas(jugador) {
   const inventario = jugador.inventario;
+  console.log(`casilla inventario ${inventario}`);
+
   const casillas = Array.from(document.querySelectorAll(".casilla"));
   casillas.forEach((casilla, i) => {
     casilla.innerHTML = "";
@@ -747,32 +814,38 @@ function crearMercado(productosComprar, jugador) {
 function guardarInventario(jugador) {
   const nombreJugador = jugador.nombre;
   const inventario = jugador.inventario;
-  if (inventario.length < 0) {
-    return;
-  }
-  const nombreProductos = [];
+  let nuevoInventario = [];
   inventario.forEach((elemento) => {
-    nombreProductos.push(nombreTipoNuevo(elemento.nombre.toLowerCase()));
+    let nuevoProducto = {
+      nombre: elemento.nombre,
+      imagen: elemento.imagen,
+      precio: elemento.precio,
+      rareza: elemento.rareza,
+      tipo: elemento.tipo,
+      bonus: elemento.bonus,
+      descuento: elemento.descuento,
+    };
+    nuevoInventario.push(nuevoProducto);
   });
-  createNewCookie(nombreJugador, nombreProductos);
+  createNewCookie(
+    `${nombreJugador}-inventario`,
+    JSON.stringify(nuevoInventario)
+  );
 }
 
-//crear la cookie jugador, inventario. en la seccion 1, si el tam inventario es mayor que 0, rellenar casillas, actualizar dinero jugador.
-//en la seccion 3 llamar tambien a rellenar casillas.
-//en la seccion de mercado, cuando antes de crear los obtejos, poner retirar si
-
-function guardarDatosPartida(puntuacion, ganador, jugador) {
-  const nombreJugador = jugador.nombre;
-  const data = `${ganador.nombre}-${puntuacion}`;
-  let registros = [];
-
-  if (getCookie(`${nombreJugador}-resultados`)) {
-    try {
-      registros = JSON.parse(cookieActual);
-    } catch (e) {
-      registros = [];
-    }
+function obtenerInventarioGuardado(nombreJugador) {
+  let cookieInventario = getCookie(`${nombreJugador}-inventario`);
+  console.log(cookieInventario);
+  let productos = [];
+  if (cookieInventario) {
+    productos = JSON.parse(cookieInventario);
   }
-  registros.push(data);
-  createNewCookie(`${nombreJugador}-resultados`, registros);
+  if (productos.length > 0) return productos;
+  else return null;
+}
+
+
+function guardarDatosPartida(puntuacion, nombreJugador, nombreGanador) {
+  const data = `${nombreGanador}-${puntuacion}`;
+  updateCookie(`${nombreJugador}-resultados`, [data]);
 }

@@ -33,7 +33,12 @@ export function mostrarSeccion(id) {
 
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-0")
+  if (
+    id === "seccion-4" ||
+    id === "seccion-6" ||
+    id === "seccion-0" ||
+    id === "seccion-7"
+  )
     footer.style.display = "none";
   else footer.style.display = "";
 }
@@ -184,7 +189,7 @@ export async function obtenerDatosApi() {
   }
 }
 
-function castProducto(obj) {
+export function castProducto(obj) {
   const { nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
 
   if (tipo === "arma") {
@@ -446,16 +451,25 @@ export function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function updateCookie(name, newDataObj, jsonAttributes = {}) {
-  let oldCookieData = {};
+export function updateCookie(name, newArray, jsonAttributes = {}) {
   let currentCookieData = getCookie(name);
-  if (!currentCookieData)
-    createNewCookie(name, JSON.stringify(newDataObj), (attributes = {}));
-  else {
-    oldCookieData = JSON.parse(currentCookieData);
-    const updatedObj = { ...oldCookieData, ...newDataObj };
-    createNewCookie(name, JSON.stringify(newDataObj), jsonAttributes);
+  let finalArray = [];
+
+  if (!currentCookieData) {
+    finalArray = newArray;
+  } else {
+    try {
+      const oldArray = JSON.parse(currentCookieData);
+      if (Array.isArray(oldArray)) {
+        finalArray = [...oldArray, ...newArray];
+      } else {
+        finalArray = newArray;
+      }
+    } catch (e) {
+      finalArray = newArray;
+    }
   }
+  createNewCookie(name, JSON.stringify(finalArray), jsonAttributes);
 }
 
 export function deleteCookie(name) {
