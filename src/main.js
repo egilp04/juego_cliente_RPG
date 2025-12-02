@@ -111,7 +111,6 @@ function seccion0Function(seccion0) {
       mostrarFormularioSeccion0("formulario-registro-jugador");
     } else {
       nombreJugadorIngresado = nombreJugadorInicio.value;
-      console.log(nombreJugadorIngresado);
       boton.disabled = false;
     }
   });
@@ -143,7 +142,6 @@ function seccion0Function(seccion0) {
 }
 
 function seccion1Function(seccion1, nombreJugadorIngresado) {
-  console.log(document.querySelector(".nombreJugadorRegistro"));
   const jugador = new Cazador(
     `${nombreJugadorIngresado}`,
     30,
@@ -257,17 +255,23 @@ async function seccion2Function(seccion2, jugador) {
     const tipoProductoNuevo =
       document.querySelector(".tipoProductoNuevo").value;
     let nombreValido = true;
-    productosComprar.forEach((producto) => {
-      if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase())
-        nombreValido = false;
-    });
+    const nombreRegex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)$/;
 
+    if (!nombreRegex.test(nombreProducto)) {
+      console.log("no ha pasado la regex");
+      nombreValido = false;
+    } else {
+      productosComprar.forEach((producto) => {
+        if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase())
+          nombreValido = false;
+      });
+    }
     if (nombreValido) {
       addProducto2(nombre, tipoProductoNuevo);
       productosComprar = await obtenerDatosApi();
       //productoComprar =  addProducto(
       //   nombreProducto,
-      //   nombreTipoNuevo(tipoProductoNuevo),
+      //   tipoProductoNuevo,
       //   productosComprar
       // );
       crearMercado(productosComprar, jugador);
@@ -275,6 +279,8 @@ async function seccion2Function(seccion2, jugador) {
       const nombreProductoNuevoDiv = document.getElementById(
         "nombreProductoNuevo"
       );
+      console.log(nombreProductoNuevoDiv.style.backgroundColor);
+
       nombreProductoNuevoDiv.style.backgroundColor = "red";
       nombreProductoNuevoDiv.title = "Nombre ya existente";
 
@@ -544,9 +550,7 @@ function crearMercado(productosComprar, jugador) {
 
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
-    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
     divProducto.setAttribute("class", "producto tarjeta");
-    divProducto.setAttribute("id", `${idProducto}`);
 
     // Imagen del producto
     const divImgProducto = document.createElement("div");
@@ -586,6 +590,9 @@ function crearMercado(productosComprar, jugador) {
     if (jugador.inventario.length > 0) {
       for (let i = 0; i < jugador.inventario.length; i++) {
         if (jugador.inventario[i].id === producto.id) {
+          console.log(
+            `id inventario producto: ${jugador.inventario[i].id} + id producto: ${producto.id}`
+          );
           existe = true;
         }
       }

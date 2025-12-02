@@ -76,49 +76,54 @@ export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
 }
 
 export function addProducto(nombre, productoTipo, listaProductosFinales) {
-  const tamLista = listaProductosFinales.length;
+  const ultimoId =
+    listaProductosFinales.length > 0
+      ? Math.max(...listaProductosFinales.map((p) => p.id))
+      : 0;
+  //Si hay productos, me quedo con el ultimo (maximo), si no 0
+  const nuevoID = ultimoId + 1;
   switch (productoTipo) {
     case "arco_caza":
-      listaProductosFinales.push(new Arco_Caza(tamLista + 1, nombre));
+      listaProductosFinales.push(new Arco_Caza(nuevoID, nombre));
       break;
     case "armadura_cuero":
-      listaProductosFinales.push(new Armadura_Cuero(tamLista + 1, nombre));
+      listaProductosFinales.push(new Armadura_Cuero(nuevoID, nombre));
       break;
     case "botas":
-      listaProductosFinales.push(new Botas(tamLista + 1, nombre));
+      listaProductosFinales.push(new Botas(nuevoID, nombre));
       break;
     case "casco":
-      listaProductosFinales.push(new Casco(tamLista + 1, nombre));
+      listaProductosFinales.push(new Casco(nuevoID, nombre));
       break;
     case "elixir_legendario":
-      listaProductosFinales.push(new Elixir_Legendario(tamLista + 1, nombre));
+      listaProductosFinales.push(new Elixir_Legendario(nuevoID, nombre));
       break;
     case "escudo_roble":
-      listaProductosFinales.push(new Escudo_Roble(tamLista + 1, nombre));
+      listaProductosFinales.push(new Escudo_Roble(nuevoID, nombre));
       break;
     case "espada_corta":
-      listaProductosFinales.push(new Espada_Corta(tamLista + 1, nombre));
+      listaProductosFinales.push(new Espada_Corta(nuevoID, nombre));
       break;
     case "espada_runica":
-      listaProductosFinales.push(new Espada_Runica(tamLista + 1, nombre));
+      listaProductosFinales.push(new Espada_Runica(nuevoID, nombre));
       break;
     case "hacha":
-      listaProductosFinales.push(new Hacha(tamLista + 1, nombre));
+      listaProductosFinales.push(new Hacha(nuevoID, nombre));
       break;
     case "mandoble_epico":
-      listaProductosFinales.push(new Mandoble_Epico(tamLista + 1, nombre));
+      listaProductosFinales.push(new Mandoble_Epico(nuevoID, nombre));
       break;
     case "manzana":
-      listaProductosFinales.push(new Manzana(tamLista + 1, nombre));
+      listaProductosFinales.push(new Manzana(nuevoID, nombre));
       break;
     case "placas_draconicas":
-      listaProductosFinales.push(new Placas_Draconicas(tamLista + 1, nombre));
+      listaProductosFinales.push(new Placas_Draconicas(nuevoID, nombre));
       break;
     case "pocion_grande":
-      listaProductosFinales.push(new Pocion_Grande(tamLista + 1, nombre));
+      listaProductosFinales.push(new Pocion_Grande(nuevoID, nombre));
       break;
     case "pocion_peque":
-      listaProductosFinales.push(new Pocion_Peque(tamLista + 1, nombre));
+      listaProductosFinales.push(new Pocion_Peque(nuevoID, nombre));
       break;
     default:
       break;
@@ -146,46 +151,46 @@ function crearProductoNuevo(nombre, productoTipo) {
   let productoNuevo;
   switch (productoTipo) {
     case "arco_caza":
-      productoNuevo = new Arco_Caza(undefined, nombre);
+      productoNuevo = new Arco_Caza(nombre);
       break;
     case "armadura_cuero":
-      productoNuevo = new Armadura_Cuero(undefined, nombre);
+      productoNuevo = new Armadura_Cuero(nombre);
       break;
     case "botas":
-      productoNuevo = new Botas(undefined, nombre);
+      productoNuevo = new Botas(nombre);
       break;
     case "casco":
-      productoNuevo = new Casco(undefined, nombre);
+      productoNuevo = new Casco(nombre);
       break;
     case "elixir_legendario":
-      productoNuevo = new Elixir_Legendario(undefined, nombre);
+      productoNuevo = new Elixir_Legendario(nombre);
       break;
     case "escudo_roble":
-      productoNuevo = new Escudo_Roble(undefined, nombre);
+      productoNuevo = new Escudo_Roble(nombre);
       break;
     case "espada_corta":
-      productoNuevo = new Espada_Corta(undefined, nombre);
+      productoNuevo = new Espada_Corta(nombre);
       break;
     case "espada_runica":
-      productoNuevo = new Espada_Runica(undefined, nombre);
+      productoNuevo = new Espada_Runica(nombre);
       break;
     case "hacha":
-      productoNuevo = new Hacha(undefined, nombre);
+      productoNuevo = new Hacha(nombre);
       break;
     case "mandoble_epico":
-      productoNuevo = new Mandoble_Epico(undefined, nombre);
+      productoNuevo = new Mandoble_Epico(nombre);
       break;
     case "manzana":
-      productoNuevo = new Manzana(undefined, nombre);
+      productoNuevo = new Manzana(nombre);
       break;
     case "placas_draconicas":
-      productoNuevo = new Placas_Draconicas(undefined, nombre);
+      productoNuevo = new Placas_Draconicas(nombre);
       break;
     case "pocion_grande":
-      productoNuevo = new Pocion_Grande(undefined, nombre);
+      productoNuevo = new Pocion_Grande(nombre);
       break;
     case "pocion_peque":
-      productoNuevo = new Pocion_Peque(undefined, nombre);
+      productoNuevo = new Pocion_Peque(nombre);
       break;
     default:
       break;
