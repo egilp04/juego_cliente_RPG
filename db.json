@@ -7,7 +7,8 @@
       "precio": 120.0,
       "rareza": "comun",
       "tipo": "arma",
-      "valor": 8
+      "bonus": 8,
+      "descuento": false
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "precio": 140.0,
       "rareza": "comun",
       "tipo": "arma",
-      "valor": 7
+      "bonus": 7,
+      "descuento": false
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "precio": 180.0,
       "rareza": "comun",
       "tipo": "armadura",
-      "valor": 6
+      "bonus": 6,
+      "descuento": false
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "precio": 40.0,
       "rareza": "comun",
       "tipo": "consumible",
-      "valor": 20
+      "bonus": 20,
+      "descuento": false
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "precio": 460.0,
       "rareza": "raro",
       "tipo": "arma",
-      "valor": 18
+      "bonus": 18,
+      "descuento": false
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "precio": 320.0,
       "rareza": "raro",
       "tipo": "armadura",
-      "valor": 14
+      "bonus": 14,
+      "descuento": false
     },
     {
       "id": 7,
@@ -61,7 +67,8 @@
       "precio": 110.0,
       "rareza": "raro",
       "tipo": "consumible",
-      "valor": 60
+      "bonus": 60,
+      "descuento": false
     },
     {
       "id": 8,
@@ -70,7 +77,8 @@
       "precio": 950.0,
       "rareza": "epico",
       "tipo": "arma",
-      "valor": 32
+      "bonus": 32,
+      "descuento": false
     },
     {
       "id": 9,
@@ -79,7 +87,8 @@
       "precio": 880.0,
       "rareza": "epico",
       "tipo": "armadura",
-      "valor": 28
+      "bonus": 28,
+      "descuento": false
     },
     {
       "id": 10,
@@ -88,7 +97,8 @@
       "precio": 520.0,
       "rareza": "epico",
       "tipo": "consumible",
-      "valor": 150
+      "bonus": 150,
+      "descuento": false
     },
     {
       "id": 11,
@@ -97,7 +107,8 @@
       "precio": 40.0,
       "rareza": "comun",
       "tipo": "consumible",
-      "valor": 10
+      "bonus": 10,
+      "descuento": false
     },
     {
       "id": 12,
@@ -106,7 +117,8 @@
       "precio": 100.0,
       "rareza": "comun",
       "tipo": "armadura",
-      "valor": 10
+      "bonus": 10,
+      "descuento": false
     },
     {
       "id": 13,
@@ -115,7 +127,8 @@
       "precio": 120.0,
       "rareza": "comun",
       "tipo": "arma",
-      "valor": 8
+      "bonus": 8,
+      "descuento": false
     },
     {
       "id": 14,
@@ -124,7 +137,8 @@
       "precio": 80.0,
       "rareza": "comun",
       "tipo": "armadura",
-      "valor": 4
+      "bonus": 4,
+      "descuento": false
     }
   ]
 }

@@ -49,6 +49,7 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
   const tipoRareza =
     rarezasDescuento[Math.floor(Math.random() * rarezasDescuento.length)];
   listaProductos.forEach((producto) => {
+    console.log(producto);
     const productoClonado = producto.clonarProducto();
     if (producto.rareza === tipoRareza)
       productoClonado.aplicarDescuento(descuento);
@@ -122,8 +123,73 @@ export function addProducto(nombre, productoTipo, listaProductosFinales) {
     default:
       break;
   }
-  console.log("producto añadido");
-  console.log(aplicarDescuento(listaProductosFinales));
-
   return aplicarDescuento(listaProductosFinales);
+}
+
+export async function addProducto2(nombre, productoTipo) {
+  const url = `http://localhost:3001/productos`;
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(crearProductoNuevo(nombre, productoTipo)),
+    });
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+function crearProductoNuevo(nombre, productoTipo) {
+  let productoNuevo;
+  switch (productoTipo) {
+    case "arco_caza":
+      productoNuevo = new Arco_Caza(undefined, nombre);
+      break;
+    case "armadura_cuero":
+      productoNuevo = new Armadura_Cuero(undefined, nombre);
+      break;
+    case "botas":
+      productoNuevo = new Botas(undefined, nombre);
+      break;
+    case "casco":
+      productoNuevo = new Casco(undefined, nombre);
+      break;
+    case "elixir_legendario":
+      productoNuevo = new Elixir_Legendario(undefined, nombre);
+      break;
+    case "escudo_roble":
+      productoNuevo = new Escudo_Roble(undefined, nombre);
+      break;
+    case "espada_corta":
+      productoNuevo = new Espada_Corta(undefined, nombre);
+      break;
+    case "espada_runica":
+      productoNuevo = new Espada_Runica(undefined, nombre);
+      break;
+    case "hacha":
+      productoNuevo = new Hacha(undefined, nombre);
+      break;
+    case "mandoble_epico":
+      productoNuevo = new Mandoble_Epico(undefined, nombre);
+      break;
+    case "manzana":
+      productoNuevo = new Manzana(undefined, nombre);
+      break;
+    case "placas_draconicas":
+      productoNuevo = new Placas_Draconicas(undefined, nombre);
+      break;
+    case "pocion_grande":
+      productoNuevo = new Pocion_Grande(undefined, nombre);
+      break;
+    case "pocion_peque":
+      productoNuevo = new Pocion_Peque(undefined, nombre);
+      break;
+    default:
+      break;
+  }
+  console.log(productoNuevo);
+  return productoNuevo;
 }

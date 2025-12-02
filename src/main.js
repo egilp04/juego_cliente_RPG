@@ -68,6 +68,7 @@ import {
   buscarProductoNombre,
   addProducto,
   filtrarProductosTipo,
+  addProducto2,
 } from "./modules_game/Mercado.js";
 
 // EVENTO DE INICIO
@@ -174,7 +175,7 @@ async function seccion2Function(seccion2, jugador) {
 
   listaProductos.forEach((producto) => {
     const option = document.createElement("option");
-    option.value = `${producto.nombre.toLowerCase()}`;
+    option.value = `${nombreTipoNuevo(producto.nombre.toLowerCase())}`;
     option.textContent = producto.nombre;
     selectProductos.appendChild(option);
   });
@@ -250,26 +251,25 @@ async function seccion2Function(seccion2, jugador) {
     }
   });
 
-  formularioNuevoProducto.addEventListener("submit", (e) => {
+  formularioNuevoProducto.addEventListener("submit", async (e) => {
     e.preventDefault();
     const nombreProducto = document.querySelector(".nombreProductoNuevo").value;
     const tipoProductoNuevo =
-      document.getElementById("tipoProductoNuevo").value;
+      document.querySelector(".tipoProductoNuevo").value;
     let nombreValido = true;
     productosComprar.forEach((producto) => {
       if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase())
         nombreValido = false;
     });
 
-    console.log(nombreValido);
-
     if (nombreValido) {
-      productosComprar = addProducto(
-        nombreProducto,
-        nombreTipoNuevo(tipoProductoNuevo),
-        productosComprar
-      );
-      console.log("creando mercado");
+      addProducto2(nombre, tipoProductoNuevo);
+      productosComprar = await obtenerDatosApi();
+      //productoComprar =  addProducto(
+      //   nombreProducto,
+      //   nombreTipoNuevo(tipoProductoNuevo),
+      //   productosComprar
+      // );
       crearMercado(productosComprar, jugador);
     } else {
       const nombreProductoNuevoDiv = document.getElementById(

@@ -2,6 +2,22 @@ import {
   aplicarDescuento,
   buscarProductoNombre,
 } from "../modules_game/Mercado.js";
+import {
+  Arco_Caza,
+  Armadura_Cuero,
+  Botas,
+  Casco,
+  Elixir_Legendario,
+  Escudo_Roble,
+  Espada_Corta,
+  Espada_Runica,
+  Hacha,
+  Mandoble_Epico,
+  Manzana,
+  Placas_Draconicas,
+  Pocion_Grande,
+  Pocion_Peque,
+} from "../classes/indexProductos.js";
 
 export function mostrarSeccion(id) {
   mostrarFooter(id);
@@ -164,10 +180,190 @@ export async function obtenerDatosApi() {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
     const result = await response.json();
-    const infoDatos = result;
+    const infoDatos = result.map((item) => {
+      console.log(item);
+      return castProducto(item);
+    });
     return infoDatos;
   } catch (error) {
     console.error(error.message);
     return error.message;
   }
+}
+
+function castProducto(obj) {
+  const { id, nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
+
+  if (tipo === "arma") {
+    if (nombre === "Espada corta")
+      return new Espada_Corta(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Arco caza")
+      return new Arco_Caza(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Hacha")
+      return new Hacha(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre.includes("Mandoble"))
+      return new Mandoble_Epico(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Espada rúnica")
+      return new Espada_Runica(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+
+  if (tipo === "armadura") {
+    if (nombre === "Armadura cuero")
+      return new Armadura_Cuero(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Escudo roble")
+      return new Escudo_Roble(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre.includes("Placas"))
+      return new Placas_Draconicas(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Casco")
+      return new Casco(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Botas")
+      return new Botas(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+
+  if (tipo === "consumible") {
+    if (nombre === "Poción pequeña")
+      return new Pocion_Peque(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Poción grande")
+      return new Pocion_Grande(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Elixir legendario")
+      return new Elixir_Legendario(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Manzana")
+      return new Manzana(
+        id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+  return new Producto(
+    id,
+    nombre,
+    imagen,
+    precio,
+    rareza,
+    tipo,
+    bonus,
+    descuento
+  );
 }
