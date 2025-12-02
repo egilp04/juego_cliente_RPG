@@ -19,7 +19,7 @@ export class Pocion_Grande extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. vida extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/pocion_grande.webp",
     precio = 110.0,
@@ -28,6 +28,6 @@ export class Pocion_Grande extends Producto {
     bonus = 60,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

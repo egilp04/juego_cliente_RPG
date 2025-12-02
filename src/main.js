@@ -56,6 +56,10 @@ import {
   validarJugador,
   mostrarFormularioSeccion0,
   obtenerDatosApi,
+  createNewCookie,
+  getCookie,
+  updateCookie,
+  deleteCookie,
   // reemplazarProducto,
 } from "./utils/Utils.js";
 
@@ -64,9 +68,9 @@ import {
   filtrarProductosRareza,
   aplicarDescuento,
   buscarProductoNombre,
-  // addProducto,
+  addProducto,
   filtrarProductosTipo,
-  addProducto2,
+  // addProducto2,
 } from "./modules_game/Mercado.js";
 
 // EVENTO DE INICIO
@@ -317,39 +321,40 @@ async function seccion2Function(seccion2, jugador) {
   formularioNuevoProducto.addEventListener("submit", async (e) => {
     e.preventDefault();
     const nombreProducto = document.querySelector(".nombreProductoNuevo").value;
+    console.log(nombreProducto);
     const tipoProductoNuevo =
       document.querySelector(".tipoProductoNuevo").value;
+    console.log(tipoProductoNuevo);
+
     let nombreValido = true;
-    const nombreRegex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)$/;
+    const nombreRegex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)?$/;
 
     if (!nombreRegex.test(nombreProducto)) {
-      console.log("no ha pasado la regex");
       nombreValido = false;
     } else {
       productosComprar.forEach((producto) => {
-        if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase())
+        console.log(`nombre producto ${producto.nombre}`);
+        if (producto.nombre.toLowerCase() == nombreProducto.toLowerCase()) {
           nombreValido = false;
+        }
       });
     }
     if (nombreValido) {
-      addProducto2(nombre, tipoProductoNuevo);
-      productosComprar = await obtenerDatosApi();
-      //productoComprar =  addProducto(
-      //   nombreProducto,
-      //   tipoProductoNuevo,
-      //   productosComprar
-      // );
-      crearMercado(productosComprar, jugador);
-    } else {
-      const nombreProductoNuevoDiv = document.getElementById(
-        "nombreProductoNuevo"
+      productosComprar = addProducto(
+        nombreProducto,
+        tipoProductoNuevo,
+        productosComprar
       );
-      console.log(nombreProductoNuevoDiv.style.backgroundColor);
-
+      crearMercado(productosComprar, jugador);
+      //si fuera con la api, llamada a dos metodos
+    } else {
+      const nombreProductoNuevoDiv = document.querySelector(
+        ".nombreProductoNuevo"
+      );
       nombreProductoNuevoDiv.style.backgroundColor = "red";
-      nombreProductoNuevoDiv.title = "Nombre ya existente";
+      nombreProductoNuevoDiv.title = "Nombre no válido";
 
-      pMensajeError.textContent = "El nombre ya existe";
+      pMensajeError.textContent = "El nombre no es válido";
       pMensajeError.style.color = "#f5eac5";
       formularioNuevoProducto.appendChild(pMensajeError);
       setTimeout(() => {
@@ -450,6 +455,7 @@ function seccion4Function(seccion4, jugador) {
 
 // SECCIÓN 5: Combate
 function seccion5Function(seccion5, jugador, enemigos) {
+  guardarInventario(jugador);
   const boton = seccion5.querySelector(".continuar");
   boton.disabled = true;
 
@@ -511,11 +517,12 @@ function seccion5Function(seccion5, jugador, enemigos) {
   boton.addEventListener("click", (e) => {
     const seccion6 = document.getElementById("seccion-6");
     mostrarSeccion(seccion6.id);
-    seccion6Function(seccion6, puntos, ganador);
+    seccion6Function(seccion6, puntos, ganador, jugador);
   });
 }
 
-function seccion6Function(seccion6, puntuacion, ganador) {
+function seccion6Function(seccion6, puntuacion, ganador, jugador) {
+  guardarDatosPartida(puntuacion, ganador, jugador);
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
@@ -654,7 +661,7 @@ function crearMercado(productosComprar, jugador) {
 
     if (jugador.inventario.length > 0) {
       for (let i = 0; i < jugador.inventario.length; i++) {
-        if (jugador.inventario[i].id === producto.id) {
+        if (jugador.inventario[i].nombre === producto.nombre) {
           existe = true;
         }
       }
@@ -711,4 +718,35 @@ function crearMercado(productosComprar, jugador) {
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
+}
+
+function guardarInventario(jugador) {
+  const nombreJugador = jugador.nombre;
+  const inventario = jugador.inventario;
+  if (inventario.length < 0) {
+    return;
+  }
+  const nombreProductos = [];
+  inventario.forEach((elemento) => {
+    nombreProductos.push(nombreTipoNuevo(elemento.nombre.toLowerCase()));
+  });
+  createNewCookie(nombreJugador, nombreProductos);
+}
+
+//crear la cookie jugador, inventario. en la seccion 1, si el tam inventario es mayor que 0, rellenar casillas, actualizar dinero jugador.
+//en la seccion 3 llamar tambien a rellenar casillas.
+//en la seccion de mercado, cuando antes de crear los obtejos, poner retirar si
+
+function guardarDatosPartida(puntuacion, ganador, jugador) {
+  const nombreJugador = jugador.nombre;
+  const data = `${ganador.nombre}-${puntuacion}`;
+  let registros = [];
+
+  if (!getCookie(nombreJugador)) {
+    registros.push(data);
+  } else {
+    registros = JSON.parse(getCookie(nombreJugador));
+    registros.push(data);
+  }
+  createNewCookie(nombreJugador, registros);
 }

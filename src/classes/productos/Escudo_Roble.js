@@ -19,7 +19,7 @@ export class Escudo_Roble extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. defensa extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/escudo.webp",
     precio = 320.0,
@@ -28,6 +28,6 @@ export class Escudo_Roble extends Producto {
     bonus = 14,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

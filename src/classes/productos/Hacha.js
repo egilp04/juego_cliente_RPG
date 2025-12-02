@@ -19,7 +19,7 @@ export class Hacha extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/hacha.webp",
     precio = 120.0,
@@ -28,6 +28,6 @@ export class Hacha extends Producto {
     bonus = 8,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

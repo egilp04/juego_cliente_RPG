@@ -19,7 +19,7 @@ export class Espada_Runica extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. ataque extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/espada_runica.webp",
     precio = 460.0,
@@ -28,6 +28,6 @@ export class Espada_Runica extends Producto {
     bonus = 18,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

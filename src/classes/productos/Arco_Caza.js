@@ -19,7 +19,7 @@ export class Arco_Caza extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/espada_corta.webp",
     precio = 140.0,
@@ -28,6 +28,6 @@ export class Arco_Caza extends Producto {
     bonus = 7,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

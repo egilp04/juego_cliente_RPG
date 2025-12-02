@@ -75,76 +75,77 @@ export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
 }
 
 export function addProducto(nombre, productoTipo, listaProductosFinales) {
-  const ultimoId =
-    listaProductosFinales.length > 0
-      ? Math.max(...listaProductosFinales.map((p) => p.id))
-      : 0;
-  //Si hay productos, me quedo con el ultimo (maximo), si no 0
-  const nuevoID = ultimoId + 1;
+  // const ultimoId =
+  //   listaProductosFinales.length > 0
+  //     ? Math.max(...listaProductosFinales.map((p) => p.id))
+  //     : 0;
+  // //Si hay productos, me quedo con el ultimo (maximo), si no 0
+  // const nuevoID = ultimoId + 1;
   switch (productoTipo) {
     case "arco_caza":
-      listaProductosFinales.push(new Arco_Caza(nuevoID, nombre));
+      listaProductosFinales.push(new Arco_Caza(nombre));
       break;
     case "armadura_cuero":
-      listaProductosFinales.push(new Armadura_Cuero(nuevoID, nombre));
+      listaProductosFinales.push(new Armadura_Cuero(nombre));
       break;
     case "botas":
-      listaProductosFinales.push(new Botas(nuevoID, nombre));
+      listaProductosFinales.push(new Botas(nombre));
       break;
     case "casco":
-      listaProductosFinales.push(new Casco(nuevoID, nombre));
+      listaProductosFinales.push(new Casco(nombre));
       break;
     case "elixir_legendario":
-      listaProductosFinales.push(new Elixir_Legendario(nuevoID, nombre));
+      listaProductosFinales.push(new Elixir_Legendario(nombre));
       break;
     case "escudo_roble":
-      listaProductosFinales.push(new Escudo_Roble(nuevoID, nombre));
+      listaProductosFinales.push(new Escudo_Roble(nombre));
       break;
     case "espada_corta":
-      listaProductosFinales.push(new Espada_Corta(nuevoID, nombre));
+      listaProductosFinales.push(new Espada_Corta(nombre));
       break;
     case "espada_runica":
-      listaProductosFinales.push(new Espada_Runica(nuevoID, nombre));
+      listaProductosFinales.push(new Espada_Runica(nombre));
       break;
     case "hacha":
-      listaProductosFinales.push(new Hacha(nuevoID, nombre));
+      listaProductosFinales.push(new Hacha(nombre));
       break;
     case "mandoble_epico":
-      listaProductosFinales.push(new Mandoble_Epico(nuevoID, nombre));
+      listaProductosFinales.push(new Mandoble_Epico(nombre));
       break;
     case "manzana":
-      listaProductosFinales.push(new Manzana(nuevoID, nombre));
+      listaProductosFinales.push(new Manzana(nombre));
       break;
     case "placas_draconicas":
-      listaProductosFinales.push(new Placas_Draconicas(nuevoID, nombre));
+      listaProductosFinales.push(new Placas_Draconicas(nombre));
       break;
     case "pocion_grande":
-      listaProductosFinales.push(new Pocion_Grande(nuevoID, nombre));
+      listaProductosFinales.push(new Pocion_Grande(nombre));
       break;
     case "pocion_peque":
-      listaProductosFinales.push(new Pocion_Peque(nuevoID, nombre));
+      listaProductosFinales.push(new Pocion_Peque(nombre));
       break;
     default:
       break;
   }
+  console.log(listaProductosFinales);
   return aplicarDescuento(listaProductosFinales);
 }
 
-export async function addProducto2(nombre, productoTipo) {
-  const url = `http://localhost:3001/productos`;
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(crearProductoNuevo(nombre, productoTipo)),
-    });
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-  } catch (error) {
-    console.error(error.message);
-  }
-}
+// export async function addProducto2(nombre, productoTipo) {
+//   const url = `http://localhost:3001/productos`;
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(crearProductoNuevo(nombre, productoTipo)),
+//     });
+//     if (!response.ok) throw new Error(`Response status: ${response.status}`);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// }
 
 function crearProductoNuevo(nombre, productoTipo) {
   let productoNuevo;

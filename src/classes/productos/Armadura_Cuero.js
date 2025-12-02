@@ -19,7 +19,7 @@ export class Armadura_Cuero extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/armadura.webp",
     precio = 180.0,
@@ -28,6 +28,6 @@ export class Armadura_Cuero extends Producto {
     bonus = 6,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

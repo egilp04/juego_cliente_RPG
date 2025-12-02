@@ -19,7 +19,7 @@ export class Casco extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen,
     precio,
@@ -28,6 +28,6 @@ export class Casco extends Producto {
     bonus,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

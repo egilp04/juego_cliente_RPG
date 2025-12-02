@@ -19,7 +19,7 @@ export class Placas_Draconicas extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. defensa extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/placas_draconicas.webp",
     precio = 880.0,
@@ -28,6 +28,6 @@ export class Placas_Draconicas extends Producto {
     bonus = 28,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

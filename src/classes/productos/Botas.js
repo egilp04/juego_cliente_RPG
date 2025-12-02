@@ -19,7 +19,7 @@ export class Botas extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/botas.webp",
     precio = 80.0,
@@ -28,6 +28,6 @@ export class Botas extends Producto {
     bonus = 4,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

@@ -1,8 +1,8 @@
 import { rarezaArmas, tipoArma } from "../../constants/Constants.js";
 
 export class Producto {
-  constructor(id, nombre, imagen, precio, rareza, tipo, bonus, descuento) {
-    this._id = id;
+  constructor(nombre, imagen, precio, rareza, tipo, bonus, descuento) {
+    // this._id = id;
     this._nombre = nombre;
     this._imagen = imagen;
     this._precio = precio;
@@ -29,9 +29,9 @@ export class Producto {
   get bonus() {
     return this._bonus;
   }
-  get id() {
-    return this._id;
-  }
+  // get id() {
+  //   return this._id;
+  // }
   get descuento() {
     return this._descuento;
   }
@@ -53,9 +53,9 @@ export class Producto {
   set bonus(bonus) {
     this._bonus = bonus;
   }
-  set id(id) {
-    this._id = id;
-  }
+  // set id(id) {
+  //   this._id = id;
+  // }
   set descuento(descuento) {
     this._descuento = descuento;
   }
@@ -71,7 +71,7 @@ export class Producto {
 
   clonarProducto = function () {
     return new Producto(
-      this._id,
+      // this._id,
       this._nombre,
       this._imagen,
       this._precio,

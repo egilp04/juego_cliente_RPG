@@ -19,7 +19,7 @@ export class Manzana extends Producto {
    * @param {number} bonus - Valor de bonificación que aporta (ej. vida extra)
    */
   constructor(
-    id,
+    // id,
     nombre,
     imagen = "src/assests/img/objects_img/manzana.webp",
     precio = 40.0,
@@ -28,6 +28,6 @@ export class Manzana extends Producto {
     bonus = 10,
     descuento = false
   ) {
-    super(id, nombre, imagen, precio, rareza, tipo, bonus, descuento);
+    super(nombre, imagen, precio, rareza, tipo, bonus, descuento);
   }
 }

@@ -185,12 +185,12 @@ export async function obtenerDatosApi() {
 }
 
 function castProducto(obj) {
-  const { id, nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
+  const { nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
 
   if (tipo === "arma") {
     if (nombre === "Espada corta")
       return new Espada_Corta(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -201,7 +201,7 @@ function castProducto(obj) {
       );
     if (nombre === "Arco caza")
       return new Arco_Caza(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -212,7 +212,7 @@ function castProducto(obj) {
       );
     if (nombre === "Hacha")
       return new Hacha(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -223,7 +223,7 @@ function castProducto(obj) {
       );
     if (nombre.includes("Mandoble"))
       return new Mandoble_Epico(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -234,7 +234,7 @@ function castProducto(obj) {
       );
     if (nombre === "Espada rúnica")
       return new Espada_Runica(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -248,7 +248,7 @@ function castProducto(obj) {
   if (tipo === "armadura") {
     if (nombre === "Armadura cuero")
       return new Armadura_Cuero(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -259,7 +259,7 @@ function castProducto(obj) {
       );
     if (nombre === "Escudo roble")
       return new Escudo_Roble(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -270,7 +270,7 @@ function castProducto(obj) {
       );
     if (nombre.includes("Placas"))
       return new Placas_Draconicas(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -281,7 +281,7 @@ function castProducto(obj) {
       );
     if (nombre === "Casco")
       return new Casco(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -292,7 +292,7 @@ function castProducto(obj) {
       );
     if (nombre === "Botas")
       return new Botas(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -306,7 +306,7 @@ function castProducto(obj) {
   if (tipo === "consumible") {
     if (nombre === "Poción pequeña")
       return new Pocion_Peque(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -317,7 +317,7 @@ function castProducto(obj) {
       );
     if (nombre === "Poción grande")
       return new Pocion_Grande(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -328,7 +328,7 @@ function castProducto(obj) {
       );
     if (nombre === "Elixir legendario")
       return new Elixir_Legendario(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -339,7 +339,7 @@ function castProducto(obj) {
       );
     if (nombre === "Manzana")
       return new Manzana(
-        id,
+        // id,
         nombre,
         imagen,
         precio,
@@ -350,7 +350,7 @@ function castProducto(obj) {
       );
   }
   return new Producto(
-    id,
+    // id,
     nombre,
     imagen,
     precio,
@@ -379,7 +379,6 @@ function castProducto(obj) {
 
 //   // Creamos objeto plano para enviar a JSON Server
 //   const productoModificado = {
-//     id: producto.id,
 //     nombre: producto.nombre,
 //     precio: producto.precio,
 //     imagen: producto.imagen,
@@ -411,3 +410,56 @@ function castProducto(obj) {
 //     return null;
 //   }
 // }
+
+export function createNewCookie(name, value, days = 20, cookieAttributes = {}) {
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  let expires = "";
+  expires = " " + date.toUTCString();
+
+  cookieAttributes = {
+    path: "ruta que se quiera meter en la cookie",
+    ...cookieAttributes,
+  };
+  if (cookieAttributes.expires instanceof Date) {
+    cookieAttributes.expires = cookieAttributes.expires.toUTCString();
+  }
+  let newCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  for (let attributeKey in cookieAttributes) {
+    newCookie += "; " + attributeKey;
+    let attributeValue = cookieAttributes[attributeKey];
+    if (attributeValue !== true) {
+      newCookie += "=" + attributeValue;
+    }
+  }
+  document.cookie = newCookie;
+}
+
+export function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+export function updateCookie(name, newDataObj, jsonAttributes = {}) {
+  let oldCookieData = {};
+  let currentCookieData = getCookie(name);
+  if (!currentCookieData)
+    createNewCookie(name, JSON.stringify(newDataObj), (attributes = {}));
+  else {
+    oldCookieData = JSON.parse(currentCookieData);
+    const updatedObj = { ...oldCookieData, ...newDataObj };
+    createNewCookie(name, JSON.stringify(newDataObj), jsonAttributes);
+  }
+}
+
+export function deleteCookie(name) {
+  updateCookie(name, "", {
+    "max-age": -1,
+  });
+}
