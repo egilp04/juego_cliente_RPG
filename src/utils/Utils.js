@@ -18,6 +18,7 @@ import {
   Pocion_Grande,
   Pocion_Peque,
 } from "../classes/indexProductos.js";
+import { Producto } from "../classes/productos/Producto.js";
 
 export function mostrarSeccion(id) {
   mostrarFooter(id);
@@ -95,18 +96,12 @@ export function batallaAnimacionAleatoria() {
   enemigoImg.classList.add("appear");
 }
 
-export function modificarProducto(producto, dato, valor) {
-  productoNuevo = { ...producto, dato: valor };
-  console.log(productoNuevo);
-  return productoNuevo;
-}
+// export function encontrarIndiceProducto(producto, listaProducto) {
+//   const index = listaProducto.indexOf(producto);
+//   return index;
+// }
 
-export function encontrarIndiceProducto(producto, listaProducto) {
-  const index = listaProducto.indexOf(producto);
-  return index;
-}
-
-export function encontrarProducto(index, listaProducto) {}
+// export function encontrarProducto(index, listaProducto) {}
 
 export function reiniciarMercado() {
   const mercado = document.querySelector(".mercado-container");
@@ -122,7 +117,6 @@ export function reiniciarMercado() {
 
 export function nombreTipoNuevo(nombre) {
   const nombreCompleto = nombre.split(" ");
-  console.log(nombreCompleto);
   if (nombreCompleto.length > 1)
     return `${nombreCompleto[0]}_${nombreCompleto[1]}`;
   else return nombreCompleto[0];
@@ -131,7 +125,7 @@ export function nombreTipoNuevo(nombre) {
 export function validarJugador(nombre, clave) {
   const nombreRegex = /^[a-z]{1,9}$/;
   const claveRegex = /^[a-z]{1,9}$/;
-  if (!nombreRegex.test(nombre) && claveRegex.test(clave)) {
+  if (!nombreRegex.test(nombre) || !claveRegex.test(clave)) {
     return false;
   } else {
     let datos = [];
@@ -181,7 +175,6 @@ export async function obtenerDatosApi() {
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
     const result = await response.json();
     const infoDatos = result.map((item) => {
-      console.log(item);
       return castProducto(item);
     });
     return infoDatos;
@@ -367,3 +360,54 @@ function castProducto(obj) {
     descuento
   );
 }
+
+// export async function reemplazarProducto(id, producto, habilidad = null) {
+//   if (!id) {
+//     console.error("ID del producto no definido:", producto);
+//     return null;
+//   }
+
+//   const url = `http://localhost:3001/productos/${id}`;
+//   console.log("Preparando producto para reemplazar:", producto);
+
+//   // Clonamos el producto (para no modificar el original directamente)
+//   // Cambiamos el nombre y agregamos habilidad si aplica
+//   producto.nombre = "Rariiiisimo";
+//   if (habilidad) {
+//     producto.habilidadEspecial = habilidad;
+//   }
+
+//   // Creamos objeto plano para enviar a JSON Server
+//   const productoModificado = {
+//     id: producto.id,
+//     nombre: producto.nombre,
+//     precio: producto.precio,
+//     imagen: producto.imagen,
+//     rareza: producto.rareza,
+//     tipo: producto.tipo,
+//     valor: producto.valor,
+//     bonus: producto.bonus,
+//     descuento: producto.descuento,
+//     habilidadEspecial: producto.habilidadEspecial ?? null,
+//   };
+
+//   console.log("Producto modificado listo para PUT:", productoModificado);
+
+//   try {
+//     const response = await fetch(url, {
+//       method: "PUT",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(productoModificado),
+//       redirect: "manual", // evita que el navegador siga redirects automáticamente
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`Error al reemplazar producto: ${response.status}`);
+//     }
+//     const data = await response.json();
+//     console.log("Producto actualizado en DB:", data);
+//   } catch (error) {
+//     console.error("Error en reemplazarProducto:", error);
+//     return null;
+//   }
+// }

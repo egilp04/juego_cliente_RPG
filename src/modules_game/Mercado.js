@@ -49,7 +49,6 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
   const tipoRareza =
     rarezasDescuento[Math.floor(Math.random() * rarezasDescuento.length)];
   listaProductos.forEach((producto) => {
-    console.log(producto);
     const productoClonado = producto.clonarProducto();
     if (producto.rareza === tipoRareza)
       productoClonado.aplicarDescuento(descuento);
@@ -195,6 +194,5 @@ function crearProductoNuevo(nombre, productoTipo) {
     default:
       break;
   }
-  console.log(productoNuevo);
   return productoNuevo;
 }

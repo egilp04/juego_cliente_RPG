@@ -48,17 +48,15 @@ import { rarezaArmas, tipoArma } from "./constants/Constants.js";
 // Utilidades para UI y manipulación DOM
 import {
   mostrarSeccion,
-  encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
-  modificarProducto,
-  encontrarIndiceProducto,
   reiniciarMercado,
   nombreTipoNuevo,
   comprobarJugador,
   validarJugador,
   mostrarFormularioSeccion0,
   obtenerDatosApi,
+  // reemplazarProducto,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -66,7 +64,7 @@ import {
   filtrarProductosRareza,
   aplicarDescuento,
   buscarProductoNombre,
-  addProducto,
+  // addProducto,
   filtrarProductosTipo,
   addProducto2,
 } from "./modules_game/Mercado.js";
@@ -89,15 +87,32 @@ function seccion0Function(seccion0) {
   const boton = seccion0.querySelector(".continuar");
   boton.disabled = true;
 
+  const botonVolverInicioSesion = document.querySelector(".volverInicioSesion");
+  botonVolverInicioSesion.style.display = "none";
+  const botonRegistro = document.querySelector(".registrarUsuario");
+
+  botonVolverInicioSesion.addEventListener("click", (e) => {
+    botonVolverInicioSesion.style.display = "none";
+    mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
+    botonRegistro.style.display = "block";
+  });
+
+  botonRegistro.addEventListener("click", (e) => {
+    botonRegistro.style.display = "none";
+    mostrarFormularioSeccion0("formulario-registro-jugador");
+    botonVolverInicioSesion.style.display = "block";
+  });
+
   const formularioJugadorInicio = document.querySelector(
     ".formulario-iniciarSesion-jugador"
   );
   const formularioJugadorRegistro = document.querySelector(
     ".formulario-registro-jugador"
   );
+  const pMensajeError = document.createElement("p");
+  pMensajeError.style.color = "#f5eac5";
 
   let nombreJugadorIngresado;
-
   mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
 
   formularioJugadorInicio.addEventListener("submit", (e) => {
@@ -108,7 +123,17 @@ function seccion0Function(seccion0) {
     if (
       !comprobarJugador(nombreJugadorInicio.value, claveJugadorInicio.value)
     ) {
-      mostrarFormularioSeccion0("formulario-registro-jugador");
+      nombreJugadorInicio.style.backgroundColor = "red";
+      claveJugadorInicio.style.backgroundColor = "red";
+      e.currentTarget.reset();
+      pMensajeError.textContent =
+        "No existes en el juego o datos incorrectos, registrate";
+      seccion0.appendChild(pMensajeError);
+      setTimeout(() => {
+        nombreJugadorInicio.style.backgroundColor = "";
+        claveJugadorInicio.style.backgroundColor = "";
+        pMensajeError.remove();
+      }, 2000);
     } else {
       nombreJugadorIngresado = nombreJugadorInicio.value;
       boton.disabled = false;
@@ -124,16 +149,42 @@ function seccion0Function(seccion0) {
       ".claveJugadorRegistro"
     );
     if (
-      !validarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
+      comprobarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
     ) {
       nombreJugadorRegistro.style.backgroundColor = "red";
       claveJugadorRegistro.style.backgroundColor = "red";
       e.currentTarget.reset();
+      pMensajeError.textContent = "Jugador con nombre y clave ya existe";
+      seccion0.appendChild(pMensajeError);
+      setTimeout(() => {
+        nombreJugadorRegistro.style.backgroundColor = "";
+        claveJugadorRegistro.style.backgroundColor = "";
+        pMensajeError.remove();
+      }, 2000);
     } else {
-      mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
-      e.currentTarget.reset();
+      if (
+        !validarJugador(nombreJugadorRegistro.value, claveJugadorRegistro.value)
+      ) {
+        nombreJugadorRegistro.style.backgroundColor = "red";
+        claveJugadorRegistro.style.backgroundColor = "red";
+        e.currentTarget.reset();
+        pMensajeError.textContent =
+          "Clave y Nombre en minusculas, de 1 a 9 letras, sin espacios, solo un nombre";
+        seccion0.appendChild(pMensajeError);
+        setTimeout(() => {
+          nombreJugadorRegistro.style.backgroundColor = "";
+          claveJugadorRegistro.style.backgroundColor = "";
+          pMensajeError.remove();
+        }, 2000);
+      } else {
+        mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
+        botonRegistro.style.display = "block";
+        botonVolverInicioSesion.style.display = "none";
+        e.currentTarget.reset();
+      }
     }
   });
+
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     mostrarSeccion(seccion1.id);
@@ -153,6 +204,7 @@ function seccion1Function(seccion1, nombreJugadorIngresado) {
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
+    e.preventDefault();
     const seccion2 = document.getElementById("seccion-2");
     mostrarSeccion(seccion2.id);
     seccion2Function(seccion2, jugador);
@@ -163,7 +215,20 @@ function seccion1Function(seccion1, nombreJugadorIngresado) {
 async function seccion2Function(seccion2, jugador) {
   document.getElementById("title").textContent = "Mercado Negro";
   reiniciarMercado();
-  const listaProductos = await obtenerDatosApi();
+  let listaProductos = await obtenerDatosApi();
+
+  // for (const producto of listaProductos) {
+  //   console.log(producto);
+  //   if (producto.rareza === "raro") {
+  //     console.log(`p if ${producto}`);
+
+  //     await reemplazarProducto(producto.id, producto, "true");
+  //   }
+  // }
+  // listaProductos = await obtenerDatosApi();
+
+  //si no hay api, hay que crear la lista de productos sin la API
+  // const listaProductos = [ new Espada_Corta( 1, "Espada corta", "src/assests/img/objects_img/espada_corta.webp", 120.0, rarezaArmas.comun, tipoArma.arma, 8 ), new Arco_Caza( 2, "Arco caza", "src/assests/img/objects_img/arco.webp", 140.0, rarezaArmas.comun, tipoArma.arma, 7 ), new Armadura_Cuero( 3, "Armadura cuero", "src/assests/img/objects_img/armadura.webp", 180.0, rarezaArmas.comun, tipoArma.armadura, 6 ), new Pocion_Peque( 4, "Poción pequeña", "src/assests/img/objects_img/pocion_peque.webp", 40.0, rarezaArmas.comun, tipoArma.consumible, 20 ), new Espada_Runica( 5, "Espada rúnica", "src/assests/img/objects_img/espada_runica.webp", 460.0, rarezaArmas.raro, tipoArma.arma, 18 ), new Escudo_Roble( 6, "Escudo roble", "src/assests/img/objects_img/escudo.webp", 320.0, rarezaArmas.raro, tipoArma.armadura, 14 ), new Pocion_Grande( 7, "Poción grande", "src/assests/img/objects_img/pocion_grande.webp", 110.0, rarezaArmas.raro, tipoArma.consumible, 60 ), new Mandoble_Epico( 8, "Mandoble épico", "src/assests/img/objects_img/mandoble.webp", 950.0, rarezaArmas.epico, tipoArma.arma, 32 ), new Placas_Draconicas( 9, "Placas dracónicas", "src/assests/img/objects_img/placas_draconicas.webp", 880.0, rarezaArmas.epico, tipoArma.armadura, 28 ), new Elixir_Legendario( 10, "Elixir legendario", "src/assests/img/objects_img/elixir.webp", 520.0, rarezaArmas.epico, tipoArma.consumible, 150 ), new Manzana( 11, "Manzana", "src/assests/img/objects_img/manzana.webp", 40.0, rarezaArmas.comun, tipoArma.consumible, 10 ), new Casco( 12, "Casco", "src/assests/img/objects_img/casco.webp", 100.0, rarezaArmas.comun, tipoArma.armadura, 10 ), new Hacha( 13, "Hacha", "src/assests/img/objects_img/hacha.webp", 120.0, rarezaArmas.comun, tipoArma.arma, 8 ), new Botas( 14, "Botas", "src/assests/img/objects_img/botas.webp", 80.0, rarezaArmas.comun, tipoArma.armadura, 4 ), ];
 
   const selectProductos = document.querySelector(".tipoProductoNuevo");
   const optionDft = document.createElement("option");
@@ -590,9 +655,6 @@ function crearMercado(productosComprar, jugador) {
     if (jugador.inventario.length > 0) {
       for (let i = 0; i < jugador.inventario.length; i++) {
         if (jugador.inventario[i].id === producto.id) {
-          console.log(
-            `id inventario producto: ${jugador.inventario[i].id} + id producto: ${producto.id}`
-          );
           existe = true;
         }
       }
