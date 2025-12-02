@@ -94,6 +94,8 @@ function seccion0Function(seccion0) {
     ".formulario-registro-jugador"
   );
 
+  let nombreJugadorIngresado;
+
   mostrarFormularioSeccion0("formulario-iniciarSesion-jugador");
 
   formularioJugadorInicio.addEventListener("submit", (e) => {
@@ -106,8 +108,9 @@ function seccion0Function(seccion0) {
     ) {
       mostrarFormularioSeccion0("formulario-registro-jugador");
     } else {
+      nombreJugadorIngresado = nombreJugadorInicio.value;
+      console.log(nombreJugadorIngresado);
       boton.disabled = false;
-      e.currentTarget.reset();
     }
   });
 
@@ -133,16 +136,14 @@ function seccion0Function(seccion0) {
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     mostrarSeccion(seccion1.id);
-    seccion1Function(
-      seccion1,
-      document.querySelector(".nombreJugadorRegistro").value
-    );
+    seccion1Function(seccion1, nombreJugadorIngresado);
   });
 }
 
-function seccion1Function(seccion1, nombreJugadorRegistro) {
+function seccion1Function(seccion1, nombreJugadorIngresado) {
+  console.log(document.querySelector(".nombreJugadorRegistro"));
   const jugador = new Cazador(
-    `${nombreJugadorRegistro}`,
+    `${nombreJugadorIngresado}`,
     30,
     avatarCazador,
     20,

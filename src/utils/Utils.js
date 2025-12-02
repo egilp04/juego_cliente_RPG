@@ -157,3 +157,15 @@ export function comprobarJugador(nombre, clave) {
   }
   return false;
 }
+
+// async function obtenerDatosApi() {
+//   const url = `https://pokeapi.co/api/v2/pokemon/${namePokemon}`;
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) throw new Error(`Response status: ${response.status}`);
+//     const result = await response.json();
+//     infoDatos = result;
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// }
