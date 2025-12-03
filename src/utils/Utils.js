@@ -189,4 +189,9 @@ export function reiniciarJuego() {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
   });
+
+  document.querySelectorAll("form").forEach((form) => {
+    const nuevoForm = form.cloneNode(true);
+    form.replaceWith(nuevoForm);
+  });
 }
