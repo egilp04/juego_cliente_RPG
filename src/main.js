@@ -266,8 +266,12 @@ function seccion2Function(seccion2, jugador) {
         );
         if (productoEncontrado) {
           dineroFinal -= productoEncontrado.precio;
+          ç;
+          botonComprar.setAttribute("class", "retirar");
+          botonComprar.textContent = "retirar";
         }
       });
+      jugador.dinero = dineroFinal;
     } else {
       botonComprar.setAttribute("class", "comprar");
       botonComprar.textContent = "Añadir";
@@ -280,6 +284,7 @@ function seccion2Function(seccion2, jugador) {
         // Añadir al inventario si no está lleno
         if (jugador.inventario.length >= MAX_INVENTARIO) return;
         jugador.addObjInventario(producto);
+        actualizarDinero(jugador, producto.precio, "restar");
         const productoTarjeta = botonComprar.closest(".producto");
         const colorAntiguo = productoTarjeta.style.backgroundColor;
         productoTarjeta.style.backgroundColor = "#edefc9ff";
@@ -295,6 +300,7 @@ function seccion2Function(seccion2, jugador) {
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
+        actualizarDinero(jugador, producto.precio, "sumar");
         botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
         botonComprar.textContent = "😭";
@@ -550,4 +556,12 @@ function rellenarCasillas(jugador) {
       casilla.appendChild(divCasillas);
     }
   });
+}
+
+function actualizarDinero(jugador, precio, operacion) {
+  if (operacion === "sumar") {
+    jugador.dinero -= precio;
+  } else {
+    jugador.dinero += precio;
+  }
 }
