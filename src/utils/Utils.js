@@ -66,9 +66,7 @@ function getCookie(name) {
 
 function castObjt(obj) {}
 
-export function obtenerDatosApi() {
-  
-}
+export function obtenerDatosApi() {}
 
 export function guardarInventario(inventarioJugador) {
   if (inventarioJugador.length > 0) {
@@ -104,10 +102,6 @@ function createNewCookieInventario(name, value, cookieAttributes = {}) {
 function propiedadesSinBarra(data) {
   return data.replace(/\_/gi, "");
 }
-
-export function filtrarNombre() {}
-
-export function filtrarRareza() {}
 
 //Resultados
 export function guardarResultados(resultado) {
@@ -198,4 +192,197 @@ export function reiniciarJuego() {
     const nuevoForm = form.cloneNode(true);
     form.replaceWith(nuevoForm);
   });
+}
+
+export async function obtenerDatosApi() {
+  const url = `http://localhost:3001/productos`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    const result = await response.json();
+    const infoDatos = result.map((item) => {
+      return castProducto(item);
+    });
+    return infoDatos;
+  } catch (error) {
+    console.error(error.message);
+    return error.message;
+  }
+}
+
+export function castProducto(obj) {
+  const { nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
+
+  if (tipo === "arma") {
+    if (nombre === "Espada corta")
+      return new Espada_Corta(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Arco caza")
+      return new Arco_Caza(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Hacha")
+      return new Hacha(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre.includes("Mandoble"))
+      return new Mandoble_Epico(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Espada rúnica")
+      return new Espada_Runica(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+
+  if (tipo === "armadura") {
+    if (nombre === "Armadura cuero")
+      return new Armadura_Cuero(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Escudo roble")
+      return new Escudo_Roble(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre.includes("Placas"))
+      return new Placas_Draconicas(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Casco")
+      return new Casco(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Botas")
+      return new Botas(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+
+  if (tipo === "consumible") {
+    if (nombre === "Poción pequeña")
+      return new Pocion_Peque(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Poción grande")
+      return new Pocion_Grande(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Elixir legendario")
+      return new Elixir_Legendario(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+    if (nombre === "Manzana")
+      return new Manzana(
+        // id,
+        nombre,
+        imagen,
+        precio,
+        rareza,
+        tipo,
+        bonus,
+        descuento
+      );
+  }
+  return new Producto(
+    // id,
+    nombre,
+    imagen,
+    precio,
+    rareza,
+    tipo,
+    bonus,
+    descuento
+  );
 }
