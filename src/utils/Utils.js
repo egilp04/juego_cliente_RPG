@@ -75,6 +75,9 @@ export function batallaAnimacionAleatoria() {
 export function verInventarioAnterior() {
   let cookieInventario = getCookie("jugador-inventario");
   if (!cookieInventario) return null;
+  // console.log(typeof cookieInventario);
+  const inventarioAnterior = JSON.parse(cookieInventario);
+  return inventarioAnterior;
 }
 
 function getCookie(name) {
@@ -90,15 +93,24 @@ function getCookie(name) {
 
 function castObjt(obj) {}
 
-function createNewCookie(name, value, cookieAttributes = {}) {
+export function guardarInventario(inventarioJugador) {
+  if (inventarioJugador.length > 0) {
+    createNewCookieInventario("jugador-inventario", inventarioJugador);
+  }
+}
+
+function createNewCookieInventario(name, value, cookieAttributes = {}) {
   cookieAttributes = {
-    path: "",
+    path: "/",
     ...cookieAttributes,
   };
   if (cookieAttributes.expires instanceof Date) {
     cookieAttributes.expires = cookieAttributes.expires.toUTCString();
   }
-  let newCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  let newCookie =
+    encodeURIComponent(name) +
+    "=" +
+    encodeURIComponent(propiedadesSinBarra(JSON.stringify(value)));
   for (let attributeKey in cookieAttributes) {
     newCookie += "; " + attributeKey;
     let attributeValue = cookieAttributes[attributeKey];
@@ -107,6 +119,10 @@ function createNewCookie(name, value, cookieAttributes = {}) {
     }
   }
   document.cookie = newCookie;
+}
+
+function propiedadesSinBarra(data) {
+  return data.replace(/\_/gi, "");
 }
 
 export function filtrarNombre() {}
