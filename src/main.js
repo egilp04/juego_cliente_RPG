@@ -218,14 +218,15 @@ function seccion2Function(seccion2, jugador) {
     ),
   ];
 
-  listaProductos.forEach((p) => {
+  document.getElementById("title").textContent = "Mercado Negro";
+  const productosComprar = aplicarDescuento(listaProductos);
+  productosComprar.forEach((p) => {
     if (p.rareza === "epico") {
+      console.log(`multiplicador ${p}`);
       p.multiplicador = 2;
     }
   });
 
-  document.getElementById("title").textContent = "Mercado Negro";
-  const productosComprar = aplicarDescuento(listaProductos);
   const jugadorInventario = jugador.inventario;
   let dineroFinal = jugador.dinero;
   if (jugadorInventario.length > 0) {
