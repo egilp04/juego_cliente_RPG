@@ -258,15 +258,16 @@ function seccion2Function(seccion2, jugador) {
     const botonComprar = document.createElement("button");
 
     const jugadorInventario = jugador.inventario;
-    const dineroFinal = jugador.dinero;
+    let dineroFinal = jugador.dinero;
     if (jugadorInventario.length > 0) {
       jugadorInventario.forEach((elemento) => {
-        const productoEncontrado = productosComprar.find(
-          (producto) => producto.nombre == elemento.nombre
+        const productoEncontrado = productosComprar.filter(
+          (producto) => producto.nombre === elemento.nombre
         );
+        console.log(`prodcuto encontrado ${productoEncontrado}`);
         if (productoEncontrado) {
+          console.log(dineroFinal);
           dineroFinal -= productoEncontrado.precio;
-          ç;
           botonComprar.setAttribute("class", "retirar");
           botonComprar.textContent = "retirar";
         }
@@ -318,6 +319,10 @@ function seccion2Function(seccion2, jugador) {
   });
 
   mercadoContainer.scrollTop = 0;
+
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
 
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");

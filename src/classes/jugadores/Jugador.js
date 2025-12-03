@@ -110,7 +110,7 @@ export class Jugador {
   }
 
   set dinero(dinero) {
-    this.dinero = dinero;
+    this._dinero = dinero;
   }
 
   /**
@@ -272,5 +272,10 @@ export class Jugador {
   verificarTamInventario = function () {
     if (!this.inventario || this.inventario.length <= 0) return false;
     else return true;
+  };
+
+  dineroFormateo = function (dinero) {
+    const dinerito = (dinero / 100).toFixed(2).replace(".", ",") + "€";
+    return dinerito;
   };
 }
