@@ -19,20 +19,17 @@ export function combate(enemigo, jugador) {
   console.log(inventario);
   if (inventario.length > 0) {
     inventario.forEach((elemento) => {
-      console.log(elemento.multiplicador);
-      if (elemento.multiplicador) {
-        switch (elemento.tipoArma) {
+      if (elemento.multiplicador > 0) {
+        console.log(elemento.multiplicador);
+        switch (elemento.tipo) {
           case "arma":
             ataqueTotal *= elemento.multiplicador;
-            console.log(`ataque con multiplicados ${ataqueTotal}`);
             break;
           case "armadura":
             defensaTotal *= elemento.multiplicador;
-            console.log(`defensa con multiplicados ${defensaTotal}`);
             break;
           case "consumible":
             vidaTotal *= elemento.multiplicador;
-            console.log(`vida con multiplicados ${vidaTotal}`);
             break;
         }
       }

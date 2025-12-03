@@ -19,6 +19,7 @@ import {
   avatarDragon,
   avatarLobo,
   avatarJefe,
+  puntosBase,
 } from "./constants/Constants.js";
 
 // Funciones de combate y ranking
@@ -78,19 +79,30 @@ function iniciarJuego(e) {
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
   let jugador;
-  const inventarioAnterior = verInventarioAnterior();
-  if (inventarioAnterior != null) {
-    jugador = new Cazador(
-      "Cazador",
-      30,
-      avatarCazador,
-      20,
-      20,
-      inventarioAnterior
-    );
-  } else {
-    jugador = new Cazador("Cazador", 30, avatarCazador, 20, 20);
+  let inventarioAnterior = [];
+  if (verInventarioAnterior()) {
+    inventarioAnterior = verInventarioAnterior();
   }
+  let puntos = puntosBase;
+  let puntosNuevos = verResultadosAnteriores();
+  if (puntosNuevos) {
+    puntosNuevos.forEach((puntoJ) => {
+      if (puntoJ.ganador === "Cazador") {
+        puntos += puntoJ.puntuacion;
+      }
+    });
+  }
+  jugador = new Cazador(
+    "Cazador",
+    30,
+    avatarCazador,
+    20,
+    20,
+    inventarioAnterior,
+    undefined,
+    puntos
+  );
+
   datosJugador(jugador, seccion1.id);
   rellenarCasillas(jugador);
   const boton = seccion1.querySelector(".continuar");
@@ -222,10 +234,12 @@ function seccion2Function(seccion2, jugador) {
   const productosComprar = aplicarDescuento(listaProductos);
   productosComprar.forEach((p) => {
     if (p.rareza === "epico") {
-      console.log(`multiplicador ${p}`);
       p.multiplicador = 2;
     }
   });
+  // productosComprar.forEach((p) => {
+  //   console.table(p);
+  // });
 
   const jugadorInventario = jugador.inventario;
   let dineroFinal = jugador.dinero;
@@ -297,7 +311,6 @@ function crearMercado(jugador, jugadorInventario, productosMercado) {
   const mercadoContainer = document.querySelector(".mercado-container");
   mercadoContainer.scrollTop = 0;
   mercadoContainer.innerHTML = "";
-
   productosMercado.forEach((producto) => {
     const divProducto = document.createElement("div");
     divProducto.setAttribute("class", "producto tarjeta");

@@ -1,11 +1,18 @@
 export class Producto {
-  constructor(nombre, imagen, precio, rareza, tipo, bonus) {
+  constructor(nombre, imagen, precio, rareza, tipo, bonus, multiplicador = 0) {
     this._nombre = nombre;
     this._imagen = imagen;
     this._precio = precio;
     this._rareza = rareza;
     this._tipo = tipo;
     this._bonus = bonus;
+    this._multiplicador = multiplicador;
+  }
+  get multiplicador() {
+    return this._multiplicador;
+  }
+  set multiplicador(multiplicador) {
+    this._multiplicador = multiplicador;
   }
   get nombre() {
     return this._nombre;
@@ -60,7 +67,8 @@ export class Producto {
       this._precio,
       this._rareza,
       this._tipo,
-      this._bonus
+      this._bonus,
+      this._multiplicador
     );
   };
 }
