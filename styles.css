@@ -782,3 +782,49 @@ img.img-inventario:hover {
     font-size: var(--font-size-100);
   }
 }
+#seccion-7 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-30);
+  align-items: center;
+  width: 100%;
+}
+
+table {
+  background-color: var(--color-ligth1);
+  flex-direction: column;
+  display: flex;
+  font-size: var(--font-size-20);
+  height: 70%;
+  overflow: auto;
+}
+
+tbody {
+  gap: var(--gap-10);
+  flex-direction: column;
+  display: flex;
+}
+
+thead {
+  display: flex;
+  padding: var(--padding-10);
+  gap: var(--gap-10);
+}
+
+tr {
+  justify-content: space-between;
+  display: flex;
+  padding: var(--padding-10);
+}
+
+.resultados-anteriores-puntuacion {
+  margin-right: var(--margin-60);
+}
+
+table::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: var(--border-12);
+}
+table::-webkit-scrollbar {
+  width: 6px;
+}

@@ -133,8 +133,21 @@ export function filtrarNombre() {}
 
 export function filtrarRareza() {}
 
+//Resultados
 export function guardarResultados(resultado) {
   updateCookie("jugador-resultados-anteriores", resultado);
+  createStorageResultados("jugador-resultados-anteriores", resultado);
+}
+function createStorageResultados(name, resultado) {
+  let datosNuevos = [];
+  const datosAnteriores = localStorage.getItem("jugador-resultados-anteriores");
+  console.log(datosAnteriores);
+  if (datosAnteriores) {
+    datosNuevos = JSON.parse(datosAnteriores);
+    console.log(datosNuevos);
+  }
+  datosNuevos.push(resultado);
+  localStorage.setItem(name, JSON.stringify(datosNuevos));
 }
 
 export function verResultadosAnteriores() {

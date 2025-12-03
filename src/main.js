@@ -542,9 +542,12 @@ function seccion7Function(seccion7) {
     const pMensajeNoData = document.createElement("p");
     pMensajeNoData.textContent = "No hay partidas anteriores";
     seccion7.appendChild(pMensajeNoData);
+    setTimeout(() => {
+      pMensajeNoData.remove();
+    }, 2000);
   } else {
     const cabeceraTabla = document.createElement("thead");
-    const datosCabecera = ["Ganador", "Puntuacion"];
+    const datosCabecera = ["Ganador", "Puntuacion Jugador"];
 
     for (let i = 0; i < datosCabecera.length; i++) {
       const header = document.createElement("th");
@@ -552,7 +555,22 @@ function seccion7Function(seccion7) {
       cabeceraTabla.appendChild(header);
     }
     tablaPuntuaciones.appendChild(cabeceraTabla);
-    resultadosAnterioresCookie.forEach((resultado) => {});
+    const tablaBody = document.createElement("tbody");
+
+    resultadosAnterioresCookie.forEach((resultado) => {
+      const fila = document.createElement("tr");
+      const datosResultado = [resultado.ganador, resultado.puntuacion];
+      datosResultado.forEach((dt, i) => {
+        const columna = document.createElement("td");
+        columna.textContent = dt;
+        if (i == 1)
+          columna.setAttribute("class", "resultados-anteriores-puntuacion");
+        fila.appendChild(columna);
+      });
+      tablaBody.appendChild(fila);
+    });
+
+    tablaPuntuaciones.appendChild(tablaBody);
   }
 
   boton.addEventListener("click", (e) => {
