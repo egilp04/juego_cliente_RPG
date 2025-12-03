@@ -71,3 +71,28 @@ export function batallaAnimacionAleatoria() {
   jugadorImg.classList.add("appear");
   enemigoImg.classList.add("appear");
 }
+
+export function verInventarioAnterior() {
+  let cookieInventario = getCookie("jugador-inventario");
+  if (!cookieInventario) return null;
+  
+}
+
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function castObjt(obj) {
+
+}
+
+export function filtrarNombre() {}
+
+export function filtrarRareza() {}

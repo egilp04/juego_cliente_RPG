@@ -32,6 +32,9 @@ import {
   encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
+  verInventarioAnterior,
+  filtrarNombre,
+  filtrarRareza,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -75,6 +78,7 @@ function iniciarJuego(e) {
 
 // SECCIÓN 1: Datos del jugador
 function seccion1Function(seccion1) {
+  const inventarioAnterior = verInventarioAnterior();
   const jugador = new Cazador("Cazador", 30, avatarCazador, 20, 20);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
