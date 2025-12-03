@@ -256,8 +256,23 @@ function seccion2Function(seccion2, jugador) {
     divDataProducto.appendChild(spanPrecioProducto);
 
     const botonComprar = document.createElement("button");
-    botonComprar.setAttribute("class", "comprar");
-    botonComprar.textContent = "Añadir";
+
+    const jugadorInventario = jugador.inventario;
+    const dineroFinal = jugador.dinero;
+    if (jugadorInventario.length > 0) {
+      jugadorInventario.forEach((elemento) => {
+        const productoEncontrado = productosComprar.find(
+          (producto) => producto.nombre == elemento.nombre
+        );
+        if (productoEncontrado) {
+          dineroFinal -= productoEncontrado.precio;
+        }
+      });
+    } else {
+      botonComprar.setAttribute("class", "comprar");
+      botonComprar.textContent = "Añadir";
+    }
+
     botonComprar.addEventListener("click", (e) => {
       const MAX_INVENTARIO = 6;
 

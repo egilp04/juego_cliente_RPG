@@ -47,34 +47,34 @@ export const puntosBase = 100;
  * Ruta del avatar del Cazador (jugador principal)
  * @type {string}
  */
-export const avatarCazador = "src/assests/img/character_img/cazador.webp";
+export const avatarCazador = "src/assests/img/characterimg/cazador.webp";
 
 /**
  * Ruta del avatar del Goblin (enemigo)
  * @type {string}
  */
-export const avatarGoblin = "src/assests/img/enemies_img/goblin.webp";
+export const avatarGoblin = "src/assests/img/enemiesimg/goblin.webp";
 
 /**
  * Ruta del avatar del Lobo (enemigo)
  * @type {string}
  */
-export const avatarLobo = "src/assests/img/enemies_img/lobo.webp";
+export const avatarLobo = "src/assests/img/enemiesimg/lobo.webp";
 
 /**
  * Ruta del avatar del Bandido (enemigo)
  * @type {string}
  */
-export const avatarBandido = "src/assests/img/enemies_img/bandido.webp";
+export const avatarBandido = "src/assests/img/enemiesimg/bandido.webp";
 
 /**
  * Ruta del avatar del Dragón (enemigo)
  * @type {string}
  */
-export const avatarDragon = "src/assests/img/enemies_img/dragon.webp";
+export const avatarDragon = "src/assests/img/enemiesimg/dragon.webp";
 
 /**
  * Ruta del avatar del Jefe (enemigo)
  * @type {string}
  */
-export const avatarJefe = "src/assests/img/enemies_img/jefe.webp";
+export const avatarJefe = "src/assests/img/enemiesimg/jefe.webp";
