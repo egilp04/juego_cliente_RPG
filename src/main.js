@@ -559,9 +559,10 @@ function rellenarCasillas(jugador) {
 }
 
 function actualizarDinero(jugador, precio, operacion) {
-  if (operacion === "sumar") {
-    jugador.dinero -= precio;
-  } else {
-    jugador.dinero += precio;
-  }
+  const dineroAntiguo = jugador.dinero;
+  if (operacion == "sumar") jugador.dinero = dineroAntiguo + precio;
+  else if (operacion == "restar") jugador.dinero = dineroAntiguo - precio;
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
 }
