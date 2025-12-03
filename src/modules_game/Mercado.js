@@ -34,10 +34,11 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
   if (nombreProducto === "") return listaProductosFinales;
-  return listaProductosFinales.filter(
-    (producto) =>
-      nombreProducto.toLocaleLowerCase() === producto.nombre.toLocaleLowerCase()
-  );
+  return listaProductosFinales.filter((producto) => {
+    const completo = producto.nombre.toLowerCase();
+    const primeraPalabra = producto.nombre.split(" ")[0].toLowerCase();
+    return nombreProducto === completo || nombreProducto === primeraPalabra;
+  });
 }
 
 /**
