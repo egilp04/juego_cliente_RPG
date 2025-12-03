@@ -231,6 +231,8 @@ export class Jugador {
    * @returns {number} Ataque total
    */
   obtenerAtaqueTotal = function () {
+    console.log(this);
+    console.log(this._inventario);
     const bonusAtaque = this._inventario
       .filter((producto) => producto.tipo === "arma")
       .reduce((total, producto) => total + producto.bonus, 0);

@@ -198,14 +198,17 @@ function seccion0Function(seccion0) {
 }
 
 function seccion1Function(seccion1, nombreJugadorIngresado) {
-  const datos = obtenerInventarioGuardado(nombreJugadorIngresado);
-  let inventario = [];
-  if (datos) {
-    for (let dato of datos) {
-      console.log(dato);
-      inventario.push(castProducto(dato));
-    }
-  }
+  let datos = obtenerInventarioGuardado(nombreJugadorIngresado);
+  if (datos == null) datos = [];
+  // console.log(typeof datos);
+  // let inventario = [];
+  // if (datos) {
+  //   for (let dato of datos) {
+  //     console.log(dato);
+  //     inventario.push(castProducto(dato));
+  //   }
+  // }
+
   let puntos = 100;
   if (getCookie(`${nombreJugadorIngresado}-resultados`)) {
     const puntosAnterioresCookie = JSON.parse(
@@ -220,28 +223,17 @@ function seccion1Function(seccion1, nombreJugadorIngresado) {
   }
 
   let jugador;
-  if (inventario.length > 0) {
-    jugador = new Cazador(
-      `${nombreJugadorIngresado}`,
-      30,
-      avatarCazador,
-      20,
-      20,
-      1000,
-      inventario,
-      puntos
-    );
-  } else {
-    jugador = new Cazador(
-      `${nombreJugadorIngresado}`,
-      30,
-      avatarCazador,
-      20,
-      20,
-      1000,
-      puntos
-    );
-  }
+  jugador = new Cazador(
+    `${nombreJugadorIngresado}`,
+    30,
+    avatarCazador,
+    20,
+    20,
+    1000,
+    datos,
+    puntos
+  );
+
   datosJugador(jugador, seccion1.id);
   rellenarCasillas(jugador);
 
@@ -843,7 +835,6 @@ function obtenerInventarioGuardado(nombreJugador) {
   if (productos.length > 0) return productos;
   else return null;
 }
-
 
 function guardarDatosPartida(puntuacion, nombreJugador, nombreGanador) {
   const data = `${nombreGanador}-${puntuacion}`;
