@@ -211,7 +211,6 @@ export async function obtenerDatosApi() {
 }
 function castProducto(obj) {
   const { nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
-
   if (tipo === "arma") {
     if (nombre === "Espada corta")
       return new Espada_Corta(
@@ -269,7 +268,6 @@ function castProducto(obj) {
         descuento
       );
   }
-
   if (tipo === "armadura") {
     if (nombre === "Armadura cuero")
       return new Armadura_Cuero(
@@ -327,7 +325,6 @@ function castProducto(obj) {
         descuento
       );
   }
-
   if (tipo === "consumible") {
     if (nombre === "Poción pequeña")
       return new Pocion_Peque(
