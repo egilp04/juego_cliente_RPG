@@ -231,13 +231,11 @@ export class Jugador {
    * @returns {number} Ataque total
    */
   obtenerAtaqueTotal = function () {
-    console.log(this);
-    console.log(this._inventario);
     const bonusAtaque = this._inventario
       .filter((producto) => producto.tipo === "arma")
       .reduce((total, producto) => total + producto.bonus, 0);
-    this._ataque += bonusAtaque;
-    return this._ataque;
+    let ataqueCambiado = this._ataque + bonusAtaque;
+    return ataqueCambiado;
   };
 
   /**
@@ -248,8 +246,8 @@ export class Jugador {
     const bonusDefensa = this._inventario
       .filter((producto) => producto.tipo === "armadura")
       .reduce((total, producto) => total + producto.bonus, 0);
-    this._defensa += bonusDefensa;
-    return this._defensa;
+    let defensaCambiada = this._defensa + bonusDefensa;
+    return defensaCambiada;
   };
 
   /**
@@ -261,10 +259,11 @@ export class Jugador {
     const bonusHp = this._inventario
       .filter((producto) => producto.tipo === "consumible")
       .reduce((total, producto) => total + producto.bonus, 0);
-    this._hp = Math.min(this._hp + bonusHp, this._vidaMaxima);
-    return this._hp;
+    let vidaCambiada = Math.min(this._hp + bonusHp, this._vidaMaxima);
+    return vidaCambiada;
   };
 
+  
   /**
    * Verifica si el inventario tiene objetos
    * @returns {boolean} true si hay objetos, false si está vacío
