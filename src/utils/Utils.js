@@ -423,7 +423,7 @@ export function createNewCookie(name, value, days = 20, cookieAttributes = {}) {
   expires = " " + date.toUTCString();
 
   cookieAttributes = {
-    path: "ruta que se quiera meter en la cookie",
+    path: "/",
     ...cookieAttributes,
   };
   if (cookieAttributes.expires instanceof Date) {
