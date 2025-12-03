@@ -20,34 +20,6 @@ export function encontrarProducto(listaProducto, indiceProducto) {
   return listaProducto[indiceProducto];
 }
 
-/**
- * Reiniciar todos los elementos de la UI
- */
-export function reiniciarJuego() {
-  const casillas = Array.from(document.querySelectorAll(".casilla"));
-  casillas.forEach((casilla) => {
-    casilla.innerHTML = "";
-  });
-
-  const mercado = document.querySelector(".mercado-container");
-  if (mercado) {
-    mercado.innerHTML = "";
-    mercado.scrollTop = 0;
-  }
-
-  const divEnemigosContainer = document.querySelector(".enemigos-container");
-  if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
-
-  const resumenBatallas = document.querySelector(".resumen-batallas");
-  if (resumenBatallas) resumenBatallas.innerHTML = "";
-
-  //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
-  document.querySelectorAll("button").forEach((btn) => {
-    const nuevo = btn.cloneNode(true);
-    btn.replaceWith(nuevo);
-  });
-}
-
 export function batallaAnimacionAleatoria() {
   const divJugadorAnimacion = document.querySelector(
     ".jugador-imagen-container"
@@ -186,4 +158,35 @@ function createNewCookie(name, value, cookieAttributes = {}) {
     }
   }
   document.cookie = newCookie;
+}
+
+/**
+ * Reiniciar todos los elementos de la UI
+ */
+export function reiniciarJuego() {
+  const casillas = Array.from(document.querySelectorAll(".casilla"));
+  casillas.forEach((casilla) => {
+    casilla.innerHTML = "";
+  });
+
+  const mercado = document.querySelector(".mercado-container");
+  if (mercado) {
+    mercado.innerHTML = "";
+    mercado.scrollTop = 0;
+  }
+
+  const selectRareza = document.querySelector(".rareza-buscar");
+  selectRareza.innerHTML = "";
+
+  const divEnemigosContainer = document.querySelector(".enemigos-container");
+  if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
+
+  const resumenBatallas = document.querySelector(".resumen-batallas");
+  if (resumenBatallas) resumenBatallas.innerHTML = "";
+
+  //Quitar listeners antiguos, sino se duplican y atienden a los elementos antiguos y nuevos
+  document.querySelectorAll("button").forEach((btn) => {
+    const nuevo = btn.cloneNode(true);
+    btn.replaceWith(nuevo);
+  });
 }

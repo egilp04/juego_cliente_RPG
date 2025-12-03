@@ -15,6 +15,26 @@ export function combate(enemigo, jugador) {
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
   const ataqueEnemigo = enemigo.ataque;
+  const inventario = jugador.inventario;
+  inventario.forEach((elemento) => {
+    if (elemento.multiplicador) {
+      switch (elemento.tipoArma) {
+        case "arma":
+          ataqueTotal * elemento.multiplicador;
+          console.log(`ataque con multiplicados ${ataqueTotal}`);
+          break;
+        case "armadura":
+          defensaTotal * elemento.multiplicador;
+          console.log(`defensa con multiplicados ${defensaTotal}`);
+          break;
+        case "consumible":
+          vidaTotal * elemento.multiplicador;
+          console.log(`vida con multiplicados ${vidaTotal}`);
+          break;
+      }
+    }
+  });
+
   let vidaJugador = vidaTotal + defensaTotal;
   let vidaEnemigo = enemigo.hp;
   do {

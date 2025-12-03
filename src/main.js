@@ -218,6 +218,12 @@ function seccion2Function(seccion2, jugador) {
     ),
   ];
 
+  listaProductos.forEach((p) => {
+    if (p.rareza === "epico") {
+      p.multiplicador = 2;
+    }
+  });
+
   document.getElementById("title").textContent = "Mercado Negro";
   const productosComprar = aplicarDescuento(listaProductos);
   const jugadorInventario = jugador.inventario;
@@ -245,6 +251,11 @@ function seccion2Function(seccion2, jugador) {
   for (const rarezaKye in rarezaArmas) {
     rarezas.push(rarezaKye);
   }
+
+  const opcionDefault = document.createElement("option");
+  opcionDefault.setAttribute("value", "");
+  opcionDefault.textContent = `Seleccione una opcion`;
+  selectRareza.appendChild(opcionDefault);
   rarezas.forEach((rareza) => {
     const opcion = document.createElement("option");
     opcion.setAttribute("value", rareza);
@@ -341,7 +352,11 @@ function crearMercado(jugador, jugadorInventario, productosMercado) {
 
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
-        if (jugador.inventario.length >= MAX_INVENTARIO) return;
+        if (
+          jugador.inventario.length >= MAX_INVENTARIO ||
+          jugador.dinero - producto.precio < 0
+        )
+          return;
         jugador.addObjInventario(producto);
         actualizarDinero(jugador, producto.precio, "restar");
         const productoTarjeta = botonComprar.closest(".producto");
