@@ -209,8 +209,7 @@ export async function obtenerDatosApi() {
     return error.message;
   }
 }
-
-export function castProducto(obj) {
+function castProducto(obj) {
   const { nombre, imagen, precio, rareza, tipo, bonus, descuento } = obj;
 
   if (tipo === "arma") {
