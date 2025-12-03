@@ -178,6 +178,7 @@ export function comprobarJugador(nombre, clave) {
 
 export async function obtenerDatosApi() {
   const url = `http://localhost:3001/productos`;
+  // "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1328 offset inicio, limit: todo - tamaño maximo"
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
@@ -188,7 +189,7 @@ export async function obtenerDatosApi() {
     return infoDatos;
   } catch (error) {
     console.error(error.message);
-    return error.message;
+    return null;
   }
 }
 
