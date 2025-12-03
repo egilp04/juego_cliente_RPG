@@ -58,6 +58,9 @@ export function reiniciarJuego() {
     mercado.scrollTop = 0;
   }
 
+  const selectProductos = document.querySelector(".tipoProductoNuevo");
+  selectProductos.innerHTML = "";
+
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
 
