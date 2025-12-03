@@ -11,7 +11,6 @@ import {
   Jefe,
 } from "./classes/indexEnemigos.js";
 import { Enemigo } from "./classes/enemigos/Enemigo.js";
-import { Producto } from "././classes/productos/Producto.js";
 // Avatares de los personajes
 import {
   avatarCazador,
@@ -29,13 +28,12 @@ import { distinguirJugador } from "./modules_game/Ranking.js";
 // Utilidades para UI y manipulación DOM
 import {
   mostrarSeccion,
-  encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
   verInventarioAnterior,
-  filtrarNombre,
-  filtrarRareza,
   guardarInventario,
+  guardarResultados,
+  verResultadosAnteriores,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -492,10 +490,13 @@ function seccion5Function(seccion5, jugador, enemigos) {
 }
 
 function seccion6Function(seccion6, puntuacion, ganador) {
+  addInfoResultado(ganador, puntuacion);
+
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
-  const boton = seccion6.querySelector(".reiniciar");
+
+  const boton = seccion6.querySelector(".continuar");
   boton.disabled = true;
 
   if (ganador instanceof Enemigo) {
@@ -522,6 +523,38 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   setTimeout(() => {
     boton.disabled = false;
   }, 3000);
+  boton.addEventListener("click", (e) => {
+    const seccion7 = document.getElementById("seccion-7");
+    mostrarSeccion(seccion7.id);
+    seccion7Function(seccion7);
+  });
+}
+
+function seccion7Function(seccion7) {
+  const resultadosAnterioresCookie = verResultadosAnteriores();
+
+  const boton = seccion7.querySelector(".reiniciar");
+
+  const tablaPuntuaciones = document.querySelector(".puntuaciones-anteriores");
+  tablaPuntuaciones.innerHTML = "";
+
+  if (resultadosAnterioresCookie == null) {
+    const pMensajeNoData = document.createElement("p");
+    pMensajeNoData.textContent = "No hay partidas anteriores";
+    
+  } else {
+    const cabeceraTabla = document.createElement("thead");
+    const datosCabecera = ["Ganador", "Puntuacion"];
+
+    for (let i = 0; i < datosCabecera.length; i++) {
+      const header = document.createElement("th");
+      header.textContent = `${datosCabecera[i]}`;
+      cabeceraTabla.appendChild(header);
+    }
+    tablaPuntuaciones.appendChild(cabeceraTabla);
+    resultadosAnterioresCookie.forEach((resultado) => {});
+  }
+
   boton.addEventListener("click", (e) => {
     const seccion1 = document.getElementById("seccion-1");
     reiniciarJuego();
@@ -583,4 +616,9 @@ function actualizarDinero(jugador, precio, operacion) {
   document.querySelector(
     ".dinero-comprar"
   ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
+}
+
+function addInfoResultado(ganador, puntuacion) {
+  const resultado = { ganador: ganador.nombre, puntuacion: puntuacion };
+  const cookieResultados = guardarResultados(resultado);
 }

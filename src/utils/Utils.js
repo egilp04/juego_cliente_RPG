@@ -11,7 +11,8 @@ export function mostrarSeccion(id) {
 
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
+  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-7")
+    footer.style.display = "none";
   else footer.style.display = "";
 }
 
@@ -91,9 +92,7 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function castObjt(obj) {
-  
-}
+function castObjt(obj) {}
 
 export function guardarInventario(inventarioJugador) {
   if (inventarioJugador.length > 0) {
@@ -101,10 +100,10 @@ export function guardarInventario(inventarioJugador) {
     createStorageInventario("jugador-inventario", inventarioJugador);
   }
 }
+
 function createStorageInventario(name, value) {
   localStorage.setItem(name, propiedadesSinBarra(JSON.stringify(value)));
 }
-
 function createNewCookieInventario(name, value, cookieAttributes = {}) {
   cookieAttributes = {
     path: "/",
@@ -126,7 +125,6 @@ function createNewCookieInventario(name, value, cookieAttributes = {}) {
   }
   document.cookie = newCookie;
 }
-
 function propiedadesSinBarra(data) {
   return data.replace(/\_/gi, "");
 }
@@ -134,3 +132,48 @@ function propiedadesSinBarra(data) {
 export function filtrarNombre() {}
 
 export function filtrarRareza() {}
+
+export function guardarResultados(resultado) {
+  updateCookie("jugador-resultados-anteriores", resultado);
+}
+
+export function verResultadosAnteriores() {
+  const cookie = getCookie("jugador-resultados-anteriores");
+  if (!cookie) return null;
+  return JSON.parse(cookie);
+}
+
+function updateCookie(name, newData, jsonAttributes = {}) {
+  let newDataObj = [newData];
+  console.log(`Dato nuevo ${newDataObj}`);
+  let oldCookieData = [];
+  let currentCookieData = getCookie(name);
+  if (!currentCookieData) {
+    createNewCookie(name, newDataObj);
+    console.log("nueva cookie creda");
+  } else {
+    oldCookieData = JSON.parse(currentCookieData);
+    const updatedObj = [...oldCookieData, ...newDataObj];
+    createNewCookie(name, updatedObj);
+  }
+}
+
+function createNewCookie(name, value, cookieAttributes = {}) {
+  cookieAttributes = {
+    path: "/",
+    ...cookieAttributes,
+  };
+  if (cookieAttributes.expires instanceof Date) {
+    cookieAttributes.expires = cookieAttributes.expires.toUTCString();
+  }
+  let newCookie =
+    encodeURIComponent(name) + "=" + encodeURIComponent(JSON.stringify(value));
+  for (let attributeKey in cookieAttributes) {
+    newCookie += "; " + attributeKey;
+    let attributeValue = cookieAttributes[attributeKey];
+    if (attributeValue !== true) {
+      newCookie += "=" + attributeValue;
+    }
+  }
+  document.cookie = newCookie;
+}
