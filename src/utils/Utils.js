@@ -66,6 +66,10 @@ function getCookie(name) {
 
 function castObjt(obj) {}
 
+export function obtenerDatosApi() {
+  
+}
+
 export function guardarInventario(inventarioJugador) {
   if (inventarioJugador.length > 0) {
     createNewCookieInventario("jugador-inventario", inventarioJugador);
