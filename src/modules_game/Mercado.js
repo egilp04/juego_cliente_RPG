@@ -35,7 +35,8 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
   if (nombreProducto === "") return listaProductosFinales;
   return listaProductosFinales.filter(
-    (producto) => nombreProducto === producto.nombre
+    (producto) =>
+      nombreProducto.toLocaleLowerCase() === producto.nombre.toLocaleLowerCase()
   );
 }
 
