@@ -25,18 +25,20 @@ export class Jugador {
     avatar,
     ataque,
     defensa,
+    inventario,
+    dinero,
     puntos,
-    vidaMaxima,
-    inventario
+    vidaMaxima
   ) {
     this._nombre = nombre;
     this._hp = hp;
     this._avatar = avatar;
     this._ataque = ataque;
     this._defensa = defensa;
+    this._inventario = inventario;
+    this._dinero = dinero;
     this._puntos = puntos;
     this._vidaMaxima = vidaMaxima;
-    this._inventario = inventario;
   }
 
   /**
@@ -102,6 +104,15 @@ export class Jugador {
   get defensa() {
     return this._defensa;
   }
+
+  get dinero() {
+    return this._dinero;
+  }
+
+  set dinero(dinero) {
+    this.dinero = dinero;
+  }
+
   /**
    * Establece el nombre del jugador.
    * @param {string} nombre - Nuevo nombre
