@@ -91,12 +91,18 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function castObjt(obj) {}
+function castObjt(obj) {
+  
+}
 
 export function guardarInventario(inventarioJugador) {
   if (inventarioJugador.length > 0) {
     createNewCookieInventario("jugador-inventario", inventarioJugador);
+    createStorageInventario("jugador-inventario", inventarioJugador);
   }
+}
+function createStorageInventario(name, value) {
+  localStorage.setItem(name, propiedadesSinBarra(JSON.stringify(value)));
 }
 
 function createNewCookieInventario(name, value, cookieAttributes = {}) {

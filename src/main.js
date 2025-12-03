@@ -224,6 +224,21 @@ function seccion2Function(seccion2, jugador) {
   const mercadoContainer = document.querySelector(".mercado-container");
   const productosComprar = aplicarDescuento(listaProductos);
 
+  const jugadorInventario = jugador.inventario;
+  let dineroFinal = jugador.dinero;
+  if (jugadorInventario.length > 0) {
+    jugadorInventario.forEach((elemento) => {
+      const productoEncontrado = productosComprar.find(
+        (producto) => producto.nombre === elemento.nombre
+      );
+      if (productoEncontrado) {
+        console.log(dineroFinal);
+        dineroFinal -= productoEncontrado.precio;
+      }
+    });
+    jugador.dinero = dineroFinal;
+  }
+
   productosComprar.forEach((producto) => {
     const divProducto = document.createElement("div");
     const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
@@ -257,22 +272,20 @@ function seccion2Function(seccion2, jugador) {
 
     const botonComprar = document.createElement("button");
 
-    const jugadorInventario = jugador.inventario;
-    let dineroFinal = jugador.dinero;
     if (jugadorInventario.length > 0) {
+      let encontrado = false;
       jugadorInventario.forEach((elemento) => {
-        const productoEncontrado = productosComprar.filter(
-          (producto) => producto.nombre === elemento.nombre
-        );
-        console.log(`prodcuto encontrado ${productoEncontrado}`);
-        if (productoEncontrado) {
-          console.log(dineroFinal);
-          dineroFinal -= productoEncontrado.precio;
-          botonComprar.setAttribute("class", "retirar");
-          botonComprar.textContent = "retirar";
+        if (elemento.nombre === producto.nombre) {
+          encontrado = true;
         }
       });
-      jugador.dinero = dineroFinal;
+      if (encontrado) {
+        botonComprar.setAttribute("class", "retirar");
+        botonComprar.textContent = "retirar";
+      } else {
+        botonComprar.setAttribute("class", "comprar");
+        botonComprar.textContent = "Añadir";
+      }
     } else {
       botonComprar.setAttribute("class", "comprar");
       botonComprar.textContent = "Añadir";
