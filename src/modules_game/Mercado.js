@@ -1,20 +1,9 @@
 import { rarezaArmas, tipoArma } from "../constants/Constants.js";
 
-
 // ====================
 // Lista inicial de productos del juego
 // ====================
 
-/**
- * Filtra productos por rareza
- * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
- * @returns {Producto[]} Lista de productos que coinciden con la rareza
- */
-export function filtrarProductosRareza(tipoRareza, listaProductosFinales) {
-  return listaProductosFinales.filter(
-    (producto) => tipoRareza === producto.rareza
-  );
-}
 /**
  * Aplica un descuento a los productos de la rareza indicada
  * @param {string} tipoRareza - Rareza a la que aplicar el descuento (por defecto "raro")
@@ -44,7 +33,20 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
  * @returns {Producto[]} Lista de productos que coinciden con el nombre
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
+  if (nombreProducto === "") return listaProductosFinales;
   return listaProductosFinales.filter(
     (producto) => nombreProducto === producto.nombre
+  );
+}
+
+/**
+ * Filtra productos por rareza
+ * @param {string} tipoRareza - Rareza a filtrar (ej. "comun", "raro", "epico")
+ * @returns {Producto[]} Lista de productos que coinciden con la rareza
+ */
+export function filtrarProductosRareza(tipoRareza, listaProductosFinales) {
+  if (tipoRareza === "") return listaProductosFinales;
+  return listaProductosFinales.filter(
+    (producto) => tipoRareza === producto.rareza
   );
 }

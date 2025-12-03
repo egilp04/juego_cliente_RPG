@@ -140,12 +140,11 @@ export function guardarResultados(resultado) {
 }
 function createStorageResultados(name, resultado) {
   let datosNuevos = [];
-  const datosAnteriores = localStorage.getItem("jugador-resultados-anteriores");
-  console.log(datosAnteriores);
+  const datosAnteriores = localStorage.getItem(name);
   if (datosAnteriores) {
     datosNuevos = JSON.parse(datosAnteriores);
-    console.log(datosNuevos);
   }
+  //el push no se puede meter dentro, siempre devuelve la length del array
   datosNuevos.push(resultado);
   localStorage.setItem(name, JSON.stringify(datosNuevos));
 }
@@ -158,12 +157,10 @@ export function verResultadosAnteriores() {
 
 function updateCookie(name, newData, jsonAttributes = {}) {
   let newDataObj = [newData];
-  console.log(`Dato nuevo ${newDataObj}`);
   let oldCookieData = [];
   let currentCookieData = getCookie(name);
   if (!currentCookieData) {
     createNewCookie(name, newDataObj);
-    console.log("nueva cookie creda");
   } else {
     oldCookieData = JSON.parse(currentCookieData);
     const updatedObj = [...oldCookieData, ...newDataObj];

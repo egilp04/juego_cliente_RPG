@@ -219,9 +219,7 @@ function seccion2Function(seccion2, jugador) {
   ];
 
   document.getElementById("title").textContent = "Mercado Negro";
-  const mercadoContainer = document.querySelector(".mercado-container");
   const productosComprar = aplicarDescuento(listaProductos);
-
   const jugadorInventario = jugador.inventario;
   let dineroFinal = jugador.dinero;
   if (jugadorInventario.length > 0) {
@@ -230,18 +228,67 @@ function seccion2Function(seccion2, jugador) {
         (producto) => producto.nombre === elemento.nombre
       );
       if (productoEncontrado) {
-        console.log(dineroFinal);
         dineroFinal -= productoEncontrado.precio;
       }
     });
     jugador.dinero = dineroFinal;
   }
 
-  productosComprar.forEach((producto) => {
+  crearMercado(jugador, jugadorInventario, productosComprar);
+  document.querySelector(
+    ".dinero-comprar"
+  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
+
+  const formularioRareza = document.querySelector(".formulario-rareza");
+  const selectRareza = document.querySelector(".rareza-buscar");
+  let rarezas = [];
+  for (const rarezaKye in rarezaArmas) {
+    rarezas.push(rarezaKye);
+  }
+  rarezas.forEach((rareza) => {
+    const opcion = document.createElement("option");
+    opcion.setAttribute("value", rareza);
+    opcion.textContent = `${rareza}`;
+    selectRareza.appendChild(opcion);
+  });
+
+  formularioRareza.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let productosFiltradosRareza = filtrarProductosRareza(
+      selectRareza.value,
+      productosComprar
+    );
+    crearMercado(jugador, jugadorInventario, productosFiltradosRareza);
+  });
+
+  const formularioNombre = document.querySelector(".formulario-nombre");
+  formularioNombre.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombreProducto = document.querySelector(".nombreProducto");
+    let productosFiltradosNombre = buscarProductoNombre(
+      nombreProducto.value,
+      productosComprar
+    );
+    crearMercado(jugador, jugadorInventario, productosFiltradosNombre);
+  });
+
+  // Continuar a sección 3
+  const boton = seccion2.querySelector(".continuar");
+  boton.addEventListener("click", (e) => {
+    const seccion3 = document.getElementById("seccion-3");
+    mostrarSeccion(seccion3.id);
+    seccion3Function(seccion3, jugador);
+  });
+}
+
+function crearMercado(jugador, jugadorInventario, productosMercado) {
+  const mercadoContainer = document.querySelector(".mercado-container");
+  mercadoContainer.scrollTop = 0;
+  mercadoContainer.innerHTML = "";
+
+  productosMercado.forEach((producto) => {
     const divProducto = document.createElement("div");
-    const idProducto = producto.nombre.replace(/\s+/g, "_").toLowerCase();
     divProducto.setAttribute("class", "producto tarjeta");
-    divProducto.setAttribute("id", `${idProducto}`);
 
     // Imagen del producto
     const divImgProducto = document.createElement("div");
@@ -322,27 +369,13 @@ function seccion2Function(seccion2, jugador) {
       }
       rellenarCasillas(jugador);
     });
-
     divProducto.appendChild(divImgProducto);
     divProducto.appendChild(divDataProducto);
     divProducto.appendChild(botonComprar);
     mercadoContainer.appendChild(divProducto);
   });
-
-  mercadoContainer.scrollTop = 0;
-
-  document.querySelector(
-    ".dinero-comprar"
-  ).textContent = `${jugador.dineroFormateo(jugador.dinero)}`;
-
-  // Continuar a sección 3
-  const boton = seccion2.querySelector(".continuar");
-  boton.addEventListener("click", (e) => {
-    const seccion3 = document.getElementById("seccion-3");
-    mostrarSeccion(seccion3.id);
-    seccion3Function(seccion3, jugador);
-  });
 }
+
 /**
  * Determina qué estadística aporta un producto según su tipo
  * @param {string} tipoArma - Tipo del producto (arma, armadura, consumible)
