@@ -541,7 +541,7 @@ function seccion7Function(seccion7) {
   if (resultadosAnterioresCookie == null) {
     const pMensajeNoData = document.createElement("p");
     pMensajeNoData.textContent = "No hay partidas anteriores";
-    
+    seccion7.appendChild(pMensajeNoData);
   } else {
     const cabeceraTabla = document.createElement("thead");
     const datosCabecera = ["Ganador", "Puntuacion"];
