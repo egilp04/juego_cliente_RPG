@@ -75,7 +75,6 @@ export function batallaAnimacionAleatoria() {
 export function verInventarioAnterior() {
   let cookieInventario = getCookie("jugador-inventario");
   if (!cookieInventario) return null;
-  
 }
 
 function getCookie(name) {
@@ -89,8 +88,25 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function castObjt(obj) {
+function castObjt(obj) {}
 
+function createNewCookie(name, value, cookieAttributes = {}) {
+  cookieAttributes = {
+    path: "",
+    ...cookieAttributes,
+  };
+  if (cookieAttributes.expires instanceof Date) {
+    cookieAttributes.expires = cookieAttributes.expires.toUTCString();
+  }
+  let newCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  for (let attributeKey in cookieAttributes) {
+    newCookie += "; " + attributeKey;
+    let attributeValue = cookieAttributes[attributeKey];
+    if (attributeValue !== true) {
+      newCookie += "=" + attributeValue;
+    }
+  }
+  document.cookie = newCookie;
 }
 
 export function filtrarNombre() {}
