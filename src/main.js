@@ -73,9 +73,61 @@ window.addEventListener("load", iniciarJuego);
  * @param {Event} e - Evento de carga de la ventana
  */
 function iniciarJuego(e) {
-  const seccion1 = document.getElementById("seccion-1");
-  mostrarSeccion(seccion1.id);
-  seccion1Function(seccion1);
+  const seccion0 = document.getElementById("seccion-0");
+  mostrarSeccion(seccion0.id);
+  seccion0Function(seccion0);
+}
+
+function seccion0Function(seccion0) {
+  const boton = seccion0.querySelector(".continuar");
+  boton.disabled = true;
+
+  const formularioRegistro = document.querySelector(".formulario-personaje");
+  formularioRegistro.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombreFormInput = document.querySelector(".nombre-formulario");
+    const ataqueFormInput = document.querySelector(".ataque-formulario");
+    const defensaFormInput = document.querySelector(".defensa-formulario");
+    const vidaFormInput = document.querySelector(".vida-formulario");
+
+    if (
+      comprobaregistro(
+        nombreFormInput.value,
+        ataqueFormInput.value,
+        defensaFormInput.value,
+        vidaFormInput.value
+      )
+    ) {
+      boton.disabled = false;
+    } else {
+    }
+  });
+
+  boton.addEventListener("click", (e) => {
+    const seccion1 = document.getElementById("seccion-1");
+    mostrarSeccion(seccion1.id);
+    seccion1Function(seccion1, jugador);
+  });
+}
+
+function comprobaregistro(nombre, ataque, defensa, vida) {
+  if (
+    !nombre ||
+    nombre.trim() === "" ||
+    !ataque ||
+    ataque.trim() === "" ||
+    !defensa ||
+    defensa.trim() === "" ||
+    !vida ||
+    vida.trim() === ""
+  )
+    return false;
+
+  //     Nombre: Sólo permitirá letras y espacios en blanco, siendo la primera letra
+  // mayúscula y que el total sea como máximo de 20 carácteres, no debe permitir que
+  // sólo haya espacios en blanco.
+  const regexNombre = /^[A-Z][a-z]{1,20}$/
+
 }
 
 // SECCIÓN 1: Datos del jugador
