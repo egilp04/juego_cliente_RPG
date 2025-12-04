@@ -25,16 +25,6 @@ function mostrarFooter(id) {
 }
 
 /**
- * Obtiene un producto de una lista por su índice.
- * @param {Array} listaProducto - Lista de productos.
- * @param {number} indiceProducto - Índice del producto a buscar.
- * @returns {*} El producto encontrado.
- */
-export function encontrarProducto(listaProducto, indiceProducto) {
-  return listaProducto[indiceProducto];
-}
-
-/**
  * Reinicia todos los elementos de la interfaz del juego, limpiando contenido y reseteando eventos.
  */
 export function reiniciarJuego() {
@@ -138,16 +128,16 @@ export function mostrarDinero(jugador, precioNuevo = 0, operacion = "ninguna") {
   dineroSpan.textContent = `${dineroJugador}€`;
 }
 
-export function guardarDatosJugador(ganador) {
+export function guardarDatosJugador(jugador) {
   let data = [];
   let puntuacionesGuardadas = localStorage.getItem("puntuaciones");
   if (puntuacionesGuardadas) {
     data = JSON.parse(puntuacionesGuardadas);
   }
   data.push({
-    nombre: ganador.nombre,
-    puntuacion: ganador.puntos,
-    monedas: ganador.dinero,
+    nombre: jugador.nombre,
+    puntuacion: jugador.puntos,
+    monedas: jugador.dinero,
   });
   localStorage.setItem("puntuaciones", JSON.stringify(data));
 }

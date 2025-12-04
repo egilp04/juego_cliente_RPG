@@ -1,5 +1,6 @@
 import { Jefe } from "../classes/enemigos/Jefe.js";
 import { Resultados } from "../classes/resultados/Resultados.js";
+import { guardarDatosJugador } from "../utils/Utils.js";
 /**
  * Simula un combate entre un enemigo y un jugador.
  *
@@ -54,5 +55,6 @@ export function combate(enemigo, jugador) {
     jugador.dinero += dineroOfrece;
     puntos = jugador.sumarPuntos(ataqueEnemigo + jugador.dinero);
   }
+  guardarDatosJugador(jugador);
   return { ganador, puntos, resultadoBatallas };
 }

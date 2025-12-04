@@ -29,12 +29,10 @@ import { distinguirJugador } from "./modules_game/Ranking.js";
 // Utilidades para UI y manipulación DOM
 import {
   mostrarSeccion,
-  encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
   comprobaregistro,
   mostrarDinero,
-  guardarDatosJugador,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -597,7 +595,6 @@ function seccion6Function(seccion6, puntuacion, ganador) {
       puntuacion
     )}`;
     spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
-    guardarDatosJugador(ganador);
   }
 
   const botonRanking = document.querySelector(".mostrar-ranking");
