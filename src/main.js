@@ -113,6 +113,7 @@ function seccion0Function(seccion0) {
         botonForm.disabled = false;
       }, 2000);
       e.currentTarget.reset();
+      boton.disabled = true;
     }
   });
 

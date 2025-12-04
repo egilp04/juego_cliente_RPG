@@ -113,12 +113,10 @@ export function comprobaregistro(nombre, ataque, defensa, vida) {
   )
     return false;
 
-  const regexNombre = /^[A-Z][a-z]{1,20}$/;
+  const regexNombre = /^[A-Z]([a-z]|[A-Z]|\s){0,19}$/;
   let cantidadMaxima = 110;
   let cantidadTotal =
     parseInt(ataque) + (parseInt(vida) + 100) + parseInt(defensa);
-  console.log(regexNombre.test(nombre));
-
   if (!regexNombre.test(nombre)) return false;
   if (cantidadTotal > cantidadMaxima) return false;
   return true;
