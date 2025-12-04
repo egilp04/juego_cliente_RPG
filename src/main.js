@@ -90,7 +90,7 @@ function seccion2Function(seccion2, jugador) {
   const listaProductos = [
     new Espada_Corta(
       "Espada corta",
-      "src/assests/img/objects_img/espada_corta.webp",
+      "src/assests/img/objectsimg/espadacorta.webp",
       120.0,
       rarezaArmas.comun,
       tipoArma.arma,
@@ -98,7 +98,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Arco_Caza(
       "Arco caza",
-      "src/assests/img/objects_img/arco.webp",
+      "src/assests/img/objectsimg/arco.webp",
       140.0,
       rarezaArmas.comun,
       tipoArma.arma,
@@ -106,7 +106,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Armadura_Cuero(
       "Armadura cuero",
-      "src/assests/img/objects_img/armadura.webp",
+      "src/assests/img/objectsimg/armadura.webp",
       180.0,
       rarezaArmas.comun,
       tipoArma.armadura,
@@ -114,7 +114,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Pocion_Peque(
       "Poción pequeña",
-      "src/assests/img/objects_img/pocion_peque.webp",
+      "src/assests/img/objectsimg/pocionpeque.webp",
       40.0,
       rarezaArmas.comun,
       tipoArma.consumible,
@@ -122,7 +122,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Espada_Runica(
       "Espada rúnica",
-      "src/assests/img/objects_img/espada_runica.webp",
+      "src/assests/img/objectsimg/espadarunica.webp",
       460.0,
       rarezaArmas.raro,
       tipoArma.arma,
@@ -130,7 +130,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Escudo_Roble(
       "Escudo roble",
-      "src/assests/img/objects_img/escudo.webp",
+      "src/assests/img/objectsimg/escudo.webp",
       320.0,
       rarezaArmas.raro,
       tipoArma.armadura,
@@ -138,7 +138,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Pocion_Grande(
       "Poción grande",
-      "src/assests/img/objects_img/pocion_grande.webp",
+      "src/assests/img/objectsimg/pociongrande.webp",
       110.0,
       rarezaArmas.raro,
       tipoArma.consumible,
@@ -146,7 +146,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Mandoble_Epico(
       "Mandoble épico",
-      "src/assests/img/objects_img/mandoble.webp",
+      "src/assests/img/objectsimg/mandoble.webp",
       950.0,
       rarezaArmas.epico,
       tipoArma.arma,
@@ -154,7 +154,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Placas_Draconicas(
       "Placas dracónicas",
-      "src/assests/img/objects_img/placas_draconicas.webp",
+      "src/assests/img/objectsimg/placasdraconicas.webp",
       880.0,
       rarezaArmas.epico,
       tipoArma.armadura,
@@ -162,7 +162,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Elixir_Legendario(
       "Elixir legendario",
-      "src/assests/img/objects_img/elixir.webp",
+      "src/assests/img/objectsimg/elixir.webp",
       520.0,
       rarezaArmas.epico,
       tipoArma.consumible,
@@ -170,7 +170,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Manzana(
       "Manzana",
-      "src/assests/img/objects_img/manzana.webp",
+      "src/assests/img/objectsimg/manzana.webp",
       40.0,
       rarezaArmas.comun,
       tipoArma.consumible,
@@ -178,7 +178,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Casco(
       "Casco",
-      "src/assests/img/objects_img/casco.webp",
+      "src/assests/img/objectsimg/casco.webp",
       100.0,
       rarezaArmas.comun,
       tipoArma.armadura,
@@ -186,7 +186,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Hacha(
       "Hacha",
-      "src/assests/img/objects_img/hacha.webp",
+      "src/assests/img/objectsimg/hacha.webp",
       120.0,
       rarezaArmas.comun,
       tipoArma.arma,
@@ -194,7 +194,7 @@ function seccion2Function(seccion2, jugador) {
     ),
     new Botas(
       "Botas",
-      "src/assests/img/objects_img/botas.webp",
+      "src/assests/img/objectsimg/botas.webp",
       80.0,
       rarezaArmas.comun,
       tipoArma.armadura,
