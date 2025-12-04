@@ -1,8 +1,4 @@
 import {
-  aplicarDescuento,
-  buscarProductoNombre,
-} from "../modules_game/Mercado.js";
-import {
   Arco_Caza,
   Armadura_Cuero,
   Botas,
@@ -159,17 +155,21 @@ export function mostrarFormularioSeccion0(formularioClass) {
 
 export function comprobarJugador(nombre, clave) {
   let datos = [];
-  let encontrado = false;
   if (localStorage.getItem("jugadoresRegistrados")) {
     datos = JSON.parse(localStorage.getItem("jugadoresRegistrados"));
-    datos.forEach((dato) => {
-      if (
-        dato.nombre.toLowerCase() == nombre &&
-        dato.clave.toLowerCase() == clave
-      ) {
-        encontrado = true;
-      }
-    });
+    let encontrado = datos.find(
+      (dato) =>
+        dato.nombre.toLowerCase() === nombre &&
+        dato.clave.toLowerCase() === clave
+    );
+    // datos.forEach((dato) => {
+    //   if (
+    //     dato.nombre.toLowerCase() == nombre &&
+    //     dato.clave.toLowerCase() == clave
+    //   ) {
+    //     encontrado = true;
+    //   }
+    // });
     if (encontrado) return true;
     else return false;
   }

@@ -146,54 +146,53 @@ export function addProducto(nombre, productoTipo, listaProductosFinales) {
 //     console.error(error.message);
 //   }
 // }
-
-function crearProductoNuevo(nombre, productoTipo) {
-  let productoNuevo;
-  switch (productoTipo) {
-    case "arco_caza":
-      productoNuevo = new Arco_Caza(nombre);
-      break;
-    case "armadura_cuero":
-      productoNuevo = new Armadura_Cuero(nombre);
-      break;
-    case "botas":
-      productoNuevo = new Botas(nombre);
-      break;
-    case "casco":
-      productoNuevo = new Casco(nombre);
-      break;
-    case "elixir_legendario":
-      productoNuevo = new Elixir_Legendario(nombre);
-      break;
-    case "escudo_roble":
-      productoNuevo = new Escudo_Roble(nombre);
-      break;
-    case "espada_corta":
-      productoNuevo = new Espada_Corta(nombre);
-      break;
-    case "espada_runica":
-      productoNuevo = new Espada_Runica(nombre);
-      break;
-    case "hacha":
-      productoNuevo = new Hacha(nombre);
-      break;
-    case "mandoble_epico":
-      productoNuevo = new Mandoble_Epico(nombre);
-      break;
-    case "manzana":
-      productoNuevo = new Manzana(nombre);
-      break;
-    case "placas_draconicas":
-      productoNuevo = new Placas_Draconicas(nombre);
-      break;
-    case "pocion_grande":
-      productoNuevo = new Pocion_Grande(nombre);
-      break;
-    case "pocion_peque":
-      productoNuevo = new Pocion_Peque(nombre);
-      break;
-    default:
-      break;
-  }
-  return productoNuevo;
-}
+// function crearProductoNuevo(nombre, productoTipo) {
+//   let productoNuevo;
+//   switch (productoTipo) {
+//     case "arco_caza":
+//       productoNuevo = new Arco_Caza(nombre);
+//       break;
+//     case "armadura_cuero":
+//       productoNuevo = new Armadura_Cuero(nombre);
+//       break;
+//     case "botas":
+//       productoNuevo = new Botas(nombre);
+//       break;
+//     case "casco":
+//       productoNuevo = new Casco(nombre);
+//       break;
+//     case "elixir_legendario":
+//       productoNuevo = new Elixir_Legendario(nombre);
+//       break;
+//     case "escudo_roble":
+//       productoNuevo = new Escudo_Roble(nombre);
+//       break;
+//     case "espada_corta":
+//       productoNuevo = new Espada_Corta(nombre);
+//       break;
+//     case "espada_runica":
+//       productoNuevo = new Espada_Runica(nombre);
+//       break;
+//     case "hacha":
+//       productoNuevo = new Hacha(nombre);
+//       break;
+//     case "mandoble_epico":
+//       productoNuevo = new Mandoble_Epico(nombre);
+//       break;
+//     case "manzana":
+//       productoNuevo = new Manzana(nombre);
+//       break;
+//     case "placas_draconicas":
+//       productoNuevo = new Placas_Draconicas(nombre);
+//       break;
+//     case "pocion_grande":
+//       productoNuevo = new Pocion_Grande(nombre);
+//       break;
+//     case "pocion_peque":
+//       productoNuevo = new Pocion_Peque(nombre);
+//       break;
+//     default:
+//       break;
+//   }
+//   return productoNuevo;
+// }
