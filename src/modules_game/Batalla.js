@@ -10,7 +10,6 @@ import { Resultados } from "../classes/resultados/Resultados.js";
  *  - puntos: puntos obtenidos por el jugador si gana
  */
 export function combate(enemigo, jugador) {
-  console.log(enemigo);
   const muerte = 0;
   let resultadoBatallas = [];
   let { ataqueTotal, defensaTotal, vidaTotal } =

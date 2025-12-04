@@ -34,6 +34,7 @@ import {
   batallaAnimacionAleatoria,
   comprobaregistro,
   mostrarDinero,
+  guardarDatosJugador,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -152,8 +153,6 @@ function seccion1Function(seccion1, datos) {
       datos.defensa
     );
   }
-  console.log("jugadorrrrrrrrrrrrrrrrrrrrrrr");
-  console.log(jugador);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -577,7 +576,6 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
   const boton = seccion6.querySelector(".reiniciar");
-  boton.disabled = true;
 
   if (ganador instanceof Enemigo) {
     spanRanking.textContent = `El jugador ha perdido`;
@@ -585,24 +583,32 @@ function seccion6Function(seccion6, puntuacion, ganador) {
     loserDiv.style.visibility = "visible";
     loserDiv.style.display = "block";
   } else {
-    var heart = confetti.shapeFromPath({
-      path: "M10 30 A20 20 0 0 1 50 30 A20 20 0 0 1 90 30 Q90 60 50 90 Q10 60 10 30 Z",
-    });
-    confetti({
-      shapes: [heart],
-      startVelocity: 30,
-      spread: 80,
-      particleCount: 200,
-    });
+    // var heart = confetti.shapeFromPath({
+    //   path: "M10 30 A20 20 0 0 1 50 30 A20 20 0 0 1 90 30 Q90 60 50 90 Q10 60 10 30 Z",
+    // });
+    // confetti({
+    //   shapes: [heart],
+    //   startVelocity: 30,
+    //   spread: 80,
+    //   particleCount: 200,
+    // });
     spanRanking.textContent = `El jugador ha logrado ser un: ${distinguirJugador(
       puntuacion
     )}`;
     spanPuntuacion.textContent = `Puntos totales: ${puntuacion}`;
+    guardarDatosJugador(ganador);
   }
 
-  setTimeout(() => {
-    boton.disabled = false;
-  }, 3000);
+  const botonRanking = document.querySelector(".mostrar-ranking");
+  botonRanking.addEventListener("click", (e) => {
+    let puntuacionesGuardadas = JSON.parse(
+      localStorage.getItem("puntuaciones")
+    );
+    if (puntuacionesGuardadas) console.table(puntuacionesGuardadas);
+    else {
+      console.log("No hay puntuaciones guardadas");
+    }
+  });
 
   boton.addEventListener("click", () => {
     const seccion0 = document.getElementById("seccion-0");

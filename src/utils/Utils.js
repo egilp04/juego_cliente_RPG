@@ -117,7 +117,6 @@ export function comprobaregistro(nombre, ataque, defensa, vida) {
   let cantidadMaxima = 110;
   let cantidadTotal =
     parseInt(ataque) + (parseInt(vida) + 100) + parseInt(defensa);
-  console.log("Regexxxxx");
   console.log(regexNombre.test(nombre));
 
   if (!regexNombre.test(nombre)) return false;
@@ -139,4 +138,18 @@ export function mostrarDinero(jugador, precioNuevo = 0, operacion = "ninguna") {
   }
   const dineroSpan = document.querySelector(".dinero-jugador");
   dineroSpan.textContent = `${dineroJugador}€`;
+}
+
+export function guardarDatosJugador(ganador) {
+  let data = [];
+  let puntuacionesGuardadas = localStorage.getItem("puntuaciones");
+  if (puntuacionesGuardadas) {
+    data = JSON.parse(puntuacionesGuardadas);
+  }
+  data.push({
+    nombre: ganador.nombre,
+    puntuacion: ganador.puntos,
+    monedas: ganador.dinero,
+  });
+  localStorage.setItem("puntuaciones", JSON.stringify(data));
 }
