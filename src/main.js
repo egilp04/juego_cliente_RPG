@@ -301,8 +301,11 @@ function seccion2Function(seccion2, jugador) {
       const pMensaje = document.createElement("p");
       pMensaje.textContent = "NO existen productos con este nombre";
       formularioNombre.appendChild(pMensaje);
+      const botonFormularioNombre = e.currentTarget.querySelector("button");
+      botonFormularioNombre.disabled = true;
       setTimeout(() => {
         pMensaje.remove();
+        botonFormularioNombre.disabled = false;
       }, 1000);
     }
   });

@@ -33,7 +33,7 @@ export function aplicarDescuento(listaProductos, descuento = 0.2) {
  * @returns {Producto[]} Lista de productos que coinciden con el nombre
  */
 export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
-  if (nombreProducto === "") return listaProductosFinales;
+  if (!nombreProducto || nombreProducto === "") return listaProductosFinales;
   return listaProductosFinales.filter((producto) => {
     const completo = producto.nombre.toLowerCase();
     const primeraPalabra = producto.nombre.split(" ")[0].toLowerCase();
@@ -47,7 +47,7 @@ export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
  * @returns {Producto[]} Lista de productos que coinciden con la rareza
  */
 export function filtrarProductosRareza(tipoRareza, listaProductosFinales) {
-  if (tipoRareza == null || tipoRareza === "") return listaProductosFinales;
+  if (!tipoRareza || tipoRareza === "") return listaProductosFinales;
   return listaProductosFinales.filter(
     (producto) => tipoRareza === producto.rareza
   );
