@@ -45,6 +45,7 @@ export function batallaAnimacionAleatoria() {
   enemigoImg.classList.add("appear");
 }
 
+//inventario
 export function verInventarioAnterior() {
   let cookieInventario = getCookie("jugador-inventario");
   if (!cookieInventario) return null;
@@ -63,10 +64,6 @@ function getCookie(name) {
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-
-function castObjt(obj) {}
-
-export function obtenerDatosApi() {}
 
 export function guardarInventario(inventarioJugador) {
   if (inventarioJugador.length > 0) {
@@ -108,6 +105,8 @@ export function guardarResultados(resultado) {
   updateCookie("jugador-resultados-anteriores", resultado);
   createStorageResultados("jugador-resultados-anteriores", resultado);
 }
+
+//Solo recibe el dato nuevo, ya se desectructura y se unnen los datos
 function createStorageResultados(name, resultado) {
   let datosNuevos = [];
   const datosAnteriores = localStorage.getItem(name);
@@ -115,6 +114,7 @@ function createStorageResultados(name, resultado) {
     datosNuevos = JSON.parse(datosAnteriores);
   }
   //el push no se puede meter dentro, siempre devuelve la length del array
+  //al dato viejo se le añade el nuevo
   datosNuevos.push(resultado);
   localStorage.setItem(name, JSON.stringify(datosNuevos));
 }
@@ -125,6 +125,7 @@ export function verResultadosAnteriores() {
   return JSON.parse(cookie);
 }
 
+//Solo recibe el dato nuevo, ya se desectructura y se unnen los datos
 function updateCookie(name, newData, jsonAttributes = {}) {
   let newDataObj = [newData];
   let oldCookieData = [];
@@ -133,6 +134,7 @@ function updateCookie(name, newData, jsonAttributes = {}) {
     createNewCookie(name, newDataObj);
   } else {
     oldCookieData = JSON.parse(currentCookieData);
+    //a los datos viejos se le añade el nuevo
     const updatedObj = [...oldCookieData, ...newDataObj];
     createNewCookie(name, updatedObj);
   }
@@ -200,13 +202,14 @@ export async function obtenerDatosApi() {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Response status: ${response.status}`);
     const result = await response.json();
+    //mirar el tipo de dato con dato typeof tipoDato
     const infoDatos = result.map((item) => {
       return castProducto(item);
     });
     return infoDatos;
   } catch (error) {
     console.error(error.message);
-    return error.message;
+    return null;
   }
 }
 function castProducto(obj) {

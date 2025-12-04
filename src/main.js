@@ -102,7 +102,7 @@ function seccion1Function(seccion1) {
     undefined,
     puntos
   );
-
+  //cada dato en el constructor va en su sitio, si no quiere meter x datos y tiene un por defecto en el constructor, se usa undefined
   datosJugador(jugador, seccion1.id);
   rellenarCasillas(jugador);
   const boton = seccion1.querySelector(".continuar");
@@ -343,13 +343,10 @@ function crearMercado(jugador, jugadorInventario, productosMercado) {
     const botonComprar = document.createElement("button");
 
     if (jugadorInventario.length > 0) {
-      let encontrado = false;
-      jugadorInventario.forEach((elemento) => {
-        if (elemento.nombre === producto.nombre) {
-          encontrado = true;
-        }
-      });
-      if (encontrado) {
+      let pEncontrado = jugadorInventario.find(
+        (pInventario) => producto.nombre === pInventario.nombre
+      );
+      if (pEncontrado) {
         botonComprar.setAttribute("class", "retirar");
         botonComprar.textContent = "retirar";
       } else {
