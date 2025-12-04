@@ -301,7 +301,7 @@ function seccion2Function(seccion2, jugador) {
       const pMensaje = document.createElement("p");
       pMensaje.textContent = "NO existen productos con este nombre";
       formularioNombre.appendChild(pMensaje);
-      setTimeOut(() => {
+      setTimeout(() => {
         pMensaje.remove();
       }, 1000);
     }

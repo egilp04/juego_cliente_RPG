@@ -47,7 +47,7 @@ export function buscarProductoNombre(nombreProducto, listaProductosFinales) {
  * @returns {Producto[]} Lista de productos que coinciden con la rareza
  */
 export function filtrarProductosRareza(tipoRareza, listaProductosFinales) {
-  if (tipoRareza === "") return listaProductosFinales;
+  if (tipoRareza == null || tipoRareza === "") return listaProductosFinales;
   return listaProductosFinales.filter(
     (producto) => tipoRareza === producto.rareza
   );
