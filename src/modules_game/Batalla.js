@@ -10,13 +10,17 @@ import { Resultados } from "../classes/resultados/Resultados.js";
  *  - puntos: puntos obtenidos por el jugador si gana
  */
 export function combate(enemigo, jugador) {
+  console.log(enemigo);
   const muerte = 0;
   let resultadoBatallas = [];
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
-  const ataqueEnemigo = enemigo.ataque;
+  let ataqueEnemigo = enemigo.ataque;
+  if (enemigo instanceof Jefe)
+    ataqueEnemigo += ataqueEnemigo * enemigo.multiplicadorDanio;
   let vidaJugador = vidaTotal + defensaTotal;
   let vidaEnemigo = enemigo.hp;
+  let dineroOfrece = enemigo.dineroOfrece;
   do {
     let turno = Math.floor(Math.random() * 2);
     if (turno <= 0) {
@@ -48,11 +52,8 @@ export function combate(enemigo, jugador) {
   const ganador = vidaJugador > 0 ? jugador : enemigo;
   let puntos = 0;
   if (ganador === jugador) {
-    if (enemigo instanceof Jefe) {
-      puntos = jugador.sumarPuntos(ataqueEnemigo * enemigo.multiplicadorDanio);
-    } else {
-      puntos = jugador.sumarPuntos(ataqueEnemigo);
-    }
+    jugador.dinero += dineroOfrece;
+    puntos = jugador.sumarPuntos(ataqueEnemigo + jugador.dinero);
   }
   return { ganador, puntos, resultadoBatallas };
 }

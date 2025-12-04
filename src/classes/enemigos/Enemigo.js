@@ -13,11 +13,12 @@ export class Enemigo {
    * @param {number} ataque - Valor de ataque base del enemigo
    * @param {number} hp - Puntos de vida del enemigo
    */
-  constructor(nombre, avatar, ataque, hp) {
+  constructor(nombre, avatar, ataque, hp, dineroOfrece = 5) {
     this._nombre = nombre;
     this._avatar = avatar;
     this._ataque = ataque;
     this._hp = hp;
+    this._dineroOfrece = dineroOfrece;
   }
 
   /**
@@ -26,6 +27,14 @@ export class Enemigo {
    */
   set nombre(nombre) {
     this._nombre = nombre;
+  }
+
+  set dineroOfrece(dineroOfrece) {
+    this._dineroOfrece = dineroOfrece;
+  }
+
+  get dineroOfrece() {
+    return this._dineroOfrece;
   }
 
   /**

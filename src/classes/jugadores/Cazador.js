@@ -28,8 +28,19 @@ export class Cazador extends Jugador {
     defensa,
     puntos = puntosBase,
     vidaMaxima = vidaMaximaJugador,
-    inventario = []
+    inventario = [],
+    dinero = 500
   ) {
-    super(nombre, hp, avatar, ataque, defensa, puntos, vidaMaxima, inventario);
+    super(
+      nombre,
+      hp,
+      avatar,
+      ataque,
+      defensa,
+      puntos,
+      vidaMaxima,
+      inventario,
+      dinero
+    );
   }
 }

@@ -19,7 +19,8 @@ export function mostrarSeccion(id) {
  */
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
+  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-0")
+    footer.style.display = "none";
   else footer.style.display = "";
 }
 
@@ -59,6 +60,14 @@ export function reiniciarJuego() {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
   });
+
+  const formularioRegistro = document.querySelector(".formulario-personaje");
+  formularioRegistro.reset();
+
+  document.querySelectorAll("form").forEach((form) => {
+    const nuevo = form.cloneNode(true);
+    form.replaceWith(nuevo);
+  });
 }
 
 /**
@@ -89,4 +98,45 @@ export function batallaAnimacionAleatoria() {
   divEnemigoAnimacion.classList.add("animate-move-right");
   jugadorImg.classList.add("appear");
   enemigoImg.classList.add("appear");
+}
+
+export function comprobaregistro(nombre, ataque, defensa, vida) {
+  if (
+    !nombre ||
+    nombre.trim() === "" ||
+    !ataque ||
+    ataque.trim() === "" ||
+    !defensa ||
+    defensa.trim() === "" ||
+    !vida ||
+    vida.trim() === ""
+  )
+    return false;
+
+  const regexNombre = /^[A-Z][a-z]{1,20}$/;
+  let cantidadMaxima = 110;
+  let cantidadTotal =
+    parseInt(ataque) + (parseInt(vida) + 100) + parseInt(defensa);
+  console.log("Regexxxxx");
+  console.log(regexNombre.test(nombre));
+
+  if (!regexNombre.test(nombre)) return false;
+  if (cantidadTotal > cantidadMaxima) return false;
+  return true;
+}
+
+export function mostrarDinero(jugador, precioNuevo = 0, operacion = "ninguna") {
+  let dineroJugador = jugador.dinero;
+  switch (operacion) {
+    case "suma":
+      dineroJugador = jugador.dinero + precioNuevo;
+      jugador.dinero = dineroJugador;
+      break;
+    case "resta":
+      dineroJugador = jugador.dinero - precioNuevo;
+      jugador.dinero = dineroJugador;
+      break;
+  }
+  const dineroSpan = document.querySelector(".dinero-jugador");
+  dineroSpan.textContent = `${dineroJugador}€`;
 }

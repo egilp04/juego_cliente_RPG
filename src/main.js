@@ -32,6 +32,8 @@ import {
   encontrarProducto,
   reiniciarJuego,
   batallaAnimacionAleatoria,
+  comprobaregistro,
+  mostrarDinero,
 } from "./utils/Utils.js";
 
 // Funciones para gestión de productos y mercado
@@ -103,7 +105,13 @@ function seccion0Function(seccion0) {
       const pMensaje = document.createElement("p");
       pMensaje.textContent = "Valores incorrectos";
       e.currentTarget.appendChild(pMensaje);
-      set
+      const botonForm = document.querySelector(".boton-formulario");
+      botonForm.disabled = true;
+      setTimeout(() => {
+        pMensaje.remove();
+        botonForm.disabled = false;
+      }, 2000);
+      e.currentTarget.reset();
     }
   });
 
@@ -120,36 +128,12 @@ function seccion0Function(seccion0) {
       nombre: nombreFormInputValor,
       ataque: parseInt(ataqueFormInputValor),
       defensa: parseInt(defensaFormInputValor),
-      vida: parseInt(vidaFormInputValor),
+      vida: parseInt(vidaFormInputValor) + 100,
     };
     const seccion1 = document.getElementById("seccion-1");
     mostrarSeccion(seccion1.id);
     seccion1Function(seccion1, datos);
   });
-}
-
-function comprobaregistro(nombre, ataque, defensa, vida) {
-  if (
-    !nombre ||
-    nombre.trim() === "" ||
-    !ataque ||
-    ataque.trim() === "" ||
-    !defensa ||
-    defensa.trim() === "" ||
-    !vida ||
-    vida.trim() === ""
-  )
-    return false;
-
-  const regexNombre = /^[A-Z](?:\s[a-z]){1,20}$/;
-  let cantidadMaxima = 110;
-  let cantidadTotal = parseInt(ataque) + parseInt(vida) + parseInt(defensa);
-  console.log("Regexxxxx");
-  console.log(regex.test(nombre));
-
-  if (!regex.test(nombre)) return false;
-  if (cantidadTotal > cantidadMaxima) return false;
-  return true;
 }
 
 // SECCIÓN 1: Datos del jugador
@@ -246,7 +230,7 @@ function seccion2Function(seccion2, jugador) {
     new Mandoble_Epico(
       "Mandoble épico",
       "src/assests/img/objects_img/mandoble.webp",
-      950.0,
+      450.0,
       rarezaArmas.epico,
       tipoArma.arma,
       32
@@ -254,7 +238,7 @@ function seccion2Function(seccion2, jugador) {
     new Placas_Draconicas(
       "Placas dracónicas",
       "src/assests/img/objects_img/placas_draconicas.webp",
-      880.0,
+      480.0,
       rarezaArmas.epico,
       tipoArma.armadura,
       28
@@ -262,7 +246,7 @@ function seccion2Function(seccion2, jugador) {
     new Elixir_Legendario(
       "Elixir legendario",
       "src/assests/img/objects_img/elixir.webp",
-      520.0,
+      420.0,
       rarezaArmas.epico,
       tipoArma.consumible,
       150
@@ -329,9 +313,7 @@ function seccion2Function(seccion2, jugador) {
       producto.bonus
     }`;
     const spanPrecioProducto = document.createElement("span");
-    spanPrecioProducto.textContent = `Precio. ${producto.formatearAtributos(
-      producto.precio
-    )}`;
+    spanPrecioProducto.textContent = `Precio. ${producto.precio}€`;
     divDataProducto.appendChild(spanNombreProducto);
     divDataProducto.appendChild(spanBonusProducto);
     divDataProducto.appendChild(spanPrecioProducto);
@@ -344,8 +326,13 @@ function seccion2Function(seccion2, jugador) {
 
       if (botonComprar.classList.contains("comprar")) {
         // Añadir al inventario si no está lleno
-        if (jugador.inventario.length >= MAX_INVENTARIO) return;
+        if (
+          jugador.inventario.length >= MAX_INVENTARIO ||
+          jugador.dinero - producto.precio < 0
+        )
+          return;
         jugador.addObjInventario(producto);
+        mostrarDinero(jugador, producto.precio, "resta");
         const productoTarjeta = botonComprar.closest(".producto");
         const colorAntiguo = productoTarjeta.style.backgroundColor;
         productoTarjeta.style.backgroundColor = "#edefc9ff";
@@ -361,6 +348,7 @@ function seccion2Function(seccion2, jugador) {
       } else {
         // Retirar del inventario
         jugador.eliminarObjInventario(producto);
+        mostrarDinero(jugador, producto.precio, "suma");
         botonComprar.classList.remove("retirar");
         botonComprar.classList.add("comprar");
         botonComprar.textContent = "😭";
@@ -379,7 +367,7 @@ function seccion2Function(seccion2, jugador) {
   });
 
   mercadoContainer.scrollTop = 0;
-
+  mostrarDinero(jugador);
   // Continuar a sección 3
   const boton = seccion2.querySelector(".continuar");
   boton.addEventListener("click", () => {
@@ -617,10 +605,10 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   }, 3000);
 
   boton.addEventListener("click", () => {
-    const seccion1 = document.getElementById("seccion-1");
+    const seccion0 = document.getElementById("seccion-0");
     reiniciarJuego();
-    mostrarSeccion(seccion1.id);
-    seccion1Function(seccion1);
+    mostrarSeccion(seccion0.id);
+    seccion0Function(seccion0);
   });
 }
 
