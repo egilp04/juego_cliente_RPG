@@ -100,13 +100,31 @@ function seccion0Function(seccion0) {
     ) {
       boton.disabled = false;
     } else {
+      const pMensaje = document.createElement("p");
+      pMensaje.textContent = "Valores incorrectos";
+      e.currentTarget.appendChild(pMensaje);
+      set
     }
   });
 
   boton.addEventListener("click", (e) => {
+    const nombreFormInputValor =
+      document.querySelector(".nombre-formulario").value;
+    const ataqueFormInputValor =
+      document.querySelector(".ataque-formulario").value;
+    const defensaFormInputValor = document.querySelector(
+      ".defensa-formulario"
+    ).value;
+    const vidaFormInputValor = document.querySelector(".vida-formulario").value;
+    const datos = {
+      nombre: nombreFormInputValor,
+      ataque: parseInt(ataqueFormInputValor),
+      defensa: parseInt(defensaFormInputValor),
+      vida: parseInt(vidaFormInputValor),
+    };
     const seccion1 = document.getElementById("seccion-1");
     mostrarSeccion(seccion1.id);
-    seccion1Function(seccion1, jugador);
+    seccion1Function(seccion1, datos);
   });
 }
 
@@ -123,11 +141,15 @@ function comprobaregistro(nombre, ataque, defensa, vida) {
   )
     return false;
 
-  //     Nombre: Sólo permitirá letras y espacios en blanco, siendo la primera letra
-  // mayúscula y que el total sea como máximo de 20 carácteres, no debe permitir que
-  // sólo haya espacios en blanco.
-  const regexNombre = /^[A-Z][a-z]{1,20}$/
+  const regexNombre = /^[A-Z](?:\s[a-z]){1,20}$/;
+  let cantidadMaxima = 110;
+  let cantidadTotal = parseInt(ataque) + parseInt(vida) + parseInt(defensa);
+  console.log("Regexxxxx");
+  console.log(regex.test(nombre));
 
+  if (!regex.test(nombre)) return false;
+  if (cantidadTotal > cantidadMaxima) return false;
+  return true;
 }
 
 // SECCIÓN 1: Datos del jugador
@@ -135,8 +157,19 @@ function comprobaregistro(nombre, ataque, defensa, vida) {
  * Configura la sección 1 y crea un jugador inicial.
  * @param {HTMLElement} seccion1 - Contenedor de la sección 1
  */
-function seccion1Function(seccion1) {
-  const jugador = new Cazador("Cazador", 10, avatarCazador, 10, 10);
+function seccion1Function(seccion1, datos) {
+  let jugador;
+  if (datos != null) {
+    jugador = new Cazador(
+      datos.nombre,
+      datos.vida,
+      avatarCazador,
+      datos.ataque,
+      datos.defensa
+    );
+  }
+  console.log("jugadorrrrrrrrrrrrrrrrrrrrrrr");
+  console.log(jugador);
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
