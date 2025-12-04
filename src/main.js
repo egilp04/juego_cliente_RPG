@@ -295,7 +295,16 @@ function seccion2Function(seccion2, jugador) {
       nombreProducto.value,
       productosComprar
     );
-    crearMercado(jugador, jugadorInventario, productosFiltradosNombre);
+    if (productosFiltradosNombre.length > 0)
+      crearMercado(jugador, jugadorInventario, productosFiltradosNombre);
+    else {
+      const pMensaje = document.createElement("p");
+      pMensaje.textContent = "NO existen productos con este nombre";
+      formularioNombre.appendChild(pMensaje);
+      setTimeOut(() => {
+        pMensaje.remove();
+      }, 1000);
+    }
   });
 
   // Continuar a sección 3
