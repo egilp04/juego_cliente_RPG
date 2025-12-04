@@ -268,6 +268,34 @@ async function seccion2Function(seccion2, jugador) {
 
   //si hay api pero la modificacion no afecta a la API, se modifica directamente aqui
 
+  const selectRareza = document.querySelector(".rarezaSelect");
+  const rarezaDefault = document.createElement("option");
+  rarezaDefault.value = "";
+  rarezaDefault.textContent = "Selecciona una rareza";
+  selectRareza.appendChild(rarezaDefault);
+  const rarezasOptions = [];
+  for (const rareza in rarezaArmas) {
+    rarezasOptions.push(rareza);
+  }
+  rarezasOptions.forEach((r) => {
+    const rarezaOption = document.createElement("option");
+    rarezaOption.value = r;
+    rarezaOption.textContent = r;
+    selectRareza.appendChild(rarezaOption);
+  });
+
+  const selectTipoProducto = document.querySelector(".tipoProducto");
+  const tiposSelect = [];
+  for (const tipo in tipoArma) {
+    tiposSelect.push(tipo);
+  }
+  tiposSelect.forEach((t) => {
+    const tipoOption = document.createElement("option");
+    tipoOption.value = t;
+    tipoOption.textContent = t;
+    selectTipoProducto.appendChild(tipoOption);
+  });
+
   const selectProductos = document.querySelector(".tipoProductoNuevo");
   const optionDft = document.createElement("option");
   optionDft.value = "";
@@ -323,9 +351,11 @@ async function seccion2Function(seccion2, jugador) {
     else {
       pMensajeError.textContent = "No existen productos con este nombre";
       formularioNombre.appendChild(pMensajeError);
-
+      const botonEnvioNombre = e.currentTarget.querySelector("button");
+      botonEnvioNombre.disabled = true;
       setTimeout(() => {
         pMensajeError.remove();
+        botonEnvioNombre.disabled = false;
       }, 2000);
     }
     e.currentTarget.reset();
@@ -333,7 +363,7 @@ async function seccion2Function(seccion2, jugador) {
 
   formularioRareza.addEventListener("submit", (e) => {
     e.preventDefault();
-    const rarezaSelect = document.querySelector(".rareza").value;
+    const rarezaSelect = document.querySelector(".rarezaSelect").value;
     const productosRareza = filtrarProductosRareza(
       rarezaSelect,
       productosComprar
@@ -742,14 +772,11 @@ function crearMercado(productosComprar, jugador) {
     divDataProducto.appendChild(spanPrecioProducto);
 
     const botonComprar = document.createElement("button");
-    let existe = false;
 
     if (jugador.inventario.length > 0) {
-      for (let i = 0; i < jugador.inventario.length; i++) {
-        if (jugador.inventario[i].nombre === producto.nombre) {
-          existe = true;
-        }
-      }
+      let existe = jugador.inventario.find(
+        (p) => p.nombre.toLowerCase() === producto.nombre.toLowerCase()
+      );
       if (existe) {
         botonComprar.setAttribute("class", "retirar");
         botonComprar.textContent = "Retirar";

@@ -57,6 +57,12 @@ export function reiniciarJuego() {
   const selectProductos = document.querySelector(".tipoProductoNuevo");
   selectProductos.innerHTML = "";
 
+  const selectRareza = document.querySelector(".rarezaSelect");
+  selectRareza.innerHTML = "";
+
+  const selectTipoProducto = document.querySelector(".tipoProducto");
+  selectTipoProducto.innerHTML = "";
+
   const divEnemigosContainer = document.querySelector(".enemigos-container");
   if (divEnemigosContainer) divEnemigosContainer.innerHTML = "";
 
