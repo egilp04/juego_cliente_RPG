@@ -27,8 +27,7 @@ export class Jugador {
     defensa,
     puntos,
     vidaMaxima,
-    inventario,
-    dinero
+    inventario
   ) {
     this._nombre = nombre;
     this._hp = hp;
@@ -38,7 +37,6 @@ export class Jugador {
     this._puntos = puntos;
     this._vidaMaxima = vidaMaxima;
     this._inventario = inventario;
-    this._dinero = dinero;
   }
 
   /**
@@ -65,9 +63,6 @@ export class Jugador {
     return this._avatar;
   }
 
-  get dinero() {
-    return this._dinero;
-  }
   /**
    * Devuelve los puntos acumulados del jugador.
    * @returns {number} Puntos del jugador
@@ -121,10 +116,6 @@ export class Jugador {
    */
   set hp(hp) {
     this._hp = hp;
-  }
-
-  set dinero(dinero) {
-    this._dinero = dinero;
   }
 
   /**

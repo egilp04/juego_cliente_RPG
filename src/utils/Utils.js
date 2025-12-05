@@ -19,9 +19,18 @@ export function mostrarSeccion(id) {
  */
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-0")
-    footer.style.display = "none";
+  if (id === "seccion-4" || id === "seccion-6") footer.style.display = "none";
   else footer.style.display = "";
+}
+
+/**
+ * Obtiene un producto de una lista por su índice.
+ * @param {Array} listaProducto - Lista de productos.
+ * @param {number} indiceProducto - Índice del producto a buscar.
+ * @returns {*} El producto encontrado.
+ */
+export function encontrarProducto(listaProducto, indiceProducto) {
+  return listaProducto[indiceProducto];
 }
 
 /**
@@ -49,14 +58,6 @@ export function reiniciarJuego() {
   document.querySelectorAll("button").forEach((btn) => {
     const nuevo = btn.cloneNode(true);
     btn.replaceWith(nuevo);
-  });
-
-  const formularioRegistro = document.querySelector(".formulario-personaje");
-  formularioRegistro.reset();
-
-  document.querySelectorAll("form").forEach((form) => {
-    const nuevo = form.cloneNode(true);
-    form.replaceWith(nuevo);
   });
 }
 
@@ -88,56 +89,4 @@ export function batallaAnimacionAleatoria() {
   divEnemigoAnimacion.classList.add("animate-move-right");
   jugadorImg.classList.add("appear");
   enemigoImg.classList.add("appear");
-}
-
-export function comprobaregistro(nombre, ataque, defensa, vida) {
-  if (
-    !nombre ||
-    nombre.trim() === "" ||
-    !ataque ||
-    ataque.trim() === "" ||
-    !defensa ||
-    defensa.trim() === "" ||
-    !vida ||
-    vida.trim() === ""
-  )
-    return false;
-
-  const regexNombre = /^[A-Z]([a-z]|[A-Z]|\s){0,19}$/;
-  let cantidadMaxima = 110;
-  let cantidadTotal =
-    parseInt(ataque) + (parseInt(vida) + 100) + parseInt(defensa);
-  if (!regexNombre.test(nombre)) return false;
-  if (cantidadTotal > cantidadMaxima) return false;
-  return true;
-}
-
-export function mostrarDinero(jugador, precioNuevo = 0, operacion = "ninguna") {
-  let dineroJugador = jugador.dinero;
-  switch (operacion) {
-    case "suma":
-      dineroJugador = jugador.dinero + precioNuevo;
-      jugador.dinero = dineroJugador;
-      break;
-    case "resta":
-      dineroJugador = jugador.dinero - precioNuevo;
-      jugador.dinero = dineroJugador;
-      break;
-  }
-  const dineroSpan = document.querySelector(".dinero-jugador");
-  dineroSpan.textContent = `${dineroJugador}€`;
-}
-
-export function guardarDatosJugador(jugador) {
-  let data = [];
-  let puntuacionesGuardadas = localStorage.getItem("puntuaciones");
-  if (puntuacionesGuardadas) {
-    data = JSON.parse(puntuacionesGuardadas);
-  }
-  data.push({
-    nombre: jugador.nombre,
-    puntuacion: jugador.puntos,
-    monedas: jugador.dinero,
-  });
-  localStorage.setItem("puntuaciones", JSON.stringify(data));
 }

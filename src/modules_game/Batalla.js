@@ -1,6 +1,5 @@
 import { Jefe } from "../classes/enemigos/Jefe.js";
 import { Resultados } from "../classes/resultados/Resultados.js";
-import { guardarDatosJugador } from "../utils/Utils.js";
 /**
  * Simula un combate entre un enemigo y un jugador.
  *
@@ -15,12 +14,9 @@ export function combate(enemigo, jugador) {
   let resultadoBatallas = [];
   let { ataqueTotal, defensaTotal, vidaTotal } =
     jugador.obtenerEstadisticasFinales();
-  let ataqueEnemigo = enemigo.ataque;
-  if (enemigo instanceof Jefe)
-    ataqueEnemigo += ataqueEnemigo * enemigo.multiplicadorDanio;
+  const ataqueEnemigo = enemigo.ataque;
   let vidaJugador = vidaTotal + defensaTotal;
   let vidaEnemigo = enemigo.hp;
-  let dineroOfrece = enemigo.dineroOfrece;
   do {
     let turno = Math.floor(Math.random() * 2);
     if (turno <= 0) {
@@ -52,9 +48,11 @@ export function combate(enemigo, jugador) {
   const ganador = vidaJugador > 0 ? jugador : enemigo;
   let puntos = 0;
   if (ganador === jugador) {
-    jugador.dinero += dineroOfrece;
-    puntos = jugador.sumarPuntos(ataqueEnemigo + jugador.dinero);
+    if (enemigo instanceof Jefe) {
+      puntos = jugador.sumarPuntos(ataqueEnemigo * enemigo.multiplicadorDanio);
+    } else {
+      puntos = jugador.sumarPuntos(ataqueEnemigo);
+    }
   }
-  guardarDatosJugador(jugador);
   return { ganador, puntos, resultadoBatallas };
 }

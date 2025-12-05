@@ -7,46 +7,13 @@
     <link rel="icon" type="image/x-icon" href="./src/assests/icons/game.ico" />
     <link rel="stylesheet" href="styles.css" />
     <script src="./src/main.js" type="module" defer></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   </head>
   <body>
     <header>
       <h1 class="title" id="title"></h1>
     </header>
     <main>
-      <section id="seccion-0" class="seccion seccion-0">
-        <form class="formulario-personaje">
-          <input
-            placeholder="Nombre del personaje"
-            type="text"
-            class="nombre-formulario"
-          />
-          <input
-            type="number"
-            placehoder="0"
-            class="ataque-formulario"
-            min="0"
-          />
-          <input
-            type="number"
-            placehoder="0"
-            class="defensa-formulario"
-            min="0"
-          />
-          <input
-            type="number"
-            placehoder="100"
-            class="vida-formulario"
-            min="0"
-          />
-          <button type="submit" class="boton-formulario">Enviar</button>
-        </form>
-        <div>
-          <button type="button" class="continuar boton-continuar-0">
-            Continuar
-          </button>
-        </div>
-      </section>
       <section id="seccion-1" class="seccion seccion-1">
         <div class="jugador-info-container jugador-tarjeta">
           <div class="datos-jugador-container">
@@ -81,7 +48,6 @@
       </section>
       <section id="seccion-2" class="seccion seccion-2">
         <div class="mercado-container"></div>
-        <span class="dinero-jugador"></span>
         <div>
           <button type="button" class="continuar boton-continuar-2">
             Continuar
@@ -155,11 +121,10 @@
           <span class="puntuacion-data"></span>
         </div>
         <div>
-          <button type="button" class="reiniciar boton-reiniciar">
+          <button type="button" class="reiniciar boton-reiniciar" disabled>
             Reiniciar
           </button>
         </div>
-        <button type="button" class="mostrar-ranking">MOSTRAR RANKING</button>
         <div class="loser"><p class="loser-icon">😭</p></div>
       </section>
     </main>
