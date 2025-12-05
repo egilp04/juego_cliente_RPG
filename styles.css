@@ -163,6 +163,130 @@ h2 {
   color: var(--color-dark1);
 }
 
+#seccion-7 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-50);
+  width: 100%;
+}
+
+.table-container {
+  color: var(--color-ligth1);
+  flex-direction: column;
+  display: flex;
+  overflow: auto;
+  max-height: 80%;
+  padding: var(--padding-10);
+  width: 80%;
+}
+
+td {
+  text-overflow: ellipsis;
+  width: 5%;
+  overflow: hidden;
+}
+
+thead > tr {
+  font-size: var(--font-size-30);
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+}
+
+tbody {
+  font-size: var(--font-size-20);
+  gap: var(--gap-10);
+  flex-direction: column;
+  display: flex;
+}
+
+tbody > tr {
+  width: 100%;
+  font-size: 20px;
+  justify-content: space-around;
+  display: flex;
+}
+
+.monedas-container {
+  display: flex;
+  width: 100vw;
+  position: absolute;
+}
+
+.moneda-1 {
+  margin-left: 25%;
+}
+.moneda-2 {
+  margin-left: 25%;
+}
+.moneda-3 {
+  margin-left: 25%;
+}
+.monedas-container > div {
+  height: 100px;
+}
+
+.animacion-monedas {
+  animation: animationMonedas 8s forwards;
+}
+
+.animacion-moneda-container {
+  animation: animationMonedaContainer 8s forwards;
+}
+
+@keyframes animationMonedaContainer {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 50%;
+  }
+}
+
+@keyframes animationMonedas {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+
+.monedero {
+  width: 150px;
+  height: 100px;
+  position: relative;
+  bottom: 1%;
+}
+.monedero > p {
+  left: 40%;
+  position: absolute;
+  top: 50%;
+}
+
+.animacion-monedero {
+  animation: animationMonedero 2s forwards;
+}
+
+@keyframes animationMonedero {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 2%;
+  }
+}
+
+.monedero-container {
+  width: 100vw;
+}
+
 /* Secciones */
 #seccion-1,
 #seccion-2,
@@ -215,7 +339,7 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: var(--gap-20);
-  height: 200px;
+  height: 100px;
   width: 100%;
 }
 .imagen-jugador-container {
@@ -580,7 +704,7 @@ img.img-inventario:hover {
     width: 500px;
   }
   .datos-jugador-container {
-    height: 220px;
+    height: 100px;
   }
   .mercado-container,
   .enemigos-container {

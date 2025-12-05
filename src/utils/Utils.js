@@ -19,7 +19,12 @@ export function mostrarSeccion(id) {
  */
 function mostrarFooter(id) {
   const footer = document.querySelector("footer");
-  if (id === "seccion-4" || id === "seccion-6" || id === "seccion-0")
+  if (
+    id === "seccion-4" ||
+    id === "seccion-6" ||
+    id === "seccion-0" ||
+    id === "seccion-7"
+  )
     footer.style.display = "none";
   else footer.style.display = "";
 }
@@ -65,6 +70,19 @@ export function reiniciarJuego() {
  * Reinicia animaciones previas para permitir reproducirlas nuevamente.
  */
 export function batallaAnimacionAleatoria() {
+  const monedasContainer = document.querySelector(".monedas-container");
+  const monedas = Array.from(monedasContainer.querySelectorAll(".moneda"));
+
+  monedasContainer.classList.remove("animacion-moneda-container");
+  monedas.forEach((moneda) => {
+    moneda.classList.remove("animacion-monedas");
+  });
+  monedasContainer.classList.add("animacion-moneda-container");
+
+  monedas.forEach((moneda) => {
+    moneda.classList.add("animacion-monedas");
+  });
+
   const divJugadorAnimacion = document.querySelector(
     ".jugador-imagen-container"
   );

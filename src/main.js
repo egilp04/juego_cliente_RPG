@@ -152,6 +152,7 @@ function seccion1Function(seccion1, datos) {
       datos.defensa
     );
   }
+  animacionMonedero();
   datosJugador(jugador, seccion1.id);
   const boton = seccion1.querySelector(".continuar");
   boton.addEventListener("click", (e) => {
@@ -161,6 +162,10 @@ function seccion1Function(seccion1, datos) {
   });
 }
 
+function animacionMonedero() {
+  const monedero = document.querySelector(".monedero");
+  monedero.classList.add("animacion-monedero");
+}
 // SECCIÓN 2: Mercado
 /**
  * Renderiza el mercado, mostrando productos y permitiendo añadirlos al inventario.
@@ -574,7 +579,7 @@ function seccion6Function(seccion6, puntuacion, ganador) {
   document.getElementById("title").textContent = "Resultado Final";
   const spanRanking = document.querySelector(".ranking-data");
   const spanPuntuacion = document.querySelector(".puntuacion-data");
-  const boton = seccion6.querySelector(".reiniciar");
+  const boton = seccion6.querySelector(".continuar");
 
   if (ganador instanceof Enemigo) {
     spanRanking.textContent = `El jugador ha perdido`;
@@ -607,6 +612,16 @@ function seccion6Function(seccion6, puntuacion, ganador) {
       console.log("No hay puntuaciones guardadas");
     }
   });
+
+  boton.addEventListener("click", () => {
+    const seccion7 = document.getElementById("seccion-7");
+    mostrarSeccion(seccion7.id);
+    seccion7function(seccion7);
+  });
+}
+
+function seccion7function(seccion7) {
+  const boton = seccion7.querySelector(".reiniciar");
 
   boton.addEventListener("click", () => {
     const seccion0 = document.getElementById("seccion-0");
