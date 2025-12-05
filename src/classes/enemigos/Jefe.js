@@ -15,16 +15,9 @@ export class Jefe extends Enemigo {
    * @param {number} hp - Puntos de vida del Jefe
    * @param {number} multiplicadorDanio - Multiplicador para aumentar el daño (por defecto 1.2)
    */
-  constructor(
-    nombre,
-    avatar,
-    ataque,
-    hp,
-    dineroOfrece = 10,
-    multiplicadorDanio = 1.2
-  ) {
+  constructor(nombre, avatar, ataque, hp, multiplicadorDanio = 1.2) {
     // Llamamos al constructor de la clase padre (Enemigo)
-    super(nombre, avatar, ataque, hp, dineroOfrece);
+    super(nombre, avatar, ataque, hp);
 
     // Propiedad exclusiva del Jefe
     // Representa un factor por el cual se multiplica su daño
